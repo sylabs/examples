@@ -20,10 +20,9 @@ mkdir httpd
 cd httpd/
 ```
 
+<br>
+
 Then, make the definition file:
-
-*you can replace `micro` with other text editors.*
-
 ```
 micro httpd.def
 ```
