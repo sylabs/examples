@@ -24,7 +24,7 @@ cd httpd/
 
 Then, make the definition file:
 ```
-micro httpd.def
+nano httpd.def
 ```
 ```
 Bootstrap: docker
@@ -70,7 +70,7 @@ web/
 Then add a basic index.html file to serve:
 
 ```
-micro web/htdocs/index.html
+nano web/htdocs/index.html
 ```
 ```
 <!DOCTYPE html>
