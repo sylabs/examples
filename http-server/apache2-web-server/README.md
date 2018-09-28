@@ -8,7 +8,7 @@ What you need:
  - Singularity, you can download it [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
  - root access.
- - a browser to test it, you can `w3m`, you can install it by `sudo apt-get install w3m w3m-img`
+ - a browser to test it, you can use `w3m`, install it by `sudo apt-get install w3m w3m-img`
  
 
 <br>
@@ -39,7 +39,8 @@ sudo singularity build httpd.sif httpd.def
 ```
 
 <br>
-We now have a simple container that will run a HTTP server listening on port 8080. Our web content, and logs, are going to be stored from a share on the host. So we create a directory tree on host system:
+We now have a simple container that will run a HTTP server listening on port 8080.
+Our web content, and logs, are going to be stored from a share on the host. So we create a directory tree on host system:
 
 ```
 mkdir -p web/{htdocs,logs}
@@ -60,7 +61,7 @@ web/
 
 Then add a basic index.html file to serve:
 
-`micro index.html`
+`micro web/htdocs/index.html`
 
 ```
 <!DOCTYPE html>
@@ -72,7 +73,6 @@ Then add a basic index.html file to serve:
 
 <h1>Simple Web Page From Container</h1>
 <h3>cool stuff</h3>
-
 
 </body>
 </html>
@@ -109,7 +109,7 @@ Or:
 w3m http://localhost:8080
 ```
 
-And access the index.html file being served from the `web/htdocs/` location.
+And access the `index.html` file being served from the `web/htdocs/` location.
 
 <br>
 
