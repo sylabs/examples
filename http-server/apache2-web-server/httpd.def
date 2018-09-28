@@ -1,0 +1,9 @@
+Bootstrap: docker
+From: httpd:latest
+
+%post
+    # Change the port we are listening on to 8080 instead of 80
+    sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
+
+%startscript
+    httpd

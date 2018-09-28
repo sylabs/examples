@@ -1,0 +1,92 @@
+# HTTP Server
+
+Here we are running an Apache Web server in a container.
+
+The simple Singularity definition file is:
+
+`httpd.def`
+```
+Bootstrap: docker
+From: httpd:latest
+
+%post
+    # Change the port we are listening on to 8080 instead of 80
+    sed -ie ‘s/^\(Listen\).*/\1 8080/’ /usr/local/apache2/conf/httpd.conf
+
+%startscript
+    httpd
+```
+**NOTE:** you can also find the `httpd.def` file in this repo.
+
+
+We then build this container:
+
+```
+sudo singularity build httpd.sif httpd.def
+```
+
+We now have a simple container that will run a HTTP server listening on port 8080. Our web content, and logs, are going to be stored from a share on the host. So we create a directory tree on host system:
+
+```
+mkdir -p web/{htdocs,logs}
+```
+
+Now are directory map should look like this:
+
+```
+web/
+|-- htdocs/
+|   `-- index.html
+`-- logs/
+```
+
+And add a basic index.html file to serve:
+
+`index.html`
+```
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Web Page</title>
+</head>
+<body>
+
+<h1>Simple Web Page From Container</h1>
+<h3>cool stuff</h3>
+
+
+</body>
+</html>
+```
+
+To use this structure, we start up an instance binding our host path, into the container:
+
+```
+singularity instance start \
+ -B web/htdocs:/usr/local/apache2/htdocs \
+ -B web/logs:/usr/local/apache2/logs \
+ httpd.sif httpd
+```
+
+**FYI:** the above command is the same as:
+
+```
+singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs:/usr/local/apache2/logs httpd.sif httpd
+```
+
+You can now open a browser to:
+
+http://localhost:8080
+
+and access the index.html file being served from the web/htdocs/ location.
+
+<br>
+
+To stop the server, run this command:
+
+```
+kill $(ps aux | grep 'Singularity instance' | awk '{print $2}' | head -1)
+```
+
+<br>
+<br>
