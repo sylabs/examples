@@ -18,18 +18,21 @@ From: httpd:latest
 ```
 **NOTE:** you can also find the `httpd.def` file in this repo.
 
+<br>
 
-We then build this container:
-
+Then to build this container:
 ```
 sudo singularity build httpd.sif httpd.def
 ```
 
+<br>
 We now have a simple container that will run a HTTP server listening on port 8080. Our web content, and logs, are going to be stored from a share on the host. So we create a directory tree on host system:
 
 ```
 mkdir -p web/{htdocs,logs}
 ```
+
+<br>
 
 Now are directory map should look like this:
 
@@ -39,8 +42,10 @@ web/
 |   `-- index.html
 `-- logs/
 ```
+<br>
+<br>
 
-And add a basic index.html file to serve:
+Then add a basic index.html file to serve:
 
 `index.html`
 ```
@@ -59,6 +64,9 @@ And add a basic index.html file to serve:
 </html>
 ```
 
+<br>
+<br>
+
 To use this structure, we start up an instance binding our host path, into the container:
 
 ```
@@ -68,11 +76,15 @@ singularity instance start \
  httpd.sif httpd
 ```
 
+<br>
+
 **FYI:** the above command is the same as:
 
 ```
 singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs:/usr/local/apache2/logs httpd.sif httpd
 ```
+
+<br>
 
 You can now open a browser to:
 
