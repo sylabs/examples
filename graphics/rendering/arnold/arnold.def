@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: debian:9.5
+
+%environment
+    # We will install arnold to /opt/arnold
+    PATH=/opt/arnold/bin:$PATH
+    export PATH
+
+    # If you have a license server, you can set this
+    #  -- https://support.solidangle.com/display/A5AILIC/Setting+solidangle_LICENSE+on+the+command+line
+    # solidangle_LICENSE=5053@server
+    # export solidangle_LICENSE
+
+%post
+    apt-get update
+
+    # Required by Arnold
+    apt-get -y install python
+    apt-get -y install less
+    apt-get -y install libx11-6
+
+%runscript
+    /opt/arnold/bin/kick "$@"
+
+
