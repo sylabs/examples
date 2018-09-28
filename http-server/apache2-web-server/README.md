@@ -1,6 +1,6 @@
 # HTTP Server
 
-In this example, we will run a simple Apache Web server in a container.
+In this example, we will run a simple Apache Web server in a Singularity Container.
 
 <br>
 
