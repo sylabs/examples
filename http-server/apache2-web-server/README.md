@@ -1,6 +1,6 @@
 # HTTP Server
 
-In this example, we will run an Apache Web server in a container.
+In this example, we will run a simple Apache Web server in a container.
 
 <br>
 
@@ -8,7 +8,7 @@ What you need:
  - Singularity, you can download it [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
  - root access.
- - a browser, to test it.
+ - a browser to test it, you can `w3m`, you can install it by `sudo apt-get install w3m w3m-img`
  
 
 <br>
@@ -17,14 +17,14 @@ To start, make the definition file.
 
 `micro httpd.def`
 
-you can replace `micro` with other text editors
+*you can replace `micro` with other text editors*
 ```
 Bootstrap: docker
 From: httpd:latest
 
 %post
     # Change the port we are listening on to 8080 instead of 80
-    sed -ie ‘s/^\(Listen\).*/\1 8080/’ /usr/local/apache2/conf/httpd.conf
+    sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
 
 %startscript
     httpd
@@ -60,7 +60,8 @@ web/
 
 Then add a basic index.html file to serve:
 
-`index.html`
+`micro index.html`
+
 ```
 <!DOCTYPE html>
 <html>
@@ -103,7 +104,12 @@ You can now open a browser to:
 
 http://localhost:8080
 
-and access the index.html file being served from the web/htdocs/ location.
+Or:
+```
+w3m http://localhost:8080
+```
+
+And access the index.html file being served from the `web/htdocs/` location.
 
 <br>
 
