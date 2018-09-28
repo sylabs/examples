@@ -125,7 +125,7 @@ And access the `index.html` file being served from the `web/htdocs/` location.
 To stop the server, run this command:
 
 ```
-kill $(ps aux | grep 'Singularity instance' | awk '{print $2}' | head -1)
+singularity instance stop httpd
 ```
 
 <br>
