@@ -1,0 +1,12 @@
+BootStrap: docker
+From: ubuntu:16.04
+
+%post
+    apt-get -y update
+    apt-get -y install curl
+    apt-get -y install unzip
+    apt-get install -y openjdk-8-jre
+    curl -sSL "http://prdownloads.sourceforge.net/weka/weka-3-8-3.zip" > weka.zip
+    unzip weka.zip -d / && rm -f weka.zip*
+    echo 'export CLASSPATH=/weka-3-8-3/weka.jar' >> /environment
+    apt-get clean
