@@ -101,7 +101,7 @@ singularity instance start \
 
 <br>
 
-**FYI:** the above command is the same as:
+*FYI:* the above command is the same as:
 
 ```
 singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs:/usr/local/apache2/logs httpd.sif httpd
