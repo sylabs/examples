@@ -22,9 +22,11 @@ cd httpd/
 
 Then, make the definition file:
 
-`micro httpd.def`
+*you can replace `micro` with other text editors.*
 
-*you can replace `micro` with other text editors*
+```
+micro httpd.def
+```
 ```
 Bootstrap: docker
 From: httpd:latest
@@ -68,8 +70,9 @@ web/
 
 Then add a basic index.html file to serve:
 
-`micro web/htdocs/index.html`
-
+```
+micro web/htdocs/index.html
+```
 ```
 <!DOCTYPE html>
 <html>
