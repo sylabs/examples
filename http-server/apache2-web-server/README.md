@@ -5,7 +5,7 @@ In this example, we will run a simple Apache Web server in a container.
 <br>
 
 What you need:
- - Singularity, you can download it [here](https://github.com/sylabs/singularity).
+ - Singularity, you can download and install it [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
  - root access.
  - a browser to test it, you can use `w3m`, install it by `sudo apt-get install w3m w3m-img`
