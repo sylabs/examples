@@ -109,7 +109,7 @@ singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs:/
 
 <br>
 
-You can now open a browser to:
+Finally, open a browser to:
 
 http://localhost:8080
 
