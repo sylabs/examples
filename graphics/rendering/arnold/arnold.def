@@ -1,5 +1,5 @@
-Bootstrap: docker
-From: debian:9.5
+Bootstrap: library
+From: debian:9
 
 %environment
     # We will install arnold to /opt/arnold
