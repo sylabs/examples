@@ -15,9 +15,7 @@ From: debian:9
     apt-get update
 
     # Required by Arnold
-    apt-get -y install python
-    apt-get -y install less
-    apt-get -y install libx11-6
+    apt-get -y install python less libx11-6
 
 %runscript
     /opt/arnold/bin/kick "$@"
