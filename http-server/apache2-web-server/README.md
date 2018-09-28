@@ -1,10 +1,23 @@
 # HTTP Server
 
-Here we are running an Apache Web server in a container.
+In this example, we will run an Apache Web server in a container.
 
-The simple Singularity definition file is:
+<br>
 
-`httpd.def`
+What you need:
+ - Singularity, you can download it [here](https://github.com/sylabs/singularity).
+ - A text editor, like: `micro`, `vim` or `nano`.
+ - root access.
+ - a browser, to test it.
+ 
+
+<br>
+
+To start, make the definition file.
+
+`micro httpd.def`
+
+you can replace `micro` with other text editors
 ```
 Bootstrap: docker
 From: httpd:latest
