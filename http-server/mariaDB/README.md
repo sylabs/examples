@@ -8,7 +8,6 @@ What you need:
  - A text editor, like: `micro`, `vim` or `nano`.
  - root access.
  - mySQL, installed by `sudo apt-get install mysql-server`.
- - a browser to test it, or you can use `w3m`, install it by `sudo apt-get install w3m w3m-img`.
  
 <br>
 <br>
