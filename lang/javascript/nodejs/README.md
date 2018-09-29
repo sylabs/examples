@@ -1,8 +1,8 @@
 # Node.js
 
-[Node.ms](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+[Node.js](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 
-The full steps to install Arnold into the container are provided at:
+The full steps to install Node.js into the container are provided at:
 
   https://www.sylabs.io/2018/09/nodejs-on-singularity/
 
