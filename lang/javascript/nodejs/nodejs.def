@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: node:10.11.0-alpine
+
+%environment
+HOSTNAME=127.0.0.1
+PORT=3000
+YARN_VERSION=1.9.4
+export HOSTNAME PORT YARN_VERSION
+
+%setup
+# We make the directory where we will store our NodeJS file
+mkdir -p $SINGULARITY_ROOTFS/node
+
+%files
+# Copy the file in the local directory to the /node location in the Image
+Hello-world.js /node/Hello-world.js
+
+%runscript
+# What is executed with "singularity run"
+
+# Pass any arguments to the node binary directly
+node "$@"
+
+%startscript
+# what is executed with "singularity instance start"
+
+# Run node on our Hello-world.js file
+node /node/Hello-world.js
