@@ -30,9 +30,9 @@ Bootstrap: docker
 From: mariadb:10.3.9
 
 %post
-    # [YOUR_USERNAME] is the user who will be executing the container,
+    # <YOUR_USERNAME> is the user who will be executing the container,
     # just run: `whoami` and thats your username.
-    sed -ie "s/^#user.*/user = [YOUR_USERNAME]/" /etc/mysql/my.cnf
+    sed -ie "s/^#user.*/user = <YOUR_USERNAME>/" /etc/mysql/my.cnf
 
 
 %runscript
