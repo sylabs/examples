@@ -40,6 +40,7 @@ From: mariadb:10.3.9
 
 %startscript
     exec "mysqld_safe"
+
 ```
 **NOTE:** you can also fine the definition file in this repo.
 
