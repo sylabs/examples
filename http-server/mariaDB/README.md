@@ -32,14 +32,14 @@ From: mariadb:10.3.9
 %post
     # [YOUR_USERNAME] is the user who will be executing the container,
     # just run: `whoami` and thats your username.
-    sed -ie ‘s/^#user.*/user = [YOUR_USERNAME]/’ /etc/mysql/my.cnf
+    sed -ie "s/^#user.*/user = [YOUR_USERNAME]/" /etc/mysql/my.cnf
 
 
 %runscript
-    exec “mysqld” “$@”
+    exec "mysqld" "$@"
 
 %startscript
-    exec “mysqld_safe”
+    exec "mysqld_safe"
 ```
 **NOTE:** you can also fine the definition file in this repo.
 
