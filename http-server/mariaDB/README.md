@@ -92,7 +92,7 @@ During this procedure, you should:
  - Remove anonymous users, `[Y/n] y`
  - Disallow root login remotely, `[Y/n] y`
  - Remove the test database and access, `[Y/n] y`
- - Reload/flush the privilege table, `[Y/n] y
+ - Reload/flush the privilege table, `[Y/n] y`
 
 <br>
 
