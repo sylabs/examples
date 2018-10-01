@@ -78,6 +78,7 @@ mysqld_safe --datadir=/var/lib/mysql &
 *You may need to press `<ENTER>` to bring your prompt back.*
 
 <br>
+<br>
 
 Now we need to secure are installation:
 
