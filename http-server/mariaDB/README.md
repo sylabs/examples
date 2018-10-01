@@ -87,11 +87,12 @@ mysql_secure_installation
 During this procedure, you should:
 
  - enter your old password, there is none so just press <ENTER>
- - Set a new password (remember that password)
- - Remove anonymous users
- - Disallow root login remotely
- - Remove the test database and access
- - Reload/flush the privilege table
+ - Set a new password, `[Y/n] y`
+ - Type new password (remember that password)
+ - Remove anonymous users, `[Y/n] y`
+ - Disallow root login remotely, `[Y/n] y`
+ - Remove the test database and access, `[Y/n] y`
+ - Reload/flush the privilege table, `[Y/n] y
 
 <br>
 
@@ -119,6 +120,7 @@ use mysql;
 # your promt should change to: MariaDB [mysql]>
 CREATE DATABASE workdb;
 CREATE USER newuser@<YOUR_IP_ADDRESS> IDENTIFIED BY "<YOUR_PASSWORD>";
+# eg. CREATE USER newuser@192.168.1.55 IDENTIFIED BY "mysql-password";
 GRANT ALL PRIVILEGES ON workdb.* TO newuser@<YOUR_IP_ADDRESS> WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 exit
