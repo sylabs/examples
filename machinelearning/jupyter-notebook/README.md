@@ -1,3 +1,4 @@
+# Jupyter Notebook
 
 Jupyter Notebook is an open source web application environment that allows to create and share documents that contain code, equations, visualizations and narrative text. Some use cases are data visualization, statistical modeling and machine learning.
 
