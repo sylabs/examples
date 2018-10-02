@@ -1,0 +1,67 @@
+BootStrap: docker
+From: caffe2/caffe2:snapshot-py2-cuda9.0-cudnn7-ubuntu16.04
+
+
+%runscript
+    # run a simple test with this data: /app/data/model_final.pkl
+    cp -rf /detectron .
+    cd ./detectron && python2 tools/infer_simple.py \
+      --cfg configs/12_2017_baselines/e2e_mask_rcnn_R-101-FPN_2x.yaml \
+      --output-dir /tmp/detectron-visualizations \
+      --image-ext jpg \
+      --wts /app/data/model_final.pkl \
+      demo
+
+
+%environment
+    export PYTHONPATH=/usr/local/caffe2_build:/detectron/lib:$PYTHONPATH
+    export Caffe2_DIR=/usr/local/caffe2_build
+    export LD_LIBRARY_PATH=/usr/local/caffe2_build/lib:$LD_LIBRARY_PATH
+    export LC_ALL=C
+
+
+%post
+    apt-get -y update
+    # basic-tools:
+    apt-get -y install vim curl hostname wget unzip tar gzip bc less \
+        util-linux strace bzip2 man-db
+    apt-get clean
+
+    # detectron based on: https://hub.docker.com/r/suhangpro/detectron/~/dockerfile/
+
+    mv /usr/local/caffe2 /usr/local/caffe2_build
+    export Caffe2_DIR=/usr/local/caffe2_build
+
+    export PYTHONPATH=/usr/local/caffe2_build:$PYTHONPATH
+    export LD_LIBRARY_PATH=/usr/local/caffe2_build/lib:$LD_LIBRARY_PATH
+
+    # get Detectron code version from a fixed date for reproducibility reasons
+    git clone https://github.com/facebookresearch/detectron /detectron
+    cd /detectron
+    git checkout "`git rev-list master  -n 1 --first-parent --before=2018-08-22`"
+    cd -
+    
+    # Install Python dependencies from detectron requirements
+    pip install -r /detectron/requirements.txt
+    
+    # Install the COCO API
+    git clone https://github.com/cocodataset/cocoapi.git /cocoapi
+    cd /cocoapi
+    git checkout "`git rev-list master  -n 1 --first-parent --before=2018-08-22`"
+    cd -
+    cd /cocoapi/PythonAPI
+    make install
+    cd -
+
+    cd /detectron
+    make
+    make ops
+    cd -
+
+    chmod -R a+rX /usr/lib/python*
+    chmod -R a+rX /detectron
+   
+    # add some sample data to test the container
+    mkdir -p /app/data
+    curl -sSL "https://s3-us-west-2.amazonaws.com/detectron/35861858/12_2017_baselines/e2e_mask_rcnn_R-101-FPN_2x.yaml.02_32_51.SgT4y1cO/output/train/coco_2014_train:coco_2014_valminusminival/generalized_rcnn/model_final.pkl" > /app/data/model_final.pkl
+    apt-get clean
