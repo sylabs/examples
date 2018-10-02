@@ -1,3 +1,5 @@
+See: https://www.sylabs.io/2018/10/facebook-research-detectron/
+
 Detectron is an object detection system written in Python and powered by Caffe2. [Detectron is a Facebook Research project](https://github.com/facebookresearch/Detectron) created to solve real world problems, particularly for deep learning applications.
 
 Singularity provides a basis for repeatability with a container runtime that does not require root owned daemon or escalation of user privilege to run. With it's single file image format (SIF) Singularity is ideal for BYOE science (bring your own environment) and for the mobility of compute with deep learning applications.
