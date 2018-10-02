@@ -24,8 +24,12 @@ $ singularity run jupyter.sif --port=9000
 
 This will run Jupyter Notebook on `localhost:9000`.
 
-To start an instance of the built image on another port you can also do so by:
+And if you would like to set another hostname use `--ip` at the moment of running the image:
 
 ```
-$ singularity instance start jupyter.sif --port=5555
+$ singularity run jupyter.sif --ip=1.1.1.1 --port=9000
 ```
+
+This will run Jupyter Notebook on `1.1.1.1:9000`
+
+

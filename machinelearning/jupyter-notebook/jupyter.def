@@ -48,8 +48,3 @@ From: debian:9
 %runscript
 
   jupyter notebook --allow-root "$@"
-
-
-%startscript
-
- jupyter notebook --allow-root "$@"
