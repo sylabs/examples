@@ -32,4 +32,6 @@ $ singularity run jupyter.sif --ip=1.1.1.1 --port=9000
 
 This will run Jupyter Notebook on `1.1.1.1:9000`
 
+See the write-up at:
+https://www.sylabs.io/2018/10/jupyter-notebook/
 
