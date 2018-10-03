@@ -150,6 +150,7 @@ From: httpd:latest
 $ sudo singularity build httpd.sif httpd.def
 ```
 
+Now you should have your container (`httpd.sif`) and you don't need to download it.
 
 <br>
 <br>
