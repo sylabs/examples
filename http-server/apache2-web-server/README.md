@@ -29,7 +29,7 @@ $ singularity pull library://westleyk/examples/httpd.sif:latest
 ```
 
 
-If your building the container from a recipe, click [here](building-the-contianer-from-a-recipe) or scroll down.
+If your building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
 
 <br>
 
@@ -122,7 +122,7 @@ $ singularity instance stop httpd
 <br>
 
 
-### Building the contianer from a recipe
+### Building the contianer from a recipe:
 
 To build the container from a recipe, 
 
