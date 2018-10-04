@@ -7,7 +7,6 @@ In this example, we will run a simple Apache Web server in a Singularity Contain
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access (only if your building the container from a recipe).
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
  
 
@@ -28,8 +27,15 @@ $ cd httpd/
 $ singularity pull library://westleyk/examples/httpd.sif:latest
 ```
 
-
 If your building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
+
+<br>
+
+#### Now, rename the container you just pulled:
+
+```
+$ mv httpd.sif_latest.sif httpd.sif
+```
 
 <br>
 
@@ -124,7 +130,7 @@ $ singularity instance stop httpd
 
 ### Building the contianer from a recipe:
 
-To build the container from a recipe, 
+To build the container from a recipe, you will need root access, and the recipe file.
 
 #### First, make the definition file:
 ```
