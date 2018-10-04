@@ -27,7 +27,7 @@ $ cd httpd/
 $ singularity pull library://sylabs/examples/httpd.sif:latest
 ```
 
-If your building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
+If you're building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
 
 <br>
 
