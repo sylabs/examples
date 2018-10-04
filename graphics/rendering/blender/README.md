@@ -1,6 +1,6 @@
 # Blender
 
-Blender is a free and open source software.
+Blender is a free and open source software used for editing and rendering.
 
 <br>
 
