@@ -31,7 +31,7 @@ If you're building the container from a recipe, click [here](#building-the-conti
 
 <br>
 
-#### Now, rename the container you just pulled:
+#### Now, Rename the container you just pulled:
 
 ```
 $ mv httpd.sif_latest.sif httpd.sif
