@@ -24,7 +24,7 @@ $ cd httpd/
 #### Then, pull the container from the library:
 
 ```
-$ singularity pull library://westleyk/examples/httpd.sif:latest
+$ singularity pull library://sylabs/examples/httpd.sif:latest
 ```
 
 If your building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
