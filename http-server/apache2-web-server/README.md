@@ -5,10 +5,10 @@ In this example, we will run a simple Apache Web server in a Singularity Contain
 <br>
 
 #### What you need:
- - Singularity, you can download and install it [here](https://github.com/sylabs/singularity).
+ - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - root access, (only if your building the container from a recipe).
- - a browser to test it, or you can use `w3m`, install it by `sudo apt-get install w3m w3m-img`.
+ - Root access (only if your building the container from a recipe).
+ - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
  
 
 <br>
@@ -35,7 +35,7 @@ If your building the container from a recipe, click [here](#building-the-contian
 
 We now have a simple container that will run a HTTP server listening on port 8080.
 
-Our web content, and logs, are going to be stored from a share on the host. So we create a directory tree on host system:
+Our web content, and logs, are going to be stored from a share on the host. So, we will create a directory tree on the host system:
 
 #### To create the directory tree:
 ```
@@ -45,7 +45,7 @@ $ mkdir -p web/{htdocs,logs}
 <br>
 <br>
 
-Now are directory map should look like this:
+Now our directory map should look like this:
 
 ```
 web/
@@ -79,7 +79,7 @@ $ nano web/htdocs/index.html
 <br>
 <br>
 
-#### To use this structure, we start up an instance binding our host path, into the container:
+#### To use this structure, we start up an instance binding our host path into the container:
 
 ```
 $ singularity instance start \
@@ -145,7 +145,7 @@ From: httpd:latest
 
 <br>
 
-#### Then to build this container:
+#### Then to build the container:
 ```
 $ sudo singularity build httpd.sif httpd.def
 ```
