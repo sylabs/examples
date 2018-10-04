@@ -1,6 +1,8 @@
 # Blender
 
-what blender does.
+Blender is a free and open source software.
+
+<br>
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
