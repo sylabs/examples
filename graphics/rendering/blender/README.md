@@ -145,6 +145,8 @@ From: ubuntu:16.04
 $ sudo singularity build blender.sif blender.def
 ```
 
+Now you should have your container (`blender.sif`) and you don't need to download it.
+
 
 <br>
 <br>
