@@ -5,6 +5,10 @@ containers from the [sylabs.io blog](https://www.sylabs.io/lab-notes/).
 Each example resides in its own subdirectory with its own README.md and definition
 file.
 
+All Definition files provided by Sylabs are under the BSD-3 clause license,
+
+Unless noted in the file themselves. See the LICENSE.md file for more information. 
+
 
 ### Here is the example map:
 
