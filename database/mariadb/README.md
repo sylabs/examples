@@ -4,9 +4,9 @@ In this example, we will run a database server.
 
 
 What you need:
- - Singularity, you can download and install it [here](https://github.com/sylabs/singularity).
+ - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - root access.
+ - Root access.
  - mySQL, installed by `sudo apt-get install mysql-server`.
  
 <br>
@@ -31,7 +31,7 @@ From: mariadb:10.3.9
 
 %post
     # <YOUR_USERNAME> is the user who will be executing the container,
-    # just run: `whoami` and thats your username.
+    # just run: `whoami` and that's your username.
     # eg. sed -ie "s/^#user.*/user = westleyk/" /etc/mysql/my.cnf
     sed -ie "s/^#user.*/user = <YOUR_USERNAME>/" /etc/mysql/my.cnf
 
@@ -43,7 +43,7 @@ From: mariadb:10.3.9
     exec "mysqld_safe"
 
 ```
-**NOTE:** you can also fine the definition file in this repo.
+**NOTE:** you can also find the definition file in this repo.
 
 <br>
 
@@ -70,7 +70,7 @@ singularity shell \
  mariadb.sif
 ```
 
-Once we are in the container, setup mariaDB:
+Once we are in the container, setup MariaDB:
 ```
 mysql_install_db
 mysqld_safe --datadir=/var/lib/mysql &
@@ -80,30 +80,30 @@ mysqld_safe --datadir=/var/lib/mysql &
 <br>
 <br>
 
-Now we need to secure are installation:
+Now we need to secure our installation:
 
-Remenber, we are still in the container.
+Remember, we are still in the container.
 ```
 mysql_secure_installation
 ```
 
 During this procedure, you should:
 
- - enter your old password, there is none so just press `<ENTER>`
- - Set a new password, `[Y/n] y`
- - Type new password (remember that password)
- - Remove anonymous users, `[Y/n] y`
- - Disallow root login remotely, `[Y/n] y`
- - Remove the test database and access, `[Y/n] y`
- - Reload/flush the privilege table, `[Y/n] y`
+ - Enter your old password. If there is none just press `<ENTER>` . 
+ - Set a new password. `[Y/n] y`
+ - Type your new password (remember that password).
+ - Remove anonymous users. `[Y/n] y`
+ - Disallow root login remotely. `[Y/n] y`
+ - Remove the test database and access. `[Y/n] y`
+ - Reload/flush the privilege table. `[Y/n] y`
 
 <br>
 
-After your are done with that, connect as the root user to the database:
+Once your are done with that, connect as the root user to the database:
 ```
 mysql -u root -p
 ```
-You will have to type your password you previously set.
+You will have to type the password you previously set.
 <br>
 Now your promt should look like this:
 ```
@@ -130,16 +130,16 @@ GRANT ALL PRIVILEGES ON workdb.* TO newuser@<YOUR_IP_ADDRESS> WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 exit
 ```
-If you get an `ERROR:`, then the command was not type correctly.
+If you get an `ERROR:`, then the command was not typed correctly.
 
-After you type `exit` you should still be in the container, ie. your promt should look like this:
+After you type `exit` you should still be in the container, i.e., your promt should look like this:
 ```
 Singularity mariadb/mariadb.sif:~> 
 ```
 
 <br>
 
-Now we’ll shut down the mariadb service inside the container:
+Now we’ll shut down the MariaDB service inside the container:
 ```
 mysqladmin -u root -p shutdown
 ```
@@ -153,7 +153,7 @@ exit
 
 We now have a working database, and are ready to start the instance.
 
-The Database files are stored on the host under <em>mariadb/db/</em>:
+The database files are stored on the host under <em>mariadb/db/</em>:
 ```
 singularity instance start \
  -B mariadb/db:/var/lib/mysql \
@@ -233,7 +233,7 @@ And:
 ```
 singularity instance stop mariadb
 ```
-Will stop `mariadb` instance.
+will stop `mariadb` instance.
 
 
 <br>
