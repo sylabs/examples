@@ -7,7 +7,7 @@ Blender is a free and open source software used for editing and rendering.
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - A blender image, like [these](https://free3d.com/3d-models/blender-scene)
+ - A blender image, like [these](https://www.blender.org/download/demo-files/)
 
 <br>
 
