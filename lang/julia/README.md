@@ -1,6 +1,9 @@
 # Julia
 
-In this example, we will run a simple `julia` container.
+In this example, we will cover:
+ - [Pulling a julia container from the library.](#then-pull-the-container-from-the-library)
+ - [Building the container from a recipe.](#building-from-a-recipe)
+ - [Running a julia script.](#running-a-julia-script)
 
 <br>
 
