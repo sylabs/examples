@@ -150,7 +150,7 @@ $ singularity run arnold/ -i cornell.ass -dw
 ```
 Any option after the image (in this case arnold/), will be passed to the kick program.
 
-Check output at: `cornell.jpg`
+Check output at: `cornell.jpg`.
 
 With the `cornell.ass` example, you will get output like:
 
