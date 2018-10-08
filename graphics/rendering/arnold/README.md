@@ -4,21 +4,25 @@
 
 <br>
 
-Arnold must be installed interactively. As such, the Definition file provided will
-give you the base OS. 
-
-<br>
-<br>
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
  - Root access (only for build and shell).
  - Arnold, which are provided [below](#here-is-how-to-download-arnold).
- 
+
+<br>
+
+Arnold must be installed interactively. As such, the Definition file provided will
+give you the base OS.
+
+
 <br>
 <br>
 
+____
+
+<br>
 
 #### Here is how to download Arnold:
 
@@ -71,7 +75,6 @@ apt-get -y install python less libx11-6
 %runscript
 # Pass any options as kick CLI options
 /opt/arnold/bin/kick "$@"
-
 ```
 
 #### Or, you can just download the definition file:
