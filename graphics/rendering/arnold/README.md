@@ -1,12 +1,11 @@
 # Arnold
 
-[Arnold](https://www.solidangle.com/arnold/) is an advanced Monte Carlo ray tracing renderer built for the demands of feature-length animation and visual effects rendering, largely used to create movies and video games.
+[Arnold](https://www.solidangle.com/arnold/) designed for visual effects and animation rendering, and is often used in movies and video games. Based on Monte Carlo ray tracing, this advanced version has been used in a wide array of studios and movies around the world. 
 
 <br>
 
-It must be installed interactively. So, the Definition file provided will
-give you the base OS. The full steps to install Arnold into the container
-are provided at:
+Arnold must be installed interactively. As such, the Definition file provided will
+give you the base OS. 
 
 <br>
 <br>
@@ -14,18 +13,18 @@ are provided at:
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access. (only for build and shell)
- - Arnold, you can download it [here](https://www.arnoldrenderer.com/arnold/try/)
+ - Root access (only for build and shell).
+ - Arnold, which are provided [below](#here-is-how-to-download-arnold).
  
 <br>
 <br>
 
 
-#### To start, Download Arnold:
+#### Here is how to download Arnold:
 
-Go [here](https://www.arnoldrenderer.com/arnold/try/) and download Arnold,
+Go [here](https://www.arnoldrenderer.com/arnold/try/) and download Arnold.
 
-You will need a account.
+You will need to create an account.
 
 #### Then copy-paste the installer to `/tmp/`:
 
@@ -33,7 +32,7 @@ You will need a account.
 $ cp ~/Downloads/MtoA-3.1.0.1-linux-2018.run /tmp/
 ```
 
-The `/tmp/` directory is were we will access the installer from the container.
+The `/tmp/` directory is where we will access the installer from the container.
 
 <br>
 
@@ -83,7 +82,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/graphics/renderi
 
 <br>
 
-#### Then to build the container:
+#### Next, to build the container:
 
 ```
 $ sudo singularity build --sandbox arnold arnold.def
@@ -109,7 +108,7 @@ $ sudo singularity shell --writable arnold/
 ```
 
 Read through the License Agreement
- - Type: `accept` (if accepted).
+ - Type: `accept` (if you accept them).
  - Enter: `2`for the Install mode.
  - Enter: `/opt/arnold` for the Install location.
 
@@ -117,9 +116,9 @@ Read through the License Agreement
 <br>
 
 
-#### Now exit the cotainer:
+#### Exit the container:
 
-After the install is complete, exit the container,
+After the install is complete, exit the container.
 
 ```
 > exit
@@ -127,13 +126,13 @@ After the install is complete, exit the container,
 
 <br>
 
-#### Then, get you `.ass` file:
+#### Then, get your `.ass` file:
 
-You can download a sample file from [here](https://support.solidangle.com/display/A5ARP/.ass+File+Examples)
+You can download a sample file from [here](https://support.solidangle.com/display/A5ARP/.ass+File+Examples).
 
 For this example, we’ll use: `cornell.ass`
 
-Then `cp` the sample file to are working directory:
+Then `cp` the sample file to our working directory:
 
 (which should also be where your `arnold/` sandbox container is located)
 
@@ -147,11 +146,11 @@ $ cp ~/Downloads/cornell.ass .
 #### Now, run the test render:
 
 ```
-singularity run arnold/ -i cornell.ass -dw
+$ singularity run arnold/ -i cornell.ass -dw
 ```
 Any option after the image (in this case arnold/), will be passed to the kick program.
 
-Check output at: `cornell.jpg`
+Check output at: `cornell.jpg`.
 
 With the `cornell.ass` example, you will get output like:
 
@@ -163,14 +162,13 @@ With the `cornell.ass` example, you will get output like:
 <br>
 
 
-### Optionally you can also build a SIF image from the sandbox install.
+### Optionally, you can also build a SIF container from the sandbox install.
 
 Please note that this is not considered to be a best practice workflow.
-If you create a SIF image from an interactive sandbox session, the definition file that is saved in the SIF sandbox will not 
-reflect all of the changes that have been made to the image.
+If you create a SIF container from an interactive sandbox session, the definition file that is saved in the SIF sandbox will not reflect all of the changes that have been made to the container.
 However, with Arnold there is no alternative but to install interactively.
 
-#### To build the SIF image:
+#### To build the SIF container:
 
 ```
 $ sudo singularity build arnold.sif arnold/
