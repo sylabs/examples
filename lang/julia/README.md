@@ -351,6 +351,11 @@ $ singularity run julia.sif
 ```
 
 <br>
+
+Then it will download the script from: `https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE>` <br>
+And then run it.
+
+<br>
 <br>
 
 
