@@ -316,7 +316,7 @@ From: ubuntu:16.04
 
 %runscript
 # Now we can run a script from the web
-curl https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE> | julia
+curl -s https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE> | julia
 
 
 %environment
