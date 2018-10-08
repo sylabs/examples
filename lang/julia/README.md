@@ -174,9 +174,10 @@ Or
 <br>
 
 ```
-$ singularity exec julia.sif ./testing.jl
+$ singularity exec julia.sif julia testing.jl
 ```
 
+<br>
 <br>
 
 #### Embed the run command to runscript:
