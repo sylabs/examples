@@ -100,8 +100,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/julia
 ```
 
 Then you can modifie the `julia.def` file as you need,
-
-Eg. install other packages.
+ie. install other packages.
 
 
 <br>
