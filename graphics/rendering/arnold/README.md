@@ -71,7 +71,6 @@ apt-get -y install python less libx11-6
 %runscript
 # Pass any options as kick CLI options
 /opt/arnold/bin/kick "$@"
-
 ```
 
 #### Or, you can just download the definition file:
