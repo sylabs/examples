@@ -2,15 +2,15 @@
 
 In this example, we will cover:
  - [Pulling a julia container from the library.](#then-pull-the-container-from-the-library)
- - [Building the container from a recipe.](#building-from-a-recipe)
- - [Running a julia script.](#running-a-julia-script)
+ - [Building the container from a recipe.](#to-build-from-a-recipe)
+ - [Running a julia script.](#to-run-a-julia-script)
 
 <br>
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access (only if your [building from a recipe](#building-from-a-recipe)).
+ - Root access (only if you're [building from a recipe](#building-from-a-recipe)).
  
 
 <br>
@@ -51,11 +51,11 @@ $ mv julia.sif_latest.sif julia.sif
 
 <br>
 
-### Building from a recipe:
+### To build from a recipe:
 
 You will need root access to build from a recipe.
 
-#### First, make the defition file: (aka. the recipe)
+#### First, make the definition file: (aka, the recipe)
 
 ```
 $ nano julia.def
@@ -96,19 +96,19 @@ tar -C / -zxf julia.tgz
 rm -f julia.tgz
 ```
 
-#### Or, you can just download the defition file:
+#### Or, you can just download the definition file:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/julia.def
 ```
 
-Then you can modifie the `julia.def` file as you need,
-ie. install other packages.
+Then you can modify the `julia.def` file as you need,
+e.g., installing other packages.
 
 
 <br>
 
-#### Now to build the container:
+#### Now, to build the container:
 
 ```
 $ sudo singularity build julia.sif julia.def
@@ -118,16 +118,16 @@ $ sudo singularity build julia.sif julia.def
 <br>
 
 
-### Running a julia script:
+### To run a julia script:
 
 
-There are sevral ways of doing this.
+There are several ways of doing this.
 
 Jump to:
  - [Run script by `shell`.](#running-script-by-shell)
  - [Run script by `exec`.](#running-script-using-exec)
  - [Run scritp by `%runscript`.](#embed-the-run-command-to-runscript)
- - [Run script by embeding scritp to defition file.](#embed-the-script-into-your-container)
+ - [Run script by embedding script to defintion file.](#embed-the-script-into-your-container)
  - [Run script by pulling from web via `curl`.](#run-the-script-by-pulling-from-the-web)
 
 
@@ -185,7 +185,7 @@ $ singularity exec julia.sif julia testing.jl
 ```
 $ nano julia.def
 ```
-And add the command the will execute the script to: `%runscript`
+And add the command that will execute the script to: `%runscript`
 ```
 BootStrap: docker
 From: ubuntu:16.04
@@ -237,11 +237,11 @@ $ sungulairty run julia.sif
 
 ### Embed the script into your container:
 
-The scritp can NOT be changed once the container is built.
+The script can NOT be changed once the container is built.
 
 <br>
 
-#### Edit the defition file:
+#### To edit the definition file:
 
 ```
 $ nano julia.jl
@@ -356,8 +356,8 @@ $ singularity run julia.sif
 
 <br>
 
-Then it will download the script from: `https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE>` <br>
-And then run it.
+Then it will download the script from: `https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE>`, <br>
+and then run it.
 
 <br>
 <br>
