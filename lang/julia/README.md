@@ -8,7 +8,7 @@ In this example, we will cover:
 <br>
 
 Now of corse you can build the [Official julia container from docker](https://hub.docker.com/_/julia/), <br>
-But for this example we will install julia on a [Ubuntu container](https://hub.docker.com/_/ubuntu/). <br>
+But for this example we will install julia in a [Ubuntu container](https://hub.docker.com/_/ubuntu/). <br>
 
 <br>
 
