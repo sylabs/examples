@@ -7,6 +7,11 @@ In this example, we will cover:
 
 <br>
 
+Now of corse you can build the [Official julia container from docker](https://hub.docker.com/_/julia/), <br>
+But for this example we will install julia on a [Ubuntu container](https://hub.docker.com/_/ubuntu/). <br>
+
+<br>
+
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
