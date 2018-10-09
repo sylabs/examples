@@ -56,7 +56,7 @@ $ mv julia.sif_latest.sif julia.sif
 
 ```
 $ singularity run julia.sif 
-Hello world from: https://raw.githubusercontent.com/WestleyK/julia-hello-world/master/hello-world.jl
+Hello world from: https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
 For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
 $
 ```
