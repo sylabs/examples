@@ -52,8 +52,16 @@ $ mv julia.sif_latest.sif julia.sif
 
 <br>
 
-#### Or you can build from a recipe.
+#### To run the container:
 
+```
+$ singularity run julia.sif 
+Hello world from: https://raw.githubusercontent.com/WestleyK/julia-hello-world/master/hello-world.jl
+For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
+$
+```
+
+<br>
 <br>
 
 ### To build from a recipe:
