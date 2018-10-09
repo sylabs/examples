@@ -310,7 +310,7 @@ From: ubuntu:16.04
 
 %runscript
 # Now we can run a script from the web
-curl -s https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE> | julia
+curl -s https://raw.githubusercontent.com/WestleyK/julia-hello-world/master/hello-world.jl | julia
 
 %environment
 export PATH=/julia-1.0.1/bin:$PATH
@@ -342,11 +342,14 @@ rm -f julia.tgz
 
 ```
 $ singularity run julia.sif
+Hello world from: https://raw.githubusercontent.com/WestleyK/julia-hello-world/master/hello-world.jl
+For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
+$
 ```
 
 <br>
 
-Then it will download the script from: `https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE>`, <br>
+Then it will download the script from: https://raw.githubusercontent.com/WestleyK/julia-hello-world/master/hello-world.jl, <br>
 and then run it.
 
 <br>
