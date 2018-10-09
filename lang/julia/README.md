@@ -139,7 +139,6 @@ $ nano testing.jl
 ```
 #!/usr/bin/env julia
 
-
 println("hello world from julia!")
 ```
 
