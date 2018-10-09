@@ -79,18 +79,14 @@ apt-get -y update
 # we are installing some basic packages,
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
+
 apt-get -y install curl
-apt-get -y install hostname 
 apt-get -y install tar
 apt-get -y install gzip
-apt-get -y install bc
-apt-get -y install less
-apt-get -y install util-linux
-apt-get -y install strace
-apt-get -y install bzip2
-apt-get -y install man-db
 apt-get clean
-# now, install julia
+apt-get autoremove
+
+# now, download and install julia
 curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
 tar -C / -zxf julia.tgz
 rm -f julia.tgz
@@ -206,18 +202,14 @@ apt-get -y update
 # we are installing some basic packages,
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
+
 apt-get -y install curl
-apt-get -y install hostname 
 apt-get -y install tar
 apt-get -y install gzip
-apt-get -y install bc
-apt-get -y install less
-apt-get -y install util-linux
-apt-get -y install strace
-apt-get -y install bzip2
-apt-get -y install man-db
 apt-get clean
-# now, install julia
+apt-get autoremove
+
+# now, download and install julia
 curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
 tar -C / -zxf julia.tgz
 rm -f julia.tgz
@@ -260,7 +252,6 @@ println("hello from container")
 
 EOF
 
-
 %environment
 export PATH=/julia-1.0.1/bin:$PATH
 export LD_LIBRARY_PATH=/julia-1.0.1/lib:/julia-1.0.1/lib/julia:$LD_LIBRARY_PATH
@@ -271,18 +262,14 @@ apt-get -y update
 # we are installing some basic packages,
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
+
 apt-get -y install curl
-apt-get -y install hostname 
 apt-get -y install tar
 apt-get -y install gzip
-apt-get -y install bc
-apt-get -y install less
-apt-get -y install util-linux
-apt-get -y install strace
-apt-get -y install bzip2
-apt-get -y install man-db
 apt-get clean
-# now, install julia
+apt-get autoremove
+
+# now, download and install julia
 curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
 tar -C / -zxf julia.tgz
 rm -f julia.tgz
@@ -318,7 +305,6 @@ From: ubuntu:16.04
 # Now we can run a script from the web
 curl -s https://raw.githubusercontent.com/<USER_NAME>/<REPO_NAME>/<FILE> | julia
 
-
 %environment
 export PATH=/julia-1.0.1/bin:$PATH
 export LD_LIBRARY_PATH=/julia-1.0.1/lib:/julia-1.0.1/lib/julia:$LD_LIBRARY_PATH
@@ -329,18 +315,14 @@ apt-get -y update
 # we are installing some basic packages,
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
+
 apt-get -y install curl
-apt-get -y install hostname 
 apt-get -y install tar
 apt-get -y install gzip
-apt-get -y install bc
-apt-get -y install less
-apt-get -y install util-linux
-apt-get -y install strace
-apt-get -y install bzip2
-apt-get -y install man-db
 apt-get clean
-# now, install julia
+apt-get autoremove
+
+# now, download and install julia
 curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
 tar -C / -zxf julia.tgz
 rm -f julia.tgz
