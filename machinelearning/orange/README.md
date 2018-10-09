@@ -18,7 +18,7 @@ The `%post` section contains the needed dependencies and libraries for the Orang
 To run the image and use the Orange 3 environment for Data mining, you need just to run the following command:
 
 ```
-sudo singularity run orange.sif
+$ sudo singularity run orange.sif
 ```
 
 After that, the Orange 3 environment will open, you should see a screen like this: 
