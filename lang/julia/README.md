@@ -10,7 +10,7 @@ In this example, we will cover:
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access (only if you're [building from a recipe](#building-from-a-recipe)).
+ - Root access (only if you're [building from a recipe](#to-build-from-a-recipe)).
  
 
 <br>
