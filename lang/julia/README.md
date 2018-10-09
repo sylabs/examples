@@ -80,6 +80,7 @@ apt-get -y update
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
 
+# install some basic tools
 apt-get -y install curl
 apt-get -y install tar
 apt-get -y install gzip
@@ -203,6 +204,7 @@ apt-get -y update
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
 
+# install some basic tools
 apt-get -y install curl
 apt-get -y install tar
 apt-get -y install gzip
@@ -263,6 +265,7 @@ apt-get -y update
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
 
+# install some basic tools
 apt-get -y install curl
 apt-get -y install tar
 apt-get -y install gzip
@@ -316,6 +319,7 @@ apt-get -y update
 # you can install your own
 #apt-get -y install <YOUR_PACKAGE>
 
+# install some basic tools
 apt-get -y install curl
 apt-get -y install tar
 apt-get -y install gzip
