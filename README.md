@@ -30,6 +30,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [machinelearning](https://github.com/sylabs/examples/tree/master/machinelearning)
    - [detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
    - [jupyter-notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
+   - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
    - [weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
 
 
