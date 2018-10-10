@@ -120,7 +120,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/julia
 Then you can modify the `julia.def` file as you need,
 e.g., installing other packages.
 
-
+<br>
 
 Now, to build the container:
 
