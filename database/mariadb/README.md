@@ -81,6 +81,8 @@ $ singularity shell \
  mariadb.sif
 ```
 
+<br>
+
 Once we are in the container, setup MariaDB:
 
 ```
@@ -92,8 +94,7 @@ Once we are in the container, setup MariaDB:
 <br>
 <br>
 
-Now we need to secure our installation:
-
+Now we need to secure our installation:<br>
 Remember, we are still in the container.
 
 ```
