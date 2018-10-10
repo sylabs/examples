@@ -236,7 +236,7 @@ Now you can run your script (`testing.jl`) by running:
 ```
 $ ./julia.sif
 ```
-*FIY. the above command is the same as:*
+You can also run the container like this:
 ```
 $ sungulairty run julia.sif
 ```
