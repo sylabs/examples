@@ -85,7 +85,7 @@ From: ubuntu:16.04
 
 %runscript
 # run your script here, eg.
-# julia testing.jl
+# julia hello-world.jl
 echo 'println("hello world from julia script!!!")' | julia
 
 %environment
@@ -151,7 +151,7 @@ Jump to:
 The test file:
 
 ```
-$ nano testing.jl
+$ nano hello-world.jl
 ```
 ```
 #!/usr/bin/env julia
@@ -165,6 +165,7 @@ Or just download the test julia file with `wget`:
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
 ```
 
+<br>
 
 Then shell into the container:
 
@@ -172,15 +173,17 @@ Then shell into the container:
 $ singulairty shell julia.sif
 ```
 
+<br>
+
 And then run the script:
 
 ```
-> julia testing.jl
+> julia hello-world.jl
 ```
 Or
 ```
-> chmod +x testing.jl
-> ./testing.jl
+> chmod +x hello-world.jl
+> ./hello-world.jl
 ```
 
 <br>
@@ -189,7 +192,7 @@ Or
 ### Running script using `exec`:
 
 ```
-$ singularity exec julia.sif julia testing.jl
+$ singularity exec julia.sif julia hello-world.jl
 ```
 
 <br>
@@ -209,7 +212,7 @@ From: ubuntu:16.04
 # you can execute them by running:
 # singularity run julia.sif
 # run your script here, eg.
-julia testing.jl
+julia "$@"
 
 %environment
 export PATH=/julia-1.0.1/bin:$PATH
@@ -234,12 +237,12 @@ tar -C / -zxf julia.tgz
 rm -f julia.tgz
 ```
 
+<br>
 
-
-Now you can run your script (`testing.jl`) by running:
+Now you can run your script (`hello-world.jl`) by running:
 
 ```
-$ ./julia.sif
+$ ./julia.sif hello-world.jl
 ```
 You can also run the container like this:
 ```
@@ -303,6 +306,7 @@ Then build the container:
 $ sudo singulairty build julia.sif julia.def
 ```
 
+<br>
 
 And run the script by doing:
 
@@ -355,6 +359,7 @@ tar -C / -zxf julia.tgz
 rm -f julia.tgz
 ```
 
+<br>
 
 Run the script by typing:
 
@@ -365,7 +370,7 @@ For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
 $
 ```
 
-
+<br>
 
 Then it will download the script from: https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl, <br>
 and then run it.
