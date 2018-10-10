@@ -203,38 +203,14 @@ $ singularity exec julia.sif julia hello-world.jl
 ```
 $ nano julia.def
 ```
-And add the command that will execute the script to: `%runscript`
+And add the command that will execute the script to `%runscript`<br>
+Just copy-paste the new `%runscript` to the defintion file.
 ```
-BootStrap: library
-From: ubuntu:16.04
-
 %runscript
 # you can execute them by running:
 # singularity run julia.sif
 # run your script here, eg.
 julia "$@"
-
-%environment
-export PATH=/julia-1.0.1/bin:$PATH
-export LD_LIBRARY_PATH=/julia-1.0.1/lib:/julia-1.0.1/lib/julia:$LD_LIBRARY_PATH
-export LC_ALL=C
-
-%post
-apt-get -y update
-# we are installing some basic packages,
-# you can install your own
-#apt-get -y install <YOUR_PACKAGE>
-
-# install some basic tools
-apt-get -y install curl tar gzip
-
-apt-get clean
-apt-get autoremove
-
-# now, download and install julia
-curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
-tar -C / -zxf julia.tgz
-rm -f julia.tgz
 ```
 
 <br>
@@ -257,15 +233,13 @@ $ sungulairty run julia.sif hello-world.jl
 The script can NOT be changed once the container is built.
 
 
-To edit the definition file:
+To edit the definition file:<br>
+Again, we're only changing the`%runscript`, so replace the new `%runscript` with the old one:
 
 ```
 $ nano julia.def
 ```
 ```
-BootStrap: library
-From: ubuntu:16.04
-
 %runscript
 # are scritp that we will run:
 cat << EOF | julia
@@ -275,28 +249,6 @@ println("hello from julia")
 println("hello from container")
 
 EOF
-
-%environment
-export PATH=/julia-1.0.1/bin:$PATH
-export LD_LIBRARY_PATH=/julia-1.0.1/lib:/julia-1.0.1/lib/julia:$LD_LIBRARY_PATH
-export LC_ALL=C
-
-%post
-apt-get -y update
-# we are installing some basic packages,
-# you can install your own
-#apt-get -y install <YOUR_PACKAGE>
-
-# install some basic tools
-apt-get -y install curl tar gzip
-
-apt-get clean
-apt-get autoremove
-
-# now, download and install julia
-curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
-tar -C / -zxf julia.tgz
-rm -f julia.tgz
 ```
 
 
