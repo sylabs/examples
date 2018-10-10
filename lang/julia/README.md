@@ -230,7 +230,7 @@ $ sungulairty run julia.sif hello-world.jl
 
 ### Embed the script into your container:
 
-The script can NOT be changed once the container is built.
+The script can NOT be changed once the container is built (that may be a good thing).
 
 
 To edit the definition file:<br>
@@ -273,7 +273,6 @@ $ singulairty run julia.sif
 
 
 In this example, we will use: `curl`, or `wget` to pull are script from github.<br>
-Since `wget` will download the script to a file, you will need to run that file.
 
 
 Run the script by typing:
@@ -285,7 +284,7 @@ $ curl -s https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/he
 <br>
 
 Then it will download the script from: https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl, <br>
-and then run it.
+and then run it in the container.
 
 <br>
 
