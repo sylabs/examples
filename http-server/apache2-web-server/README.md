@@ -26,7 +26,8 @@ Then, pull the container from the library:
 ```
 $ singularity pull library://sylabs/examples/httpd.sif:latest
 ```
-If your not running on a `x86_64` machine, you will need to build from a [definition file](#building-the-contianer-from-a-definition-file) or scroll down.
+
+If your building from a definition file, click here [here](#building-the-contianer-from-a-definition-file) or scroll down.
 
 <br>
 
