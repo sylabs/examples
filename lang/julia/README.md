@@ -145,6 +145,8 @@ Jump to:
 
 #### Running script by shell:
 
+The test file:
+
 ```
 $ nano testing.jl
 ```
@@ -152,6 +154,14 @@ $ nano testing.jl
 #!/usr/bin/env julia
 
 println("hello world from julia!")
+```
+
+<br>
+
+Or just download the test julia file with `wget`:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
 ```
 
 <br>
