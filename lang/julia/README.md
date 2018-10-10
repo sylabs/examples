@@ -30,6 +30,9 @@ $ mkdir ~/julia
 $ cd ~/julia/
 ```
 
+<br>
+
+**NOTE:** If your running on 32 bit os, you will need to build from a definition file, click [here](#to-build-from-a-definition-file) or scroll down for instructions.
 
 Then, pull the container from the library:
 
@@ -37,6 +40,7 @@ Then, pull the container from the library:
 $ singularity pull library://sylabs/examples/julia.sif:latest
 ```
 
+<br>
 
 Rename the container you pulled:
 
@@ -44,6 +48,7 @@ Rename the container you pulled:
 $ mv julia.sif_latest.sif julia.sif
 ```
 
+<br>
 
 To run the container:
 
