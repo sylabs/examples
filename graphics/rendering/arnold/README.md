@@ -24,13 +24,14 @@ ____
 
 <br>
 
-#### Here is how to download Arnold:
+### Here is how to download Arnold:
 
-Go [here](https://www.arnoldrenderer.com/arnold/try/) and download Arnold.
-
+Go [here](https://www.arnoldrenderer.com/arnold/try/) and download Arnold.<br>
 You will need to create an account.
 
-#### Then copy-paste the installer to `/tmp/`:
+
+
+Then copy-paste the installer to `/tmp/`:
 
 ```
 $ cp ~/Downloads/MtoA-3.1.0.1-linux-2018.run /tmp/
@@ -40,7 +41,7 @@ The `/tmp/` directory is where we will access the installer from the container.
 
 <br>
 
-#### Now, make the working directory:
+Now, make the working directory:
 ```
 $ mkdir arnold
 $ cd arnold/
@@ -48,7 +49,7 @@ $ cd arnold/
 
 <br>
 
-#### Then, we need to make the definition file:
+Then, we need to make the definition file:
 
 ```
 $ nano arnold.def
@@ -77,7 +78,7 @@ apt-get -y install python less libx11-6
 /opt/arnold/bin/kick "$@"
 ```
 
-#### Or, you can just download the definition file:
+Or, you can just download the definition file:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/graphics/rendering/arnold/arnold.def
@@ -85,7 +86,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/graphics/renderi
 
 <br>
 
-#### Next, to build the container:
+Next, to build the container:
 
 ```
 $ sudo singularity build --sandbox arnold arnold.def
@@ -93,7 +94,7 @@ $ sudo singularity build --sandbox arnold arnold.def
 
 <br>
 
-#### Now shell into the container:
+Now shell into the container:
 
 We will shell into the container with the `--writable` flag,
 
@@ -104,7 +105,7 @@ $ sudo singularity shell --writable arnold/
 <br>
 
 
-#### Install Arnold from the container:
+Install Arnold from the container:
 
 ```
 > sh /tmp/MtoA-3.1.0.1-linux-2018.run
@@ -119,7 +120,7 @@ Read through the License Agreement
 <br>
 
 
-#### Exit the container:
+Exit the container:
 
 After the install is complete, exit the container.
 
@@ -129,7 +130,7 @@ After the install is complete, exit the container.
 
 <br>
 
-#### Then, get your `.ass` file:
+Then, get your `.ass` file:
 
 You can download a sample file from [here](https://support.solidangle.com/display/A5ARP/.ass+File+Examples).
 
@@ -146,7 +147,7 @@ $ cp ~/Downloads/cornell.ass .
 <br>
 
 
-#### Now, run the test render:
+Now, run the test render:
 
 ```
 $ singularity run arnold/ -i cornell.ass -dw
@@ -171,7 +172,7 @@ Please note that this is not considered to be a best practice workflow.
 If you create a SIF container from an interactive sandbox session, the definition file that is saved in the SIF sandbox will not reflect all of the changes that have been made to the container.
 However, with Arnold there is no alternative but to install interactively.
 
-#### To build the SIF container:
+To build the SIF container:
 
 ```
 $ sudo singularity build arnold.sif arnold/
@@ -179,7 +180,7 @@ $ sudo singularity build arnold.sif arnold/
 
 <br>
 
-#### Then, remove the old test image:
+Then, remove the old test image:
 
 ```
 $ rm cornell.jpg
@@ -187,7 +188,7 @@ $ rm cornell.jpg
 
 <br>
 
-#### Now, you can test it again using the SIF file:
+Now, you can test it again using the SIF file:
 
 ```
 $ singularity run arnold.sif -i cornell.ass -dw
