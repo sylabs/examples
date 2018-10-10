@@ -49,7 +49,7 @@ $ cd ~/arnold/
 
 <br>
 
-Then, we need to make the definition file:
+### Then, we need to make the definition file:
 
 ```
 $ nano arnold.def
@@ -130,7 +130,7 @@ After the install is complete, exit the container.
 
 <br>
 
-Then, get your `.ass` file:
+### Then, get your `.ass` file:
 
 You can download a sample file from [here](https://support.solidangle.com/display/A5ARP/.ass+File+Examples).
 
@@ -147,7 +147,7 @@ $ cp ~/Downloads/cornell.ass .
 <br>
 
 
-Now, run the test render:
+### Now, run the test render:
 
 ```
 $ singularity run arnold/ -i cornell.ass -dw
