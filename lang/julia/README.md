@@ -275,51 +275,11 @@ $ singulairty run julia.sif
 In this example, we will use: `curl`, or `wget` to pull are script from github.<br>
 Since `wget` will download the script to a file, you will need to run that file.
 
-```
-BootStrap: library
-From: ubuntu:16.04
-
-%runscript
-# Now we can run a script from the web
-curl -s https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl | julia
-
-# or use wget
-#wget -q https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
-#julia hello-world.jl
-#rm -f hello-world.jl #(optional)
-
-%environment
-export PATH=/julia-1.0.1/bin:$PATH
-export LD_LIBRARY_PATH=/julia-1.0.1/lib:/julia-1.0.1/lib/julia:$LD_LIBRARY_PATH
-export LC_ALL=C
-
-%post
-apt-get -y update
-# we are installing some basic packages,
-# you can install your own
-#apt-get -y install <YOUR_PACKAGE>
-
-# install some basic tools
-apt-get -y install curl tar gzip
-
-apt-get clean
-apt-get autoremove
-
-# now, download and install julia
-curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
-tar -C / -zxf julia.tgz
-rm -f julia.tgz
-```
-
-<br>
 
 Run the script by typing:
 
 ```
-$ ./julia.sif
-Hello world from: https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
-For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
-$
+$ curl -s https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl | ./julia.sif
 ```
 
 <br>
