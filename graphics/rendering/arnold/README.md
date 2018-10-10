@@ -43,8 +43,8 @@ The `/tmp/` directory is where we will access the installer from the container.
 
 Now, make the working directory:
 ```
-$ mkdir arnold
-$ cd arnold/
+$ mkdir ~/arnold
+$ cd ~/arnold/
 ```
 
 <br>
