@@ -138,6 +138,7 @@ Jump to:
  - [Run script by pulling from web via `curl` or `wget`.](#run-the-script-by-pulling-from-the-web)
 
 
+<br>
 
 #### Running script by shell:
 
@@ -160,7 +161,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello
 ```
 
 
-#### Then shell into the container:
+Then shell into the container:
 
 ```
 $ singulairty shell julia.sif
