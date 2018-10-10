@@ -23,7 +23,7 @@ ____
 <br>
 
 
-#### To start, make the working directory:
+### To start, make the working directory:
 
 ```
 $ mkdir ~/julia
@@ -140,7 +140,8 @@ Jump to:
 
 <br>
 
-#### Running script by shell:
+
+### Running script by shell:
 
 The test file:
 
@@ -152,7 +153,6 @@ $ nano testing.jl
 
 println("hello world from julia!")
 ```
-
 
 Or just download the test julia file with `wget`:
 
@@ -181,7 +181,7 @@ Or
 <br>
 
 
-#### Running script using `exec`:
+### Running script using `exec`:
 
 ```
 $ singularity exec julia.sif julia testing.jl
@@ -190,7 +190,7 @@ $ singularity exec julia.sif julia testing.jl
 <br>
 
 
-#### Embed the run command to runscript:
+### Embed the run command to runscript:
 
 ```
 $ nano julia.def
