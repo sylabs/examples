@@ -272,7 +272,7 @@ $ singulairty run julia.sif
 ### Run the script by pulling from the web:
 
 
-In this example, we will use: `curl`, or `wget` to pull are script from github.<br>
+In this example, we will use: `curl` to pull are script from github.<br>
 
 
 Run the script by typing:
