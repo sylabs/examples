@@ -246,7 +246,7 @@ $ ./julia.sif hello-world.jl
 ```
 You can also run the container like this:
 ```
-$ sungulairty run julia.sif
+$ sungulairty run julia.sif hello-world.jl
 ```
 
 <br>
