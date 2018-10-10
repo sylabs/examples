@@ -14,7 +14,7 @@ But for this example we will install julia in a [Ubuntu container](https://cloud
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access (only if you're [building from a definition](#to-build-from-a-definition-file)).
+ - Root access (only if you're [building from a definition file](#to-build-from-a-definition-file)).
  
 
 
