@@ -2,13 +2,13 @@
 
 In this example, we will cover:
  - [Pulling a julia container from the library.](#then-pull-the-container-from-the-library)
- - [Building the container from a recipe.](#to-build-from-a-recipe)
+ - [Building the container from a definition file.](#to-build-from-a-definition-file)
  - [Running a julia script.](#to-run-a-julia-script)
 
 <br>
 
 Now of corse you can build the [Official julia container from docker](https://hub.docker.com/_/julia/), <br>
-But for this example we will install julia in a [Ubuntu container](https://hub.docker.com/_/ubuntu/). <br>
+But for this example we will install julia in a [Ubuntu container](https://cloud.sylabs.io/library/library/default/ubuntu). <br>
 
 <br>
 
@@ -64,17 +64,17 @@ $
 <br>
 <br>
 
-### To build from a recipe:
+### To build from a definition file:
 
 You will need root access to build from a recipe.
 
-#### First, make the definition file: (aka, the recipe)
+#### First, make the definition file:
 
 ```
 $ nano julia.def
 ```
 ```
-BootStrap: docker
+BootStrap: library
 From: ubuntu:16.04
 
 %runscript
@@ -94,9 +94,8 @@ apt-get -y update
 #apt-get -y install <YOUR_PACKAGE>
 
 # install some basic tools
-apt-get -y install curl
-apt-get -y install tar
-apt-get -y install gzip
+apt-get -y install curl tar gzip
+
 apt-get clean
 apt-get autoremove
 
@@ -163,7 +162,7 @@ println("hello world from julia!")
 $ singulairty shell julia.sif
 ```
 
-#### And run the script!
+And then run the script:
 
 ```
 > julia testing.jl
@@ -196,7 +195,7 @@ $ nano julia.def
 ```
 And add the command that will execute the script to: `%runscript`
 ```
-BootStrap: docker
+BootStrap: library
 From: ubuntu:16.04
 
 %runscript
@@ -217,9 +216,8 @@ apt-get -y update
 #apt-get -y install <YOUR_PACKAGE>
 
 # install some basic tools
-apt-get -y install curl
-apt-get -y install tar
-apt-get -y install gzip
+apt-get -y install curl tar gzip
+
 apt-get clean
 apt-get autoremove
 
@@ -234,6 +232,10 @@ rm -f julia.tgz
 #### Now you can run your script (`testing.jl`) by running:
 
 ```
+$ ./julia.sif
+```
+*FIY. the above command is the same as:*
+```
 $ sungulairty run julia.sif
 ```
 
@@ -247,13 +249,13 @@ The script can NOT be changed once the container is built.
 
 <br>
 
-#### To edit the definition file:
+To edit the definition file:
 
 ```
-$ nano julia.jl
+$ nano julia.def
 ```
 ```
-BootStrap: docker
+BootStrap: library
 From: ubuntu:16.04
 
 %runscript
@@ -278,9 +280,8 @@ apt-get -y update
 #apt-get -y install <YOUR_PACKAGE>
 
 # install some basic tools
-apt-get -y install curl
-apt-get -y install tar
-apt-get -y install gzip
+apt-get -y install curl tar gzip
+
 apt-get clean
 apt-get autoremove
 
@@ -313,7 +314,7 @@ $ singulairty run julia.sif
 ### Run the script by pulling from the web:
 
 ```
-BootStrap: docker
+BootStrap: library
 From: ubuntu:16.04
 
 %runscript
@@ -332,9 +333,8 @@ apt-get -y update
 #apt-get -y install <YOUR_PACKAGE>
 
 # install some basic tools
-apt-get -y install curl
-apt-get -y install tar
-apt-get -y install gzip
+apt-get -y install curl tar gzip
+
 apt-get clean
 apt-get autoremove
 
