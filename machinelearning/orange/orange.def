@@ -20,6 +20,7 @@ From: debian:9
 	This installation is based on Python 3.
 
 %post
+
 	#Installing all dependencies
 
 	apt-get update && apt-get -y upgrade
@@ -88,17 +89,20 @@ From: debian:9
 
 	#Conda configuration of channels from .condarc file
 
-  conda config --file /.condarc --add channels defaults
-  conda config --file /.condarc --add channels conda-forge
-  conda update conda
+	conda config --file /.condarc --add channels defaults
+	conda config --file /.condarc --add channels conda-forge
+	conda update conda
 
 	#List installed environments
+
 	conda list
 
 	#Install Python 3
+
 	conda create python=3 --name orange3
 
 	#Install Orange 3 dependencies from the conda environment
+
 	conda install -c \
 	conda-forge \
 	bottleneck \
@@ -122,6 +126,7 @@ From: debian:9
 	pip install commonmark==0.8.0
 
 	#Install Orange 3 environment
+
 	conda install orange3
 	conda install -c defaults pyqt=5 qt
 
