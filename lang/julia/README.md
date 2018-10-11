@@ -54,7 +54,7 @@ To run the container:
 
 ```
 $ ./julia.sif 
-Hello world from!
+Hello world!
 For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
 $
 ```
