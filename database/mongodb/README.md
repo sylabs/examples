@@ -73,9 +73,9 @@ $ mongo --host $HOSTNAME:$PORT -u "myUserAdmin" -p "test"
 
 We are logged in with the created user into the database `admin` as it was stated in the previous user creation, from this part we can also use the command to check which generated databases are available:
 
-`
+```
 > show dbs;
-`
+```
 
 Since we only have access to `admin` database, run the command:
 
