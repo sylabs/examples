@@ -50,13 +50,35 @@ $ mv julia.sif_latest.sif julia.sif
 
 <br>
 
+### Make the test file:
+
+```
+$ nano hello-world.jl
+```
+```
+#!/usr/bin/env julia
+println("Hello world!")
+println("For full tutorial, visit: https://github.com/sylabs/examples/lang/julia")
+```
+
+Or just download the test julia file with `wget`:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
+```
+
+<br>
+
 To run the container:
 
 ```
 $ ./julia.sif 
 Hello world!
 For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
-$
+$ ./julia.sif hello-world.jl
+Hello world!
+this is comming from your `hello-world.jl` script!
+$ 
 ```
 
 You can also do:
@@ -138,7 +160,8 @@ $ sudo singularity build julia.sif julia.def
 
 <br>
 
-And you can do a quick test run:
+And you can do a quick test run:<br>
+Make sure you have your [`hello-world.jl`](#make-the-test-file) test file.
 
 ```
 $ ./julia.sif 
@@ -173,26 +196,12 @@ Jump to:
 
 ### Running script by shell:
 
-The test file:
-
-```
-$ nano hello-world.jl
-```
-```
-#!/usr/bin/env julia
-
-println("hello world from julia!")
-```
-
-Or just download the test julia file with `wget`:
-
-```
-$ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello-world.jl
-```
+For this example, we are going to `shell` into our container,<br>
+Again, make sure you have your [`hello-world.jl`](#make-the-test-file) file and the container (`julia.sif`).
 
 <br>
 
-Then shell into the container:
+First, shell into the container:
 
 ```
 $ singulairty shell julia.sif
