@@ -2,9 +2,17 @@ BootStrap: library
 From: ubuntu:16.04
 
 %runscript
-# run your script here, eg.
-# julia testing.jl
-echo 'println("hello world from julia script!!!")' | julia
+# run your script here.
+
+# check if there any arguments,
+if [ -z "$@" ]; then
+    # if theres non, test julia:
+    echo 'println("hello world from julia container!!!")' | julia
+else
+    # if theres an argument, then run it! and hope its a julia script :)
+    julia "$@"
+fi
+
 
 %environment
 export PATH=/julia-1.0.1/bin:$PATH
