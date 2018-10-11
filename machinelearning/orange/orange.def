@@ -84,7 +84,7 @@ From: debian:9
 	#Installing Anaconda 3.5 and Conda 4.5.11
 
 	wget -c https://repo.continuum.io/archive/Anaconda3-5.3.0-Linux-x86_64.sh
-  /bin/bash Anaconda3-5.3.0-Linux-x86_64.sh -bfp /usr/local
+	/bin/bash Anaconda3-5.3.0-Linux-x86_64.sh -bfp /usr/local
 
 	#Conda configuration of channels from .condarc file
 
@@ -92,8 +92,8 @@ From: debian:9
   conda config --file /.condarc --add channels conda-forge
   conda update conda
 
-  #List installed environments
-  conda list
+	#List installed environments
+	conda list
 
 	#Install Python 3
 	conda create python=3 --name orange3
@@ -122,7 +122,7 @@ From: debian:9
 	pip install commonmark==0.8.0
 
 	#Install Orange 3 environment
-  conda install orange3
+	conda install orange3
 	conda install -c defaults pyqt=5 qt
 
 %runscript
