@@ -16,7 +16,7 @@ To run this example you will need:
 
 We'll go through the explanation of every section in the definition file:
 
-First of all, the hostname and the port are set up into the `%environment` section, you might need to modify these values depending on your needs. Default hostname is `localhost` (`127.0.0.1`) and port `27017`.
+First of all, the `hostname` and the `port` are set up into the `%environment` section, you might need to modify these values depending on your needs. Default `hostname` is `localhost` (`127.0.0.1`) and `port` `27017`.
 
 After exporting them, the `%post` section contains the installation of all the needed dependencies for MongoDB to run correctly. Also the folders in which the data from the database will be saved are created and are also given the privilege to access and store the data.
 
