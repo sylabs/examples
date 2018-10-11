@@ -2,7 +2,7 @@ Bootstrap:library
 From: debian:9
 
 %environment
-	
+
 	#Defined environment variables
 	QT_API=pyqt5
 	Qt5Quick_PRIVATE_INCLUDE_DIRS=/usr/local/include/qt/QtQuick
@@ -16,7 +16,7 @@ From: debian:9
 
 %help
 
-	Singularity container running Orange Data mining Framework v3.0 over Anaconda 3.5 for Debian 9 (stretch)
+	Container running Orange Data mining Framework v3.0 over Anaconda 3.5 for Debian 9 (stretch)
 	This installation is based on Python 3.
 
 %post
@@ -52,15 +52,31 @@ From: debian:9
 	libxrender1 \
 	libqt5widgets5 \
 	libqt5gui5 \
-        libqt5webkit5 \
-        libqt5core5a \
-        libgl1-mesa-glx \
-	git
-
-	apt-get -y install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev
-	apt-get -y install flex bison gperf libicu-dev libxslt-dev ruby
-
-	apt-get -y install libssl-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libdbus-1-dev libfontconfig1-dev libcap-dev libxtst-dev libpulse-dev libudev-dev libpci-dev libnss3-dev libasound2-dev libxss-dev libegl1-mesa-dev gperf bison
+	libqt5webkit5 \
+	libqt5core5a \
+	libgl1-mesa-glx \
+	git \
+	'^libxcb.*-dev' \
+	libx11-xcb-dev \
+	libglu1-mesa-dev \
+	libxrender-dev libxi-dev \
+	libxslt-dev \
+	libssl-dev \
+	libxcursor-dev \
+	libxcomposite-dev \
+	libxdamage-dev \
+	libxrandr-dev \
+	libdbus-1-dev \
+	libfontconfig1-dev \
+	libcap-dev \
+	libxtst-dev \
+	libpulse-dev \
+	libudev-dev \
+	libpci-dev \
+	libnss3-dev \
+	libasound2-dev \
+	libxss-dev \
+	libegl1-mesa-dev \
 
 	rm -rf /var/lib/apt/lists/*
 	apt-get clean
@@ -68,30 +84,47 @@ From: debian:9
 	#Installing Anaconda 3.5 and Conda 4.5.11
 
 	wget -c https://repo.continuum.io/archive/Anaconda3-5.3.0-Linux-x86_64.sh
-        /bin/bash Anaconda3-5.3.0-Linux-x86_64.sh -bfp /usr/local
+  /bin/bash Anaconda3-5.3.0-Linux-x86_64.sh -bfp /usr/local
 
-  	#Conda configuration of channels from .condarc file
+	#Conda configuration of channels from .condarc file
 
-  	conda config --file /.condarc --add channels defaults
-  	conda config --file /.condarc --add channels conda-forge
-  	conda update conda
+  conda config --file /.condarc --add channels defaults
+  conda config --file /.condarc --add channels conda-forge
+  conda update conda
 
-  	#List installed environments
-  	conda list
+  #List installed environments
+  conda list
 
 	#Install Python 3
 	conda create python=3 --name orange3
 
-	#Install Orange 3 dependencies
-	conda install -c conda-forge bottleneck chardet=3.0.2 dill docutils joblib=0.9.4 keyring keyrings.alt libgcc-ng=7.2.0 libstdcxx-ng=7.2.0 		numpy=1.11.3 pip pyqtgraph python=3.6 scikit-learn=0.18.1 scipy serverfiles setuptools xlrd
-	
-	pip install commonmark==0.8.0
-	
-	#Install Orange 3 environment
-        conda install orange3
-	conda install -c defaults pyqt=5 qt
-	
-%runscript
-	
-	orange-canvas "$@"
+	#Install Orange 3 dependencies from the conda environment
+	conda install -c \
+	conda-forge \
+	bottleneck \
+	chardet=3.0.2 \
+	dill \
+	docutils \
+	joblib=0.9.4 \
+	keyring \
+	keyrings.alt \
+	libgcc-ng=7.2.0 \
+	libstdcxx-ng=7.2.0 \
+	numpy=1.11.3 \
+	pip pyqtgraph \
+	python=3.6 \
+	scikit-learn=0.18.1 \
+	scipy \
+	serverfiles \
+	setuptools \
+	xlrd \
 
+	pip install commonmark==0.8.0
+
+	#Install Orange 3 environment
+  conda install orange3
+	conda install -c defaults pyqt=5 qt
+
+%runscript
+
+	orange-canvas "$@"
