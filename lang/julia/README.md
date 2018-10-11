@@ -238,8 +238,8 @@ $ sungulairty run julia.sif hello-world.jl
 The script can NOT be changed once the container is built (that may be a good thing).
 
 
-To edit the definition file:<br>
-Again, we're only changing the`%runscript`, so replace the new `%runscript` with the old one:
+First edit the defintion file,<br>
+Again, we're only changing the`%runscript`, so replace the old `%runscript` with the new one:
 
 ```
 $ nano julia.def
