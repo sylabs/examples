@@ -239,7 +239,7 @@ The script can NOT be changed once the container is built (that may be a good th
 
 
 First edit the defintion file,<br>
-Again, we're only changing the`%runscript`, so replace the old `%runscript` with the new one:
+You could just use `cat << EOF | julia`, and add it to your `%runscript` like this:
 
 ```
 $ nano julia.def
@@ -256,6 +256,54 @@ println("hello from container")
 EOF
 ```
 
+<br>
+
+Or a better option is to use the `%files`, like so:
+
+```
+$ nano julia.def
+```
+```
+BootStrap: library
+From: ubuntu:16.04
+
+%runscript
+# now to run the julia script, it will be in `/run/hello-world.jl`
+julia /run/hello-world.jl
+
+$files
+# this will copy `hello-world.jl` to `/run/hello-world.jl` inside the container.
+hello-world.jl /run/hello-world.jl
+
+%environment
+export PATH=/julia-1.0.1/bin:$PATH
+export LD_LIBRARY_PATH=/julia-1.0.1/lib:/julia-1.0.1/lib/julia:$LD_LIBRARY_PATH
+export LC_ALL=C
+
+%post
+apt-get -y update
+# we are installing some basic packages,
+# you can install your own
+#apt-get -y install <YOUR_PACKAGE>
+
+# install some basic tools
+apt-get -y install curl tar gzip
+
+apt-get clean
+apt-get autoremove
+
+# now, download and install julia
+curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/1.0/julia-1.0.1-linux-x86_64.tar.gz" > julia.tgz
+tar -C / -zxf julia.tgz
+rm -f julia.tgz
+```
+
+<br>
+
+By doing it this way, your `hello-world.jl` will be embedded in the container.<br>
+Make sure the `hello-world.jl` is in your current directory.
+
+<br>
 
 Then build the container:
 
@@ -265,10 +313,10 @@ $ sudo singulairty build julia.sif julia.def
 
 <br>
 
-And run the script by doing:
+And run the script by:
 
 ```
-$ singulairty run julia.sif
+$ ./julia.sif
 ```
 
 <br>
