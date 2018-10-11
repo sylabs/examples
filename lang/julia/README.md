@@ -3,7 +3,7 @@
 In this example, we will cover:
  - [Pulling a julia container from the library.](#to-start-make-the-working-directory)
  - [Building the container from a definition file.](#to-build-from-a-definition-file)
- - [Running a julia script.](#to-run-a-julia-script)
+ - [Running a julia script in a container.](#running-a-julia-script-in-a-container)
 
 <br>
 
@@ -84,9 +84,17 @@ BootStrap: library
 From: ubuntu:16.04
 
 %runscript
-# run your script here, eg.
-# julia hello-world.jl
-echo 'println("hello world from julia script!!!")' | julia
+# run your script here.
+
+# check if there any arguments,
+if [ -z "$@" ]; then
+    # if theres non, test julia:
+    echo 'println("hello world from julia container!!!")' | julia
+else
+    # if theres an argument, then run it! and hope its a julia script :)
+    julia "$@"
+fi
+
 
 %environment
 export PATH=/julia-1.0.1/bin:$PATH
@@ -130,7 +138,24 @@ $ sudo singularity build julia.sif julia.def
 
 <br>
 
-### To run a julia script:
+And you can do a quick test run:
+
+```
+$ ./julia.sif 
+Hello world!
+For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
+$ ./julia.sif hello-world.jl 
+Hello world!
+this is comming from your `hello-world.jl` script!
+$ 
+```
+
+<br>
+
+For more info on running a Julia script in a container, check out these examples:
+
+
+### Running a julia script in a container:
 
 
 There are several ways of doing this.
@@ -140,7 +165,7 @@ Jump to:
  - [Run script by `exec`.](#running-script-using-exec)
  - [Run scritp by `%runscript`.](#embed-the-run-command-to-runscript)
  - [Run script by embedding script to defintion file.](#embed-the-script-into-your-container)
- - [Run script by pulling from web via `curl` or `wget`.](#run-the-script-by-pulling-from-the-web)
+ - [Run script by pulling from web via `curl`.](#run-the-script-by-pulling-from-the-web)
 
 
 <br>
@@ -208,9 +233,22 @@ Just copy-paste the new `%runscript` to the defintion file.
 ```
 %runscript
 # you can execute them by running:
-# singularity run julia.sif
-# run your script here, eg.
-julia "$@"
+# ./julia.sif
+
+# you could just do:
+#julia "$@"
+# but if theres no arguments, you will enter the julia shell.
+
+# this is a better way of doing it
+# check if there any arguments,
+if [ ! -z "$@" ]; then
+    # if theres an argument, then run it! and hope its a julia script :)
+    julia "$@"
+else
+    echo "theres no arguments!"
+    echo "usage: ./julia.sif <YOUR_JULIA_SCRIPT>"
+    exit 1
+fi
 ```
 
 <br>
