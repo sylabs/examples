@@ -227,6 +227,11 @@ $ sungulairty run julia.sif hello-world.jl
 
 <br>
 
+**NOTE:** if you ever get stuck in a `julia shell`, then just press: `Ctrl^D` to exit.
+
+
+<br>
+
 
 ### Embed the script into your container:
 
