@@ -40,7 +40,10 @@ $ mv blender.sif_latest.sif blender.sif
 
 <br>
 
-Then, you can run the following to render .blend (blender scene) files:
+### Running the container:
+
+Now, you can run the following to render .blend (blender scene) files.<br>
+Make sure you have your [blender file](https://www.blender.org/download/demo-files/).
 
 ```
 $ singularity run blender.sif [scene file] [output directory] <frame | start frame:end frame>
@@ -48,7 +51,7 @@ $ singularity run blender.sif [scene file] [output directory] <frame | start fra
 
 <br>
 
-The documentation for the container (%help) can be accessed by running:
+The documentation for the container (`%help`) can be accessed by running:
 
 ```
 $ singularity run-help blender.sif
