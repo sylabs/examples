@@ -14,6 +14,7 @@ But for this example we will install julia in a [Ubuntu container](https://cloud
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
+ - A test Julia script, [like this one](#make-the-test-file).
  - Root access (only if you're [building from a definition file](#to-build-from-a-definition-file)).
  
 
@@ -32,25 +33,10 @@ $ cd ~/julia/
 
 <br>
 
-**NOTE:** If your running on 32 bit os, you will need to build from a definition file, click [here](#to-build-from-a-definition-file) or scroll down for instructions.
-
-Then, pull the container from the library:
-
-```
-$ singularity pull library://sylabs/examples/julia.sif:latest
-```
-
-<br>
-
-Rename the container you pulled:
-
-```
-$ mv julia.sif_latest.sif julia.sif
-```
-
-<br>
-
 ### Make the test file:
+
+We are going to need a Julia script to test it,<br>
+So lets make this simple one.
 
 ```
 $ nano hello-world.jl
@@ -69,6 +55,27 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello
 
 <br>
 <br>
+
+### Pull the container from the library:
+
+
+**NOTE:** If your running on 32 bit os, you will need to build from a definition file, click [here](#to-build-from-a-definition-file) or scroll down for instructions.
+
+
+```
+$ singularity pull library://sylabs/examples/julia.sif:latest
+```
+
+<br>
+
+Rename the container you pulled:
+
+```
+$ mv julia.sif_latest.sif julia.sif
+```
+
+<br>
+
 
 To run the container:
 
@@ -95,7 +102,6 @@ $ singularity run julia.sif
 ### To build from a definition file:
 
 You will need root access to build from a recipe.
-
 
 First, make the definition file:
 
