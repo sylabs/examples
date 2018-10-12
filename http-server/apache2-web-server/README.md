@@ -12,26 +12,25 @@ In this example, we will run a simple Apache Web server in a Singularity Contain
 
 <br>
 
-#### To start, make the working directory:
+### To start, make the working directory:
 
 ```
-$ mkdir httpd
-$ cd httpd/
+$ mkdir ~/httpd
+$ cd ~/httpd/
 ```
 
 <br>
 
-#### Then, pull the container from the library:
+Then, pull the container from the library:
 
 ```
 $ singularity pull library://sylabs/examples/httpd.sif:latest
 ```
-
-If you're building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
+If your running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down for instructions.
 
 <br>
 
-#### Now, Rename the container you just pulled:
+Now, Rename the container you just pulled:
 
 ```
 $ mv httpd.sif_latest.sif httpd.sif
@@ -43,12 +42,12 @@ We now have a simple container that will run a HTTP server listening on port 808
 
 Our web content, and logs, are going to be stored from a share on the host. So, we will create a directory tree on the host system:
 
-#### To create the directory tree:
+To create the directory tree:
+
 ```
 $ mkdir -p web/{htdocs,logs}
 ```
 
-<br>
 <br>
 
 Now our directory map should look like this:
@@ -59,10 +58,11 @@ web/
 |   `-- index.html
 `-- logs/
 ```
-<br>
+
 <br>
 
-#### Then add a basic index.html file to serve:
+
+Then add a basic index.html file to serve:
 
 ```
 $ nano web/htdocs/index.html
@@ -82,10 +82,17 @@ $ nano web/htdocs/index.html
 </html>
 ```
 
-<br>
+Or Download it from this repo:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html
+```
+
+
 <br>
 
-#### To use this structure, we start up an instance binding our host path into the container:
+
+To use this structure, we start up an instance binding our host path into the container:
 
 ```
 $ singularity instance start \
@@ -104,7 +111,7 @@ $ singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs
 
 <br>
 
-#### Finally, open a browser to:
+Finally, open a browser to:
 
 http://localhost:8080
 
@@ -115,9 +122,11 @@ $ w3m http://localhost:8080
 
 And access the `index.html` file being served from the `web/htdocs/` location.
 
+
 <br>
 
-#### To stop the server, run this command:
+
+### To stop the server, run this command:
 
 ```
 $ singularity instance stop httpd
@@ -128,11 +137,12 @@ $ singularity instance stop httpd
 <br>
 
 
-### Building the contianer from a recipe:
+### Building the contianer from a definition file:
 
-To build the container from a recipe, you will need root access, and the recipe file.
+To build the container from a recipe, you will need root access, and the definition file.
 
-#### First, make the definition file:
+First, make the definition file:
+
 ```
 $ nano httpd.def
 ```
@@ -147,11 +157,17 @@ From: httpd:latest
 %startscript
     httpd
 ```
-**NOTE:** you can also find the `httpd.def` file in this repo.
+
+Or you can download it:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/httpd.def
+```
 
 <br>
 
-#### Then to build the container:
+Then to build the container:
+
 ```
 $ sudo singularity build httpd.sif httpd.def
 ```
