@@ -83,6 +83,7 @@ To run the container:
 $ ./julia.sif 
 Hello world!
 For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
+this julia script is embeded in the container.
 $ ./julia.sif hello-world.jl
 Hello world!
 this is comming from your `hello-world.jl` script!
@@ -172,8 +173,7 @@ Make sure you have your [`hello-world.jl`](#make-the-test-file) test file.
 
 ```
 $ ./julia.sif 
-Hello world!
-For full tutorial, visit: https://github.com/sylabs/examples/lang/julia
+hello world from julia container!!!
 $ ./julia.sif hello-world.jl 
 Hello world!
 this is comming from your `hello-world.jl` script!
