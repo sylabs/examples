@@ -56,6 +56,7 @@ $ sudo singularity shell mongodb.sif
 
 mongodb> mongod --repair
 mongodb> mongod
+mongodb> mongo
 ```
 
 That will start the MongoDB shell and from there you can create a user for example:
