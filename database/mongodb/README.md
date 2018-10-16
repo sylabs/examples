@@ -34,10 +34,11 @@ This will generate a `mongodb.sif` Singularity image. From there, you will need 
 
 ```
 $ mkdir -p mongodb/db
-$ singularity shell -B mongodb/db:/data/db mongodb.sif
+$ export SINGULARITY_BINDPATH="mongodb/db:/data/db"
+$ singularity shell mongodb.sif
 ```
 
-With `-B` we bind the `mongodb/db` folder on the host to the `data/db` folder that is referenced from the container.
+Once we exported the `SINGULARITY_BINDPATH` environment variable, the `mongodb/db` folder on the host binds to the `/data/db` folder from the container.
 
 After this we are ready to run an instance, for this we run the following command:
 
