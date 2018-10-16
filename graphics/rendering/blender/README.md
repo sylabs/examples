@@ -9,7 +9,7 @@ In this example, we will install Blender in a [Ubuntu container](https://cloud.s
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - A blender image, like [these](https://www.blender.org/download/demo-files/).
+ - A Blender scene file from the [demo files](https://www.blender.org/download/demo-files/).
 
 <br>
 
