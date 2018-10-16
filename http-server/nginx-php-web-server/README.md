@@ -49,7 +49,7 @@ $ touch nginx/{favicon.ico,tmp/data.txt,log/{access.log,error.log},run/nginx.pid
 And prepare for PHP:
 
 ```
-$ mkdir -p php/{log}
+$ mkdir -p php/log
 ```
 
 ```
