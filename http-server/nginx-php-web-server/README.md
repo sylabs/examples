@@ -217,7 +217,7 @@ And you should see you web form.
 <br>
 
 
-### Building from a definition file
+### Building from a definition file:
 
 First, we need the definition file, which you can copy-paste to `nginx.def`:
 
