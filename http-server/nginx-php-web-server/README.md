@@ -186,24 +186,35 @@ $ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/exam
 
 <br>
 
-Then, make the `data.txt` file:
+We already created `nginx/tmp/data.txt`, and the bind points are already setup in our start script.
+
+<br>
+
+Finally, restart the instance:
 
 ```
-$ touch nginx/tmp/data.txt
+$ sudo singularity instance stop nginx
+# then startup the instance
+$ sudo ./start.sh
 ```
 
+<br>
+
+Now open you browser to: http://localhost/index.php,<br>
+Or: http://<YOUR_IP_ADDRESS>/index.php
+
+Or with `w3m`:
+
+```
+$ w3m localhost/index.php
+# or
+$ w3m <YOUR_IP_ADDRESS>/index.php
+```
+And you should see you web form.
 
 
 <br>
 <br>
-
-
-
-
-
-
-
-
 
 
 ### Building from a definition file
