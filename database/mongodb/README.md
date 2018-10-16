@@ -30,7 +30,7 @@ To run the definition file and build our container, we will need to:
 $ sudo singularity build mongodb.sif mongodb.def
 ```
 
-This will generate a `mongodb.sif` Singularity image. From there, you will need to bind the `/data/db` folder from the host before running the container. This folder is where the data from the database such as logs and/or journals are stored. Open a command line and then just run:
+This will generate a `mongodb.sif` Singularity image. From there, you will need to bind the `/data/db` folder inside the container to a folder in the host (In this example we will bind it to a new folder in the host called `mongodb/db` ). This folder is where the data from the database such as logs and/or journals are stored. Open a command line and then just run:
 
 ```
 $ mkdir -p mongodb/db
