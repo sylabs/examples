@@ -11,7 +11,10 @@ We are installing Nginx on a Ubuntu container.
  - A text editor, like: `micro`, `vim` or `nano`.
  - Root access.
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
- 
+
+
+____
+
 <br>
 
 ### To start, make the working directory:
@@ -55,7 +58,7 @@ $ touch php/{log/php7.0-fpm.log,php7.0-fpm.pid,php7.0-fpm.sock,php.ini}
 
 <br>
 
-### Now we can create the PHP file:
+### Create the PHP file:
 
 There are two PHP file in this repo,<br>
 We will first test the `index.php` file.
@@ -146,16 +149,52 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 INFO:    instance started successfully
 ```
 
+<br>
+
+Then open you browser to: http://localhost/index.php,<br>
+Or: http://<YOUR_IP_ADDRESS>/index.php
+
+
+Or you can use `w3m`:
+
+```
+$ w3m localhost/index.php
+# or
+$ w3m <YOUR_IP_ADDRESS>/index.php
+```
+And you should see you web page.
+
+<br>
+<br>
+
+### Running the test form:
+
+Now we will run a simple PHP test form thats in this repo.
+
+The PHP file will access a file called `data.txt`,<br>
+That file will be in `nginx/tmp/data.txt`.
+
+<br>
+
+To start, replace the hello world `index.php` with the PHP form:
+
+```
+$ rm nginx/www/html/index.php
+$ wget -O nginx/www/html/index.php https://github.com/sylabs/examples/blob/master/http-server/nginx-php-web-server/index.php
+```
+
+<br>
+
+Then, make the `data.txt` file:
+
+```
+$ touch nginx/tmp/data.txt
+```
 
 
 
-
-
-
-
-
-
-
+<br>
+<br>
 
 
 
