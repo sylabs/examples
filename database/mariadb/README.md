@@ -16,15 +16,15 @@ ____
 <br>
 
 
-#### To start, make the working directory:
+### To start, make the working directory:
 ```
-$ mkdir mariadb
-$ cd mariadb/
+$ mkdir ~/mariadb
+$ cd ~/mariadb/
 ```
 
 <br>
 
-#### Then, make the definition file:
+Then, make the definition file:
 
 ```
 $ nano mariadb.def
@@ -47,7 +47,7 @@ exec "mysqld" "$@"
 exec "mysqld_safe"
 ```
 
-#### Or you can download the definition file:
+Or you can download the definition file:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/database/mariadb/mariadb.def
@@ -55,7 +55,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/database/mariadb
 
 <br>
 
-#### To build the container, run:
+To build the container, run:
 
 ```
 $ sudo singularity build mariadb.sif mariadb.def
@@ -63,7 +63,7 @@ $ sudo singularity build mariadb.sif mariadb.def
 
 <br>
 
-#### Then, make all the necessary directories:
+Then, make all the necessary directories:
 
 ```
 $ mkdir -p mariadb/{db,run,log}
@@ -71,7 +71,7 @@ $ mkdir -p mariadb/{db,run,log}
 
 <br>
 
-#### Now, we need to shell into the container:
+Now, we need to shell into the container:
 
 ```
 $ singularity shell \
@@ -81,7 +81,9 @@ $ singularity shell \
  mariadb.sif
 ```
 
-#### Once we are in the container, setup MariaDB:
+<br>
+
+Once we are in the container, setup MariaDB:
 
 ```
 > mysql_install_db
@@ -92,8 +94,7 @@ $ singularity shell \
 <br>
 <br>
 
-#### Now we need to secure our installation:
-
+Now we need to secure our installation:<br>
 Remember, we are still in the container.
 
 ```
@@ -112,7 +113,7 @@ During this procedure, you should:
 
 <br>
 
-#### Once your are done with that, connect as the root user to the database:
+Once your are done with that, connect as the root user to the database:
 
 ```
 > mysql -u root -p
@@ -126,7 +127,7 @@ MariaDB [(none)]>
 
 <br>
 
-#### Now we can create a new database and user:
+Now we can create a new database and user:
 
 Just copy-paste these commands, <br>
 `<YOUR_IP_ADDRESS>` = your ip address from: `hostname -I`. <br>
@@ -153,7 +154,7 @@ Singularity mariadb/mariadb.sif:~>
 
 <br>
 
-#### Now we’ll shut down the MariaDB service inside the container:
+Now we’ll shut down the MariaDB service inside the container:
 
 ```
 > mysqladmin -u root -p shutdown
@@ -162,13 +163,13 @@ Singularity mariadb/mariadb.sif:~>
 <br>
 
 
-#### Then, exit the container:
+Then, exit the container:
 
 ```
 > exit
 ```
 
-#### We now have a working database, and are ready to start the instance.
+We now have a working database, and are ready to start the instance.
 
 The database files are stored on the host under <em>mariadb/db/</em>:
 ```
@@ -181,7 +182,7 @@ $ singularity instance start \
 
 <br>
 
-#### The instance is started so we’ll connect to it as the "newuser" account we created:
+The instance is started so we’ll connect to it as the "newuser" account we created:
 
 ```
 $ mysql -u newuser -p -h <YOUR_IP_ADDRESS> workdb
@@ -194,7 +195,7 @@ Now your promt should look like this:
 MariaDB [workdb]> 
 ```
 
-#### Insert a table and data for testing:
+Insert a table and data for testing:
 
 Again, copy-paste the commands one line at a time.
 
@@ -207,7 +208,7 @@ MariaDB [workdb]> INSERT INTO test (name) VALUES ('name1'),('name2');
 
 We have now setup a small database.
 
-#### Exit from the Mysql client:
+Exit from the Mysql client:
 
 ```
 MariaDB [workdb]> exit
@@ -215,7 +216,7 @@ MariaDB [workdb]> exit
 
 <br>
 
-#### Then run a test query against the database:
+Then run a test query against the database:
 
 ```
 $ mysql -u newuser -p -h <YOUR_IP_ADDRESS> workdb -e "SELECT * FROM test WHERE name = 'name2';"
@@ -235,7 +236,7 @@ Your output should be:
 
 <br>
 
-#### And on our host are the database files, owned by our user.
+And on our host are the database files, owned by our user.
 ```
 $ ls -l mariadb/db/workdb/
 total 120
