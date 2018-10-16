@@ -148,6 +148,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 INFO:    instance started successfully
 ```
+*The `sudo` is imoortent.*
 
 <br>
 
@@ -180,7 +181,7 @@ To start, replace the hello world `index.php` with the PHP form:
 
 ```
 $ rm nginx/www/html/index.php
-$ wget -O nginx/www/html/index.php https://github.com/sylabs/examples/blob/master/http-server/nginx-php-web-server/index.php
+$ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-web-server/index.php
 ```
 
 <br>
