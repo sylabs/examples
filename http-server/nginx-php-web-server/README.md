@@ -55,6 +55,37 @@ $ touch php/{log/php7.0-fpm.log,php7.0-fpm.pid,php7.0-fpm.sock,php.ini}
 
 <br>
 
+### Now we can create the PHP file:
+
+There are two PHP file in this repo,<br>
+We will first test the `index.php` file.
+
+The PHP file will be in `nginx/www/html/index.php`.
+
+```
+$ nano nginx/www/html/index.php
+```
+```
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nginx container test</title>
+</head>
+<body>
+<h1>Hello World</h1>
+<?php
+echo "hello world from PHP!<br>";
+?>
+</body>
+</html>
+```
+
+Or you can download it with `wget`:
+
+```
+$ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/index.php
+```
+
 
 
 
