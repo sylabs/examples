@@ -86,6 +86,67 @@ Or you can download it with `wget`:
 $ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/index.php
 ```
 
+<br>
+
+### Almost ready to run it,
+
+There are a lot of bind points, so its helpfulll to have a start script.
+
+We will make a start instance script, but you can also shell into the container insted.
+
+```
+$ nano start.sh
+```
+```
+#!/bin/bash
+
+singularity instance start \
+ -B nginx/log/error.log:/var/log/nginx/error.log \
+ -B nginx/run/nginx.pid:/run/nginx.pid \
+ -B nginx/log/access.log:/var/log/nginx/access.log \
+ -B nginx/:/var/cache/nginx \
+ -B nginx/body/:/var/lib/nginx/body \
+ -B nginx/proxy/:/var/lib/nginx/proxy \
+ -B nginx/fastcgi/:/var/lib/nginx/fastcgi \
+ -B nginx/uwsgi/:/var/lib/nginx/uwsgi \
+ -B nginx/scgi/:/var/lib/nginx/scgi \
+ -B nginx/run/nginx.pid:/var/run/nginx.pid \
+ -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
+ -B nginx/www/html/index.php:/var/www/html/index.php \
+ -B php/php.ini:/etc/php/7.0/fpm/php.ini \
+ -B php/:/run/php \
+ -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
+ -B nginx/tmp/data.txt:/tmp/data.txt \
+ nginx.sif nginx php
+```
+
+Again, you can just download it:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/start.sh
+```
+
+<br>
+
+Change the permission so we can run it:
+
+```
+$ chmod +x start.sh
+```
+
+<br>
+
+Finely, you can start the instance:
+
+```
+$ sudo ./start.sh
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+INFO:    instance started successfully
+```
+
+
 
 
 
