@@ -2,24 +2,27 @@
 
 Blender is a free and open source software used for editing and rendering.
 
+In this example, we will install Blender in a [Ubuntu container](https://cloud.sylabs.io/library/library/default/ubuntu).
+
 <br>
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - A blender image, like [these](https://www.blender.org/download/demo-files/)
+ - A Blender scene file from the [demo files](https://www.blender.org/download/demo-files/).
 
 <br>
 
-#### To start, Make the working directory:
+### To start, Make the working directory:
+
 ```
-$ mkdir blender
-$ cd blender/
+$ mkdir ~/blender
+$ cd ~/blender/
 ```
 
 <br>
 
-#### Then, pull the container from the library:
+Then, pull the container from the library:
 
 ```
 $ singularity pull library://sylabs/examples/blender.sif:latest
@@ -29,7 +32,7 @@ If your building the container from a recipe, click [here](#building-the-contian
 
 <br>
 
-#### Now, rename the container you just pulled:
+Now, rename the container you just pulled:
 
 ```
 $ mv blender.sif_latest.sif blender.sif
@@ -37,7 +40,10 @@ $ mv blender.sif_latest.sif blender.sif
 
 <br>
 
-#### Then, you can run the following to render .blend (blender scene) files:
+### Running the container:
+
+Now, you can run the following to render .blend (blender scene) files.<br>
+Make sure you have your [blender file](https://www.blender.org/download/demo-files/).
 
 ```
 $ singularity run blender.sif [scene file] [output directory] <frame | start frame:end frame>
@@ -45,7 +51,7 @@ $ singularity run blender.sif [scene file] [output directory] <frame | start fra
 
 <br>
 
-#### The documentation for the container (%help) can be accessed by running:
+The documentation for the container (`%help`) can be accessed by running:
 
 ```
 $ singularity run-help blender.sif
@@ -53,7 +59,7 @@ $ singularity run-help blender.sif
 
 <br>
 
-#### Running the following will render all frames:
+Running the following will render all frames:
 
 ```
 $ singularity run --nv blender.sif my_scene.blend run/output
@@ -61,7 +67,7 @@ $ singularity run --nv blender.sif my_scene.blend run/output
 
 <br>
 
-#### Render frames 100-200:
+Render frames 100-200:
 
 ```
 $ singularity run --nv blender.sif my_scene.blend run/output 100:200
@@ -69,7 +75,7 @@ $ singularity run --nv blender.sif my_scene.blend run/output 100:200
 
 <br>
 
-#### Render frame 5:
+Render frame 5:
 
 ```
 $ singularity run --nv blender.sif my_scene.blend run/output 5
@@ -89,13 +95,13 @@ To build the container from a recipe, you will need root access, and the recipe 
 
 <br>
 
-#### First, make the definition file:
+First, make the definition file:
 
 ```
 $ nano blender.def
 ```
 ```
-Bootstrap: docker
+Bootstrap: library
 From: ubuntu:16.04
 
 %post
@@ -137,11 +143,16 @@ From: ubuntu:16.04
 
 ```
 
-**NOTE:** you can also find the `blender.def` file in this repo.
+Or you can just download the definition file:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/graphics/rendering/blender/blender.def
+```
 
 <br>
 
-#### Then, build the container:
+
+Then, build the container:
 
 ```
 $ sudo singularity build blender.sif blender.def
