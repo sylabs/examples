@@ -116,11 +116,11 @@ singularity instance start \
  -B nginx/run/nginx.pid:/var/run/nginx.pid \
  -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
  -B nginx/www/html/index.php:/var/www/html/index.php \
+ -B nginx/tmp/data.txt:/tmp/data.txt \
  -B php/php.ini:/etc/php/7.0/fpm/php.ini \
  -B php/:/run/php \
  -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
- -B nginx/tmp/data.txt:/tmp/data.txt \
- nginx.sif nginx php
+nginx.sif nginx php
 ```
 
 Again, you can just download it:
