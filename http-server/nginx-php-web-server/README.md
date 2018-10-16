@@ -181,7 +181,7 @@ To start, replace the hello world `index.php` with the PHP form:
 
 ```
 $ rm nginx/www/html/index.php
-$ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/index.php
+$ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/form_index.php
 ```
 
 <br>
