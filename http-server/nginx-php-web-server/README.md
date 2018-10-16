@@ -217,14 +217,10 @@ $ nano nginx.def
 Bootstrap: library
 From: ubuntu:16.04
 
-
 %startscript
 nginx -t
-service php7.0-fpm stop
-service php7.0-fpm start
-service nginx stop
-service nginx start
-
+/etc/init.d/php7.0-fpm restart
+/etc/init.d/nginx restart
 
 %post
 apt-get -y update
