@@ -1,6 +1,6 @@
 # Nginx
 
-In this example, we will run a simple nginx php server in a container.
+In this example, we will run a simple Nginx PHP server in a container.
 
 We are installing Nginx on a Ubuntu container.
 
@@ -8,7 +8,7 @@ We are installing Nginx on a Ubuntu container.
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
- - A text editor, like: `micro`, `vim` or `nano`.
+ - A text editor, like: `micro`, `vim`, or `nano`.
  - Root access.
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
 
@@ -32,12 +32,12 @@ Now you can pull the container from the library:
 $ singularity pull library://sylabs/examples/nginx.sif:latest
 ```
 
-Or you can build from a definition file, click [here](#building-from-a-definition-file) or scroll down.
+Or you can build from a definition file. Click [here](#building-from-a-definition-file) or scroll down.
 
 <br>
 
 
-Now we need to prepair are directory for the Nginx container:
+Now we need to prepare our directory for the Nginx container:
 
 ```
 $ mkdir -p nginx/{body,fastcgi,log,proxy,run,scgi,sites-available,tmp,uwsgi,www/html}
@@ -46,7 +46,7 @@ $ mkdir -p nginx/{body,fastcgi,log,proxy,run,scgi,sites-available,tmp,uwsgi,www/
 $ touch nginx/{favicon.ico,tmp/data.txt,log/{access.log,error.log},run/nginx.pid}
 ```
 
-And prepain for PHP:
+And prepare for PHP:
 
 ```
 $ mkdir -p php/{log}
@@ -60,7 +60,7 @@ $ touch php/{log/php7.0-fpm.log,php7.0-fpm.pid,php7.0-fpm.sock,php.ini}
 
 ### Create the PHP file:
 
-There are two PHP file in this repo,<br>
+There are two PHP files in this repo.<br>
 We will first test the `index.php` file.
 
 The PHP file will be in `nginx/www/html/index.php`.
@@ -91,11 +91,11 @@ $ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/exam
 
 <br>
 
-### Almost ready to run it,
+### Now, we are almost ready to run it.
 
-There are a lot of bind points, so its helpfulll to have a start script.
+There are a lot of bind points, so it's helpful to have a start script.
 
-We will make a start instance script, but you can also shell into the container insted.
+We will make a start instance script, but you can also shell into the container instead.
 
 ```
 $ nano start.sh
@@ -139,7 +139,7 @@ $ chmod +x start.sh
 
 <br>
 
-Finely, you can start the instance:
+Finally, you can start the instance:
 
 ```
 $ sudo ./start.sh
@@ -148,31 +148,31 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 INFO:    instance started successfully
 ```
-*The `sudo` is imoortent.*
+*The `sudo` is important.*
 
 <br>
 
 Then open you browser to: http://localhost/index.php,<br>
-Or: http://<YOUR_IP_ADDRESS>/index.php
+or: http://<YOUR_IP_ADDRESS>/index.php
 
 
-Or you can use `w3m`:
+You can also use `w3m`:
 
 ```
 $ w3m localhost/index.php
 # or
 $ w3m <YOUR_IP_ADDRESS>/index.php
 ```
-And you should see you web page.
+And you should see your web page.
 
 <br>
 <br>
 
 ### Running the test form:
 
-Now we will run a simple PHP test form thats in this repo.
+Now we will run a simple PHP test form that's in this repo.
 
-The PHP file will access a file called `data.txt`,<br>
+The PHP file will access a file called `data.txt`.<br>
 That file will be in `nginx/tmp/data.txt`.
 
 <br>
@@ -186,7 +186,7 @@ $ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/exam
 
 <br>
 
-We already created `nginx/tmp/data.txt`, and the bind points are already setup in our start script.
+We already created `nginx/tmp/data.txt`, and the bind points are already set up in our start script.
 
 <br>
 
@@ -201,7 +201,7 @@ $ sudo ./start.sh
 <br>
 
 Now open you browser to: http://localhost/index.php,<br>
-Or: http://<YOUR_IP_ADDRESS>/index.php
+or: http://<YOUR_IP_ADDRESS>/index.php
 
 Or with `w3m`:
 
@@ -219,7 +219,7 @@ And you should see you web form.
 
 ### Building from a definition file
 
-First, we need the definition file, you can copy-paste it to `nginx.def`:
+First, we need the definition file, which you can copy-paste to `nginx.def`:
 
 ```
 $ nano nginx.def
@@ -270,7 +270,7 @@ EOF
 
 ```
 
-Or just download it from Github:
+Or, just download it from Github:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/nginx.def
@@ -278,7 +278,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/ngin
 
 <br>
 
-Now to build the container:
+Now, build the container:
 
 ```
 $ sudo singularity build nginx.sif nginx.def
