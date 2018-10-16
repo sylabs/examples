@@ -8,8 +8,6 @@
 <h1>Simple Form Page</h1>
 <h3>Form:</h3>
 
-
-
 <?php
 
 $NO_WRITE = 0;
@@ -20,7 +18,6 @@ function customError($errno, $errstr) {
 }
 
 set_error_handler("customError");
-
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])) {
     clear();
@@ -50,16 +47,13 @@ if (isset($_POST['field1'])) {
     }
 }
 
-
 if (filesize($file) > 0) {
     $myfile = fopen($file, "r") or die("Unable to open file!");
     echo fread($myfile,filesize($file));
     fclose($myfile);
 }
 
-
 ?>
-
 
 <form action="index.php" method="POST" autocomplete="off">
     <input name="field1" type="text" autofocus />
@@ -70,7 +64,5 @@ if (filesize($file) > 0) {
 
 </form>
 
-
 </body>
 </html>
-
