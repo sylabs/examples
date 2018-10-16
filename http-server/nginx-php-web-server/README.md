@@ -82,7 +82,7 @@ First, we need the definition file, you can copy-paste it to `nginx.def`:
 $ nano nginx.def
 ```
 ```
-Bootstrap: docker
+Bootstrap: library
 From: ubuntu:16.04
 
 
@@ -99,8 +99,6 @@ apt-get -y update
 apt-get -y install nginx
 apt-get -y install php-fpm php-mysql
 
-IP=`hostname -I | awk '{print $1;}'`
-
 cat << EOF > /etc/nginx/sites-available/default 
 
 server {
@@ -111,7 +109,7 @@ server {
 
         index index.php index.html index.htm index.nginx-debian.html;
 
-        server_name $IP;
+        server_name _;
 
         location / {
             try_files $uri $uri/ =404;
