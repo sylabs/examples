@@ -82,19 +82,55 @@ First, we need the definition file, you can copy-paste it to `nginx.def`:
 $ nano nginx.def
 ```
 ```
-Bootstrap: library
+Bootstrap: docker
 From: ubuntu:16.04
 
-# i dont know about this part,
+
 %startscript
 nginx -t
-service php7.0-fpm restart
-service nginx restart
+service php7.0-fpm stop
+service php7.0-fpm start
+service nginx stop
+service nginx start
+
 
 %post
 apt-get -y update
 apt-get -y install nginx
 apt-get -y install php-fpm php-mysql
+
+IP=`hostname -I | awk '{print $1;}'`
+
+cat << EOF > /etc/nginx/sites-available/default 
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name $IP;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+        	fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    	}
+
+	    location ~ /\.ht {
+    	    deny all;
+    	}
+
+}
+
+EOF
+
+
 ```
 
 Or just download it from Github:
