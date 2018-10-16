@@ -5,7 +5,7 @@ learning algorithms for data mining tasks.
 
 The full steps to install Weka into a singularity container are provided at:
 
-    https://www.sylabs.io/2018/09/weka-data-mining-with-singularity/
+ - [sylabs.io/2018/09/weka-data-mining-with-singularity](https://www.sylabs.io/2018/09/weka-data-mining-with-singularity/)
 
 A quick run through follows:
 
