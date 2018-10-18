@@ -37,7 +37,7 @@ Or you can build from a definition file. Click [here](#building-from-a-definitio
 <br>
 
 
-Now we need to prepare our directory for the Nginx container:
+### Prepare our directory for the Nginx container:
 
 ```
 $ mkdir -p nginx/{body,fastcgi,log,proxy,run,scgi,sites-available,tmp,uwsgi,www/html}
@@ -285,6 +285,8 @@ $ sudo singularity build nginx.sif nginx.def
 ```
 
 Then you should have you container (`nginx.sif`) and you don't need to download it from the library.
+
+Now you can [Prepare our directory for the Nginx container](#prepare-our-directory-for-the-nginx-container).
 
 <br>
 
