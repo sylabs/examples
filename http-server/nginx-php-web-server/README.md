@@ -2,7 +2,7 @@
 
 In this example, we will run a simple Nginx PHP server in a container.
 
-We are installing Nginx on a Ubuntu container.
+We are installing Nginx on a Ubuntu 16.04 container.
 
 <br>
 
