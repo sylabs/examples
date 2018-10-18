@@ -284,6 +284,8 @@ Now, build the container:
 $ sudo singularity build nginx.sif nginx.def
 ```
 
+Then you should have you container (`nginx.sif`) and you don't need to download it from the library.
+
 <br>
 
 
