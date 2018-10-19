@@ -40,7 +40,7 @@ Or you can build from a definition file. Click [here](#building-from-a-definitio
 ### Prepare our directory for the Nginx container:
 
 ```
-$ mkdir -p nginx/{body,fastcgi,log,proxy,run,scgi,sites-available,tmp,uwsgi,www/html}
+$ mkdir -p nginx/{lib,log,run,sites-available,tmp,www/html}
 ```
 ```
 $ touch nginx/{favicon.ico,tmp/data.txt,log/{access.log,error.log},run/nginx.pid}
@@ -107,12 +107,7 @@ singularity instance start \
  -B nginx/log/error.log:/var/log/nginx/error.log \
  -B nginx/run/nginx.pid:/run/nginx.pid \
  -B nginx/log/access.log:/var/log/nginx/access.log \
- -B nginx/:/var/cache/nginx \
- -B nginx/body/:/var/lib/nginx/body \
- -B nginx/proxy/:/var/lib/nginx/proxy \
- -B nginx/fastcgi/:/var/lib/nginx/fastcgi \
- -B nginx/uwsgi/:/var/lib/nginx/uwsgi \
- -B nginx/scgi/:/var/lib/nginx/scgi \
+ -B nginx/lib/:/var/lib/nginx/ \
  -B nginx/run/nginx.pid:/var/run/nginx.pid \
  -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
  -B nginx/www/html/index.php:/var/www/html/index.php \
