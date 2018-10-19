@@ -114,7 +114,7 @@ singularity instance start \
  -B php/php.ini:/etc/php/7.0/fpm/php.ini \
  -B php/:/run/php \
  -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
-nginx.sif nginx php
+ nginx.sif nginx php
 ```
 
 Again, you can just download it:
