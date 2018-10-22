@@ -1,6 +1,6 @@
 # Nginx
 
-In this example, we will run a simple Nginx PHP server in a container.
+In this example, we will run a simple Nginx(1.10.X) PHP-7.0 server in a container.
 
 We are installing Nginx on a Ubuntu 16.04 container.
 
@@ -39,22 +39,56 @@ Or you can build from a definition file. Click [here](#building-from-a-definitio
 
 ### Prepare our directory for the Nginx container:
 
-```
-$ mkdir -p nginx/{lib,log,run,sites-available,tmp,www/html}
-```
-```
-$ touch nginx/{favicon.ico,tmp/data.txt,log/{access.log,error.log},run/nginx.pid}
-```
-
-And prepare for PHP:
+To prepare are directory, just run the container:
 
 ```
-$ mkdir -p php/log
+$ ./nginx.sif
 ```
 
+This will run the `%runscript` in the container.
+
+Now heres our directory map:
+
 ```
-$ touch php/{log/php7.0-fpm.log,php7.0-fpm.pid,php7.0-fpm.sock,php.ini}
+nginx/
+|-- favicon.ico
+|-- lib/
+|-- log/
+|   `- error.log
+|    - access.log
+|-- run/
+|-- sites-avalibal/
+|   `- default
+|-- tmp/
+|   `- data.txt
+|-- www/
+|   `- html/
+|      `- index.php
+
+php/
+|-- php.ini
+|-- log/
+|   `- php7.0-fpm.log
+
+which directory map looks better?
+
+nginx/
+     `-favicon.ico
+      -lib/
+      -log/
+          `-error.log
+	   -access.log
+      -run/
+      -sites-avalibale/default
+      -tmp/data.txt
+      -www/html/index.php
+
+php/
+   `-log/php7.0-fpm.log
+    -php.ini
 ```
+
+
 
 <br>
 
@@ -91,11 +125,61 @@ $ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/exam
 
 <br>
 
-### Now, we are almost ready to run it.
+### Running the container:
 
-There are a lot of bind points, so it's helpful to have a start script.
+To run the Nginx container, first log in as `root`:
 
-We will make a start instance script, but you can also shell into the container instead.
+```
+$ sudo su -
+# 
+```
+
+<br>
+
+Now, `cd` to the Nginx directory:
+
+```
+# cd /home/USER/nginx/
+```
+
+<br>
+
+And set our `SINGULARITY_BINDPATH`:
+
+```
+# source bind-path
+```
+
+<br>
+
+Then, start the instance:
+
+```
+# singularity instance start nginx.sif nginx
+```
+
+<br>
+
+### To bind manually:
+
+You don't need to be `root` this way, but you still need `sudo`:
+
+```
+$ sudo singularity instance start \
+ -B nginx/log/error.log:/var/log/nginx/error.log \
+ -B nginx/log/access.log:/var/log/nginx/access.log \
+ -B nginx/run/nginx.pid:/run/nginx.pid \
+ -B nginx/lib/:/var/lib/nginx/ \
+ -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
+ -B nginx/www/html/index.php:/var/www/html/index.php \
+ -B nginx/tmp/data.txt:/tmp/data.txt \
+ -B php/php.ini:/etc/php/7.0/fpm/php.ini \
+ -B php/:/run/php \
+ -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
+ nginx.sif nginx php
+```
+
+You can also make a start script, like this one:
 
 ```
 $ nano start.sh
@@ -146,9 +230,10 @@ INFO:    instance started successfully
 
 <br>
 
-Then open you browser to: http://localhost/index.php,<br>
-or: http://<YOUR_IP_ADDRESS>/index.php
+### Testing it:
 
+To test it, open you browser to: http://localhost/index.php,<br>
+or: http://<YOUR_IP_ADDRESS>/index.php
 
 You can also use `w3m`:
 
@@ -206,6 +291,17 @@ $ w3m <YOUR_IP_ADDRESS>/index.php
 ```
 And you should see you web form.
 
+<br>
+
+### Stoping the instance:
+
+To stop the instance, we will use the `instance stop` function:
+
+```
+$ sudo singularity instance list
+[...]
+$ sudo singularity instance stop nginx
+```
 
 <br>
 <br>
@@ -223,7 +319,21 @@ Bootstrap: library
 From: ubuntu:16.04
 
 %help
-Usage: sudo singularity instance start \
+Nginx 1.10.3 web server in a Ubuntu 16.04 container.
+
+Usage:
+
+  $ sudo su -
+  # cd /YOUR/NGINX/SIF_FILE/
+  # ./nginx.sif
+  # source bind-path
+  # singularity instance start nginx.sif nginx
+
+
+Manual bind:
+
+  $ ./nginx.sif
+  $ sudo singularity instance start \
  -B nginx/log/error.log:/var/log/nginx/error.log \
  -B nginx/log/access.log:/var/log/nginx/access.log \
  -B nginx/run/nginx.pid:/run/nginx.pid \
@@ -236,10 +346,44 @@ Usage: sudo singularity instance start \
  -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
  nginx.sif nginx php
 
+
+
 %startscript
 nginx -t
 /etc/init.d/php7.0-fpm restart
 /etc/init.d/nginx restart
+
+
+%runscript
+echo 'creating bind path file...'
+echo 'export SINGULARITY_BINDPATH="nginx/log/error.log:/var/log/nginx/error.log,nginx/log/access.log:/var/log/nginx/access.log,nginx/run/nginx.pid:/run/nginx.pid,nginx/lib/:/var/lib/nginx/,nginx/favicon.ico:/usr/share/nginx/html/favicon.ico,nginx/www/html/index.php:/var/www/html/index.php,nginx/tmp/data.txt:/tmp/data.txt,php/php.ini:/etc/php/7.0/fpm/php.ini,php/:/run/php,php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log"' > bind-path
+chmod +x bind-path
+
+echo 'creating directorys...'
+mkdir nginx
+mkdir nginx/lib
+mkdir nginx/log
+mkdir nginx/run
+mkdir nginx/sites-avaliable
+mkdir nginx/tmp
+mkdir nginx/www
+mkdir nginx/www/html
+
+touch nginx/favicon.ico
+touch nginx/tmp/data.txt
+touch nginx/log/access.log
+touch nginx/log/error.log
+touch nginx/run/nginx.pid
+touch nginx/www/html/index.php
+
+mkdir php
+mkdir php/log
+
+touch php/log/php7.0-fpm.log
+touch php/php7.0-fpm.pid
+touch php/php7.0-fpm.sock
+touch php/php.ini
+
 
 %post
 apt-get -y update
