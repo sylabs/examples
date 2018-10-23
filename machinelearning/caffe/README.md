@@ -177,7 +177,3 @@ With this configuration, now go to `/examples/mnist` and run:
  I1023 15:48:22.814141 14134 convert_mnist_data.cpp:108] Processed 10000 files.
  Done.
  ```
-
-#### LeNet: the MNIST Classification Model
-
-To run the training program..
