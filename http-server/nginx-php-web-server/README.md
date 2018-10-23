@@ -244,7 +244,7 @@ server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        root /srv/nginx/index.php;
+        root /var/www/html/;
 
         index index.php index.html index.htm index.nginx-debian.html;
 
@@ -301,35 +301,6 @@ http {
 
 	include /etc/nginx/conf.d/*.conf;
 	include /etc/nginx/sites-enabled/*;
-}
-
-EOF
-
-cat << EOF > /etc/nginx/sites-available/default
-server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        root /var/www/html/;
-
-        index index.php index.html index.htm index.nginx-debian.html;
-
-        server_name _;
-
-        location / {
-            try_files  / =404;
-        }
-
-        location ~ \.php$ {
-            include snippets/fastcgi-php.conf;
-        	fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-        	#fastcgi_pass unix:/srv/nginx/php7.0-fpm.sock;
-    	}
-
-	    location ~ /\.ht {
-    	    deny all;
-    	}
-
 }
 
 EOF
