@@ -177,3 +177,44 @@ With this configuration, now go to `/examples/mnist` and run:
  I1023 15:48:22.814141 14134 convert_mnist_data.cpp:108] Processed 10000 files.
  Done.
  ```
+
+#### LeNet: the MNIST Classification Model
+
+To run the training program, the [LeNet](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) network will be used. Its use is known in digital classification tasks. For this specific case, the LeNet implementation will be changed replacing the sigmoid activations with Rectified Linear Unit (ReLU) activations for the neurons.
+
+The layers are defined inside `caffe/examples/mnist/lenet_train_test.prototxt`.
+
+
+#### Defining the MNIST network
+
+We will explain the `lenet_train_test.prototxt` model. The format is as much as similar as from [Google Protobuf](https://developers.google.com/protocol-buffers/docs/overview) also, the definitions regarding protobuf from caffe can be found in `caffe/src/caffe/proto/caffe.proto`.
+
+The definition of the structure of layers are explained in detail [here](http://caffe.berkeleyvision.org/gathered/examples/mnist.html)
+
+#### Training and testing the model
+
+Training the model is very straightforward once you have written the network definition from the layers before (in protobuf format) and solver protobuf files.
+
+First of all we will need to specify that the training needs to be run CPU-supported only, to do this you will only need to edit a single file: `lenet_solver.prototxt` located `/caffehost/examples/mnist`:
+
+The last lines on this solver configuration define what type of support it should run over, change it from GPU (which is the default) to CPU:
+
+```
+solver_mode: CPU
+```
+
+Now to train the model we will move into  `caffehost/examples/mnist` and edit the last line on `train_lenet.sh` to:
+
+```
+/caffe/build/tools/caffe train --solver=/caffehost/examples/mnist/lenet_solver.prototxt $@
+```
+
+Notice that after this modification, the execution of caffe is entirely in the container, while the configuration of the solver is in your host.
+
+Now run it:
+
+```
+./train_lenet.sh
+```
+
+Done, with this you will see an output that tell you about each training iteration and the results obtained.
