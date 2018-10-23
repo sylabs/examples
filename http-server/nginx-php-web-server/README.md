@@ -344,9 +344,9 @@ apt-get -y install php-fpm php-mysql
 echo "=> creating nginx directory: /srv/nginx/"
 
 mkdir /srv/nginx
-mkdir /srv/nginx/php
+#mkdir /srv/nginx/php
 
-mkdir /run/php
+#mkdir /run/php
 
 touch /srv/nginx/error.log
 touch /srv/nginx/access.log
@@ -367,9 +367,9 @@ ln -s /srv/nginx/index.php /var/www/html/index.php
 rm -f /var/log/php7.0-fpm.log
 ln -s /srv/nginx/php7.0-fpm.log /var/log/php7.0-fpm.log
 
-ln -s /srv/nginx/php/ /run/php/
+#ln -s /srv/nginx/php/ /run/php/
 
-chown www-data:www-data /run/php/
+#chown www-data:www-data /run/php/
 
 mkdir /var/lib/nginx/body
 mkdir /srv/nginx/body
@@ -417,80 +417,27 @@ events {
 
 http {
 
-	##
-	# Basic Settings
-	##
-
 	sendfile on;
 	tcp_nopush on;
 	tcp_nodelay on;
 	keepalive_timeout 65;
 	types_hash_max_size 2048;
-	# server_tokens off;
-
-	# server_names_hash_bucket_size 64;
-	# server_name_in_redirect off;
 
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
 
-	##
-	# SSL Settings
-	##
-
 	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
 	ssl_prefer_server_ciphers on;
-
-	##
-	# Logging Settings
-	##
 
 	access_log /srv/nginx/access.log;
 	error_log /srv/nginx/error.log;
 
-	##
-	# Gzip Settings
-	##
-
 	gzip on;
 	gzip_disable "msie6";
-
-	# gzip_vary on;
-	# gzip_proxied any;
-	# gzip_comp_level 6;
-	# gzip_buffers 16 8k;
-	# gzip_http_version 1.1;
-	# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-
-	##
-	# Virtual Host Configs
-	##
 
 	include /etc/nginx/conf.d/*.conf;
 	include /etc/nginx/sites-enabled/*;
 }
-
-
-#mail {
-#	# See sample authentication script at:
-#	# http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
-# 
-#	# auth_http localhost/auth.php;
-#	# pop3_capabilities "TOP" "USER";
-#	# imap_capabilities "IMAP4rev1" "UIDPLUS";
-# 
-#	server {
-#		listen     localhost:110;
-#		protocol   pop3;
-#		proxy      on;
-#	}
-# 
-#	server {
-#		listen     localhost:143;
-#		protocol   imap;
-#		proxy      on;
-#	}
-#}
 
 EOF
 
@@ -531,19 +478,13 @@ cat << EOF > /etc/php/7.0/fpm/php-fpm.conf
 
 [global]
 
-;pid = /run/php/php7.0-fpm.pid
 pid = /srv/nginx/php7.0-fpm.pid
 
-;error_log = /var/log/php7.0-fpm.log
 error_log = /srv/nginx/php7.0-fpm.log
 
 include=/etc/php/7.0/fpm/pool.d/*.conf
 
 EOF
-
-#php-fpm7.0 -y /etc/php/7.0/fpm/php-fpm.conf 
-
-#/etc/init.d/php7.0-fpm restart
 
 ```
 
