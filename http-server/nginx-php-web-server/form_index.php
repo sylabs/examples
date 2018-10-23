@@ -15,6 +15,7 @@ $file = "/tmp/data.txt";
 
 function customError($errno, $errstr) {
   echo "<b>Error:</b> [$errno] $errstr";
+  echo "<br>";
 }
 
 set_error_handler("customError");
