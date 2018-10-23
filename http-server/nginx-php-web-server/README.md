@@ -251,13 +251,13 @@ server {
         server_name _;
 
         location / {
-            try_files $uri $uri/ =404;
+	    try_files $uri $uri/ =404;
         }
 
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
-        	#fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-        	fastcgi_pass unix:/srv/nginx/php7.0-fpm.sock;
+        	fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        	#fastcgi_pass unix:/srv/nginx/php7.0-fpm.sock;
     	}
 
 	    location ~ /\.ht {
