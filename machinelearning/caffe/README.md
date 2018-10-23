@@ -70,7 +70,7 @@ Move into the `caffehost` folder and run:
 
 ```
 cd data
-cp -a /caffe/data/. .
+cp -a /caffe/data/. /caffehost/data/.
 ```
 
 Do the same for examples folder, need to move to `examples` folder:
@@ -78,7 +78,7 @@ Do the same for examples folder, need to move to `examples` folder:
 ```
 cd ..
 cd examples
-cp -a /caffe/examples/. .
+cp -a /caffe/examples/. /caffehost/examples/.
 ```
 
 Finally, do the same with the `caffehost/build/examples` folder:
@@ -86,7 +86,7 @@ Finally, do the same with the `caffehost/build/examples` folder:
 ```
 cd ..
 cd build/examples
-cp -a /caffe/build/examples/. .
+cp -a /caffe/build/examples/. /caffehost/build/examples/.
 ```
 
 With this you will have these files from the container in `/caffe/data` , `/caffe/examples` and `/caffe/build/examples` on your local host.
@@ -152,9 +152,9 @@ So now all the downloaded data sets can be seen in `caffehost/data/mnist` folder
 Now, before running the `create_mnist.sh` script located in `caffehost/examples/mnist`, we will need first to modify the paths in there. To do this, open the `create_mnist.sh` on your favorite editor and edit the following 3 lines inside the script:
 
 ```
-EXAMPLE=/caffehost/examples/mnist
-DATA=/caffehost/data/mnist
-BUILD=/caffehost/build/examples/mnist
+EXAMPLE=/caffe/examples/mnist
+DATA=/caffe/data/mnist
+BUILD=/caffe/build/examples/mnist
 ```
 
 With this configuration, now go to `/examples/mnist` and run:
@@ -203,7 +203,14 @@ The last lines on this solver configuration define what type of support it shoul
 solver_mode: CPU
 ```
 
-Now to train the model we will move into  `caffehost/examples/mnist` and edit the last line on `train_lenet.sh` to:
+You will also need to modify the following entries inside this file:
+
+```
+net: "caffehost/examples/mnist/lenet_test.prototxt"
+snapshot_prefix: "caffehost/examples/mnist/lenet"
+```
+
+Now to train the model we will move into  `caffe/examples/mnist` and edit the last line on `train_lenet.sh` to:
 
 ```
 /caffe/build/tools/caffe train --solver=/caffehost/examples/mnist/lenet_solver.prototxt $@
@@ -211,10 +218,11 @@ Now to train the model we will move into  `caffehost/examples/mnist` and edit th
 
 Notice that after this modification, the execution of caffe is entirely in the container, while the configuration of the solver is in your host.
 
-Now run it:
+Now go inside the `/caffe` directory and run:
 
 ```
-./train_lenet.sh
+> cd /caffe
+> ./examples/mnist/train_lenet.sh
 ```
 
 Done, with this you will see an output that tell you about each training iteration and the results obtained.

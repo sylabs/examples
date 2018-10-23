@@ -4,7 +4,7 @@ From: debian:9
 %environment
 
 	#Setting the environment variables needed
-	CAFFEROOT=/usr/share/doc/caffe-doc/
+	CAFFE_ROOT=/caffe
 	PREFIX=/usr/local/bootstrap
 	BOOTSTRAP=/usr/local/bootstrap/bin
 	export CAFFEROOT PREFIX BOOTSTRAP
