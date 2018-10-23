@@ -188,13 +188,17 @@ Nginx 1.10.3 web server in a Ubuntu 16.04 container.
 Usage:
 
   instance start:
-  $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif
+  $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
 
   or to shell:
   $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif
 
+  you may need to run this, after shelling into to container, but before starting nginx.
+  > fuser -k 80/tcp
+
 
 %startscript
+fuser -k 80/tcp
 nginx -t
 /etc/init.d/php7.0-fpm restart
 /etc/init.d/nginx restart
@@ -257,7 +261,6 @@ server {
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
         	fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-        	#fastcgi_pass unix:/srv/nginx/php7.0-fpm.sock;
     	}
 
 	    location ~ /\.ht {
