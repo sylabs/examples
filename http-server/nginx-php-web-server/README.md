@@ -39,56 +39,11 @@ Or you can build from a definition file. Click [here](#building-from-a-definitio
 
 ### Prepare our directory for the Nginx container:
 
-To prepare are directory, just run the container:
+To prepare our directory for Nginx, make the bind points:
 
 ```
-$ ./nginx.sif
+$ mkdir -p nginx/php
 ```
-
-This will run the `%runscript` in the container.
-
-Now heres our directory map:
-
-```
-nginx/
-|-- favicon.ico
-|-- lib/
-|-- log/
-|   `- error.log
-|    - access.log
-|-- run/
-|-- sites-avalibal/
-|   `- default
-|-- tmp/
-|   `- data.txt
-|-- www/
-|   `- html/
-|      `- index.php
-
-php/
-|-- php.ini
-|-- log/
-|   `- php7.0-fpm.log
-
-which directory map looks better?
-
-nginx/
-     `-favicon.ico
-      -lib/
-      -log/
-          `-error.log
-	   -access.log
-      -run/
-      -sites-avalibale/default
-      -tmp/data.txt
-      -www/html/index.php
-
-php/
-   `-log/php7.0-fpm.log
-    -php.ini
-```
-
-
 
 <br>
 
@@ -97,10 +52,10 @@ php/
 There are two PHP files in this repo.<br>
 We will first test the `index.php` file.
 
-The PHP file will be in `nginx/www/html/index.php`.
+The PHP file will be in `nginx/index.php`.
 
 ```
-$ nano nginx/www/html/index.php
+$ nano nginx/index.php
 ```
 ```
 <!DOCTYPE html>
@@ -120,113 +75,22 @@ echo "hello world from PHP!<br>";
 Or you can download it with `wget`:
 
 ```
-$ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/index.php
+$ wget -O nginx/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/index.php
 ```
 
 <br>
 
 ### Running the container:
 
-To run the Nginx container, first log in as `root`:
+To start the instance:
 
 ```
-$ sudo su -
-# 
-```
-
-<br>
-
-Now, `cd` to the Nginx directory:
-
-```
-# cd /home/USER/nginx/
-```
-
-<br>
-
-And set our `SINGULARITY_BINDPATH`:
-
-```
-# source bind-path
-```
-
-<br>
-
-Then, start the instance:
-
-```
-# singularity instance start nginx.sif nginx
-```
-
-<br>
-
-### To bind manually:
-
-You don't need to be `root` this way, but you still need `sudo`:
-
-```
-$ sudo singularity instance start \
- -B nginx/log/error.log:/var/log/nginx/error.log \
- -B nginx/log/access.log:/var/log/nginx/access.log \
- -B nginx/run/nginx.pid:/run/nginx.pid \
- -B nginx/lib/:/var/lib/nginx/ \
- -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
- -B nginx/www/html/index.php:/var/www/html/index.php \
- -B nginx/tmp/data.txt:/tmp/data.txt \
- -B php/php.ini:/etc/php/7.0/fpm/php.ini \
- -B php/:/run/php \
- -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
- nginx.sif nginx php
-```
-
-You can also make a start script, like this one:
-
-```
-$ nano start.sh
-```
-```
-#!/bin/bash
-
-singularity instance start \
- -B nginx/log/error.log:/var/log/nginx/error.log \
- -B nginx/log/access.log:/var/log/nginx/access.log \
- -B nginx/run/nginx.pid:/run/nginx.pid \
- -B nginx/lib/:/var/lib/nginx/ \
- -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
- -B nginx/www/html/index.php:/var/www/html/index.php \
- -B nginx/tmp/data.txt:/tmp/data.txt \
- -B php/php.ini:/etc/php/7.0/fpm/php.ini \
- -B php/:/run/php \
- -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
- nginx.sif nginx php
-```
-
-Again, you can just download it:
-
-```
-$ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/start.sh
-```
-
-<br>
-
-Change the permission so we can run it:
-
-```
-$ chmod +x start.sh
-```
-
-<br>
-
-Finally, you can start the instance:
-
-```
-$ sudo ./start.sh
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-nginx: configuration file /etc/nginx/nginx.conf test is successful
-
-INFO:    instance started successfully
+$ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
 ```
 *The `sudo` is important.*
+
+If theres no errors, its working correctly.
+
 
 <br>
 
