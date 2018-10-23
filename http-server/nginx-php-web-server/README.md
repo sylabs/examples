@@ -323,29 +323,11 @@ Nginx 1.10.3 web server in a Ubuntu 16.04 container.
 
 Usage:
 
-  $ sudo su -
-  # cd /YOUR/NGINX/SIF_FILE/
-  # ./nginx.sif
-  # source bind-path
-  # singularity instance start nginx.sif nginx
+  instance start:
+  $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif
 
-
-Manual bind:
-
-  $ ./nginx.sif
-  $ sudo singularity instance start \
- -B nginx/log/error.log:/var/log/nginx/error.log \
- -B nginx/log/access.log:/var/log/nginx/access.log \
- -B nginx/run/nginx.pid:/run/nginx.pid \
- -B nginx/lib/:/var/lib/nginx/ \
- -B nginx/favicon.ico:/usr/share/nginx/html/favicon.ico \
- -B nginx/www/html/index.php:/var/www/html/index.php \
- -B nginx/tmp/data.txt:/tmp/data.txt \
- -B php/php.ini:/etc/php/7.0/fpm/php.ini \
- -B php/:/run/php \
- -B php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log \
- nginx.sif nginx php
-
+  or to shell:
+  $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif
 
 
 %startscript
@@ -354,49 +336,51 @@ nginx -t
 /etc/init.d/nginx restart
 
 
-%runscript
-echo 'creating bind path file...'
-echo 'export SINGULARITY_BINDPATH="nginx/log/error.log:/var/log/nginx/error.log,nginx/log/access.log:/var/log/nginx/access.log,nginx/run/nginx.pid:/run/nginx.pid,nginx/lib/:/var/lib/nginx/,nginx/favicon.ico:/usr/share/nginx/html/favicon.ico,nginx/www/html/index.php:/var/www/html/index.php,nginx/tmp/data.txt:/tmp/data.txt,php/php.ini:/etc/php/7.0/fpm/php.ini,php/:/run/php,php/log/php7.0-fpm.log:/var/log/php7.0-fpm.log"' > bind-path
-chmod +x bind-path
-
-echo 'creating directorys...'
-mkdir nginx
-mkdir nginx/lib
-mkdir nginx/log
-mkdir nginx/run
-mkdir nginx/sites-avaliable
-mkdir nginx/tmp
-mkdir nginx/www
-mkdir nginx/www/html
-
-touch nginx/favicon.ico
-touch nginx/tmp/data.txt
-touch nginx/log/access.log
-touch nginx/log/error.log
-touch nginx/run/nginx.pid
-touch nginx/www/html/index.php
-
-mkdir php
-mkdir php/log
-
-touch php/log/php7.0-fpm.log
-touch php/php7.0-fpm.pid
-touch php/php7.0-fpm.sock
-touch php/php.ini
-
-
 %post
 apt-get -y update
 apt-get -y install nginx
 apt-get -y install php-fpm php-mysql
 
-cat << EOF > /etc/nginx/sites-available/default 
+echo "=> creating nginx directory: /srv/nginx/"
 
+mkdir /srv/nginx
+mkdir /srv/nginx/php
+
+mkdir /run/php
+
+touch /srv/nginx/error.log
+touch /srv/nginx/access.log
+touch /srv/nginx/index.php
+touch /srv/nginx/php7.0-fpm.log
+touch /srv/nginx/php7.0-fpm.sock
+touch /srv/nginx/php7.0-fpm.log
+
+rm -f /var/log/nginx/error.log
+ln -s /srv/nginx/error.log /var/log/nginx/error.log
+
+rm -f /var/log/nginx/access.log
+ln -s /srv/nginx/access.log /var/log/nginx/access.log
+
+rm -f /var/www/html/index.php
+ln -s /srv/nginx/index.php /var/www/html/index.php
+
+rm -f /var/log/php7.0-fpm.log
+ln -s /srv/nginx/php7.0-fpm.log /var/log/php7.0-fpm.log
+
+ln -s /srv/nginx/php/ /run/php/
+
+chown www-data:www-data /run/php/
+
+mkdir /var/lib/nginx/body
+mkdir /srv/nginx/body
+ln -s /var/lib/nginx/body /srv/nginx/body
+
+cat << EOF > /etc/nginx/sites-available/default 
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        root /var/www/html;
+        root /srv/nginx/index.php;
 
         index index.php index.html index.htm index.nginx-debian.html;
 
@@ -408,7 +392,8 @@ server {
 
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
-        	fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        	#fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        	fastcgi_pass unix:/srv/nginx/php7.0-fpm.sock;
     	}
 
 	    location ~ /\.ht {
@@ -419,6 +404,146 @@ server {
 
 EOF
 
+
+cat << EOF > /etc/nginx/nginx.conf
+user www-data;
+worker_processes auto;
+pid /srv/nginx/nginx.pid;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+
+	##
+	# Basic Settings
+	##
+
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	keepalive_timeout 65;
+	types_hash_max_size 2048;
+	# server_tokens off;
+
+	# server_names_hash_bucket_size 64;
+	# server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	##
+	# SSL Settings
+	##
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+
+	##
+	# Logging Settings
+	##
+
+	access_log /srv/nginx/access.log;
+	error_log /srv/nginx/error.log;
+
+	##
+	# Gzip Settings
+	##
+
+	gzip on;
+	gzip_disable "msie6";
+
+	# gzip_vary on;
+	# gzip_proxied any;
+	# gzip_comp_level 6;
+	# gzip_buffers 16 8k;
+	# gzip_http_version 1.1;
+	# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+	##
+	# Virtual Host Configs
+	##
+
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
+
+
+#mail {
+#	# See sample authentication script at:
+#	# http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
+# 
+#	# auth_http localhost/auth.php;
+#	# pop3_capabilities "TOP" "USER";
+#	# imap_capabilities "IMAP4rev1" "UIDPLUS";
+# 
+#	server {
+#		listen     localhost:110;
+#		protocol   pop3;
+#		proxy      on;
+#	}
+# 
+#	server {
+#		listen     localhost:143;
+#		protocol   imap;
+#		proxy      on;
+#	}
+#}
+
+EOF
+
+cat << EOF > /etc/nginx/sites-available/default
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html/;
+
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+            try_files  / =404;
+        }
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+        	fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        	#fastcgi_pass unix:/srv/nginx/php7.0-fpm.sock;
+    	}
+
+	    location ~ /\.ht {
+    	    deny all;
+    	}
+
+}
+
+EOF
+
+
+nginx -t
+
+
+cat << EOF > /etc/php/7.0/fpm/php-fpm.conf 
+
+[global]
+
+;pid = /run/php/php7.0-fpm.pid
+pid = /srv/nginx/php7.0-fpm.pid
+
+;error_log = /var/log/php7.0-fpm.log
+error_log = /srv/nginx/php7.0-fpm.log
+
+include=/etc/php/7.0/fpm/pool.d/*.conf
+
+EOF
+
+#php-fpm7.0 -y /etc/php/7.0/fpm/php-fpm.conf 
+
+#/etc/init.d/php7.0-fpm restart
 
 ```
 
