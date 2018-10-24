@@ -12,7 +12,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
 
 ### Here is the example map:
 
- - [Data base](https://github.com/sylabs/examples/tree/master/database)
+ - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
    - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
 
@@ -20,21 +20,21 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
    - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
 
- - [http-server](https://github.com/sylabs/examples/tree/master/http-server)
-   - [httpd apache2 web server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
+ - [HTTP Server](https://github.com/sylabs/examples/tree/master/http-server)
+   - [Apache2 Web Server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
 
- - [languages](https://github.com/sylabs/examples/tree/master/lang)
-   - [java script](https://github.com/sylabs/examples/tree/master/lang/javascript)
-     - [node js](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
-   - [julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+ - [Languages](https://github.com/sylabs/examples/tree/master/lang)
+   - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
+     - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
+   - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
 
- - [machinelearning](https://github.com/sylabs/examples/tree/master/machinelearning)
-   - [caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
-   - [detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
+ - [Machine Learning](https://github.com/sylabs/examples/tree/master/machinelearning)
+   - [Caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
+   - [Detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
    - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
-   - [jupyter-notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
+   - [Jupyter Notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
-   - [weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
+   - [Weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
 
 
 <br>
