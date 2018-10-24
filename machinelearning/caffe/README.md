@@ -14,10 +14,10 @@ To build this container, you will need the following:
 
 Create a folder where all of your files to the caffe singularity container including the def file will reside. In this example, we will call the folder `caffehost` and inside we will create two (2) additional folders to run the example: `data` and `examples`.
 
-Your `caffehost` folder should look like this:
+Your `/caffehost` folder should look like this:
 
 ```
-caffehost/
+/caffehost/
 |-- data
 |-- examples
 |-- build
@@ -42,19 +42,7 @@ While on the `%environment` section we will define the environment variables nee
 
 On the `%post` section we describe all the needed dependencies, libraries and source code to be able to build the caffe container. For example, some modifications include specifying that this installation is only **CPU based**.
 
-#### Binding folders from host to container
-
-Before running the container, we will need to bind some folders from host to container in order to follow the example.
-
-Run the following:
-
-```
-$ export SINGULARITY_BINDPATH="/caffehost/data:/caffe/data,/caffehost/examples:/caffe/examples, /caffehost/build/examples:/caffe/build/examples"
-```
-
-This will bind the folder on your host `/caffehost/data` to `/caffe/data` in the container and `/caffehost/examples` to `/caffe/examples` respectively.
-
-After this needed binding we can shell into the container and run:
+You can now shell into the container like so:
 
 ```
 $ sudo singularity shell caffe.sif
@@ -187,7 +175,7 @@ The layers are defined inside `caffe/examples/mnist/lenet_train_test.prototxt`.
 
 #### Defining the MNIST network
 
-We will explain the `lenet_train_test.prototxt` model. The format is as much as similar as from [Google Protobuf](https://developers.google.com/protocol-buffers/docs/overview) also, the definitions regarding protobuf from caffe can be found in `caffe/src/caffe/proto/caffe.proto`.
+We will be using the `lenet_train_test.prototxt` model. This model is similar to [Google Protobuf](https://developers.google.com/protocol-buffers/docs/overview). You can find the definitions for caffe regarding protobuf in `caffe/src/caffe/proto/caffe.proto`.
 
 The definition of the structure of layers are explained in detail [here](http://caffe.berkeleyvision.org/gathered/examples/mnist.html)
 
