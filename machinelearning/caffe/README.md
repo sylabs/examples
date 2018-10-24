@@ -42,11 +42,39 @@ While on the `%environment` section we will define the environment variables nee
 
 On the `%post` section we describe all the needed dependencies, libraries and source code to be able to build the caffe container. For example, some modifications include specifying that this installation is only **CPU based**.
 
+#### Prepare Bindmounts
+
+We need to be able to write some output. Singularity runs read-only, so we will do some prep work before hand.
+
 You can now shell into the container like so:
 
 ```
 $ sudo singularity shell caffe.sif
 ```
+**NOTE:** We are assuming you are in `/caffehost` when you run `singularity`, and that the working directory gets mounted. If this is not the case, try adding `-B /caffehost:/caffehost` to your `singularity shell` command.
+
+Now we'll copy the data from the `caffe` install, to our writable `caffehost` location.
+
+```
+cd /caffehost
+cp -a /caffe/data/* data/
+```
+
+Do the same for the examples folder:
+
+```
+cp -a /caffe/examples/* examples/
+```
+
+Finally, do the same with the `build/examples` folder:
+
+```
+cp -a /caffe/build/examples/* build/examples/
+```
+
+With this you will have the files from the container `/caffe/data` , `/caffe/examples` and `/caffe/build/examples` on your local host.
+
+We will now `exit` the container shell.
 
 #### Test your installation by running an example:
 
@@ -54,32 +82,21 @@ We can start executing the example to test our installation of Caffe inside the 
 
 This example is based on the `MNIST` example that appears on the Caffe website found [here](http://caffe.berkeleyvision.org/gathered/examples/mnist.html)
 
-Move into the `caffehost` folder and run:
+We need the directories we prepared earlier during our run. We will use the `SINGULARITY_BINDPATH` environment varible to set the paths we want to be bind mounted into the container when executed.
 
 ```
-cd data
-cp -a /caffe/data/. /caffehost/data/.
+export SINGULARITY_BINDPATH="/caffehost/data:/caffe/data,/caffehost/examples:/caffe/examples,/caffehost/build/examples:/caffe/build/examples"
 ```
 
-Do the same for examples folder, need to move to `examples` folder:
+Move into the `/caffehost` folder and start a shell:
 
 ```
-cd ..
-cd examples
-cp -a /caffe/examples/. /caffehost/examples/.
+singularity shell caffe.sif
 ```
 
-Finally, do the same with the `caffehost/build/examples` folder:
+With the `SINGULARITY_BINDPATH` environment variable set, the locations at those mount points should be writable by our user.
 
-```
-cd ..
-cd build/examples
-cp -a /caffe/build/examples/. /caffehost/build/examples/.
-```
-
-With this you will have these files from the container in `/caffe/data` , `/caffe/examples` and `/caffe/build/examples` on your local host.
-
-We are ready to run the example. Move to the `caffehost/data/mnist/` folder and run:
+We are now ready to run the example. Move to the `/caffe/data/mnist/` folder and run:
 
 ```
 ./get_mnist.sh
@@ -135,9 +152,9 @@ t10k-labels-idx1-ubyte.gz                             100%[=====================
 
 ```
 
-So now all the downloaded data sets can be seen in `caffehost/data/mnist` folder.
+So now all the downloaded data sets can be seen in `/caffe/data/mnist` folder.
 
-Now, before running the `create_mnist.sh` script located in `caffehost/examples/mnist`, we will need first to modify the paths in there. To do this, open the `create_mnist.sh` on your favorite editor and edit the following 3 lines inside the script:
+Now, before running the `create_mnist.sh` script located in `/caffe/examples/mnist`, we will need first to modify the paths in there. To do this, open the `create_mnist.sh` on your favorite editor and edit the following 3 lines inside the script:
 
 ```
 EXAMPLE=/caffe/examples/mnist
@@ -145,7 +162,7 @@ DATA=/caffe/data/mnist
 BUILD=/caffe/build/examples/mnist
 ```
 
-With this configuration, now go to `/examples/mnist` and run:
+With this configuration, now go to `/caffe/examples/mnist` and run:
 
 ```
 ./create_mnist.sh
@@ -170,7 +187,7 @@ With this configuration, now go to `/examples/mnist` and run:
 
 To run the training program, the [LeNet](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf) network will be used. Its use is known in digital classification tasks. For this specific case, the LeNet implementation will be changed replacing the sigmoid activations with Rectified Linear Unit (ReLU) activations for the neurons.
 
-The layers are defined inside `caffe/examples/mnist/lenet_train_test.prototxt`.
+The layers are defined inside `/caffe/examples/mnist/lenet_train_test.prototxt`.
 
 
 #### Defining the MNIST network
@@ -183,25 +200,20 @@ The definition of the structure of layers are explained in detail [here](http://
 
 Training the model is very straightforward once you have written the network definition from the layers before (in protobuf format) and solver protobuf files.
 
-First of all we will need to specify that the training needs to be run CPU-supported only, to do this you will only need to edit a single file: `lenet_solver.prototxt` located `/caffehost/examples/mnist`:
-
-The last lines on this solver configuration define what type of support it should run over, change it from GPU (which is the default) to CPU:
-
-```
-solver_mode: CPU
-```
+First of all we will need to specify that the training needs to be run CPU-supported only, to do this you will only need to edit a single file: `lenet_solver.prototxt` located at `/caffe/examples/mnist`:
 
 You will also need to modify the following entries inside this file:
 
 ```
-net: "caffehost/examples/mnist/lenet_test.prototxt"
-snapshot_prefix: "caffehost/examples/mnist/lenet"
+net: "/caffe/examples/mnist/lenet_test.prototxt"
+snapshot_prefix: "/caffe/examples/mnist/lenet"
+solver_mode: CPU
 ```
 
-Now to train the model we will move into  `caffe/examples/mnist` and edit the last line on `train_lenet.sh` to:
+Now to train the model we will move into  `/caffe/examples/mnist` and edit the last line on `train_lenet.sh` to:
 
 ```
-/caffe/build/tools/caffe train --solver=/caffehost/examples/mnist/lenet_solver.prototxt $@
+/caffe/build/tools/caffe train --solver=/caffe/examples/mnist/lenet_solver.prototxt $@
 ```
 
 Notice that after this modification, the execution of caffe is entirely in the container, while the configuration of the solver is in your host.
