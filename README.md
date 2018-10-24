@@ -14,6 +14,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
 
  - [Data base](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
+   - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
 
 - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
@@ -30,10 +31,10 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [machinelearning](https://github.com/sylabs/examples/tree/master/machinelearning)
    - [caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
    - [detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
+   - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
    - [jupyter-notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
    - [weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
-   - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
 
 
 <br>
