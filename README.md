@@ -28,6 +28,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [julia](https://github.com/sylabs/examples/tree/master/lang/julia)
 
  - [machinelearning](https://github.com/sylabs/examples/tree/master/machinelearning)
+   - [caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
    - [detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
    - [jupyter-notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
