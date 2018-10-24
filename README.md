@@ -32,7 +32,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [jupyter-notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
    - [weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
-
+   - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
 
 
 <br>
