@@ -45,7 +45,7 @@ Run the horovod singularity container as you would run any other MPI job. You on
 
 ### Example runs
 
-Here is the included example `keras_mnist_advanced.py` run on 2 nodes with 2 processes per node:
+Here is the included example `keras_mnist_advanced.py` run on 2 nodes with 2 processes per node. Each process with be using a GPU in the node:
 
 ```
 [user@f1 /home/user]$ time mpirun -np 4 -H f1:2,f2:2 -x LD_LIBRARY_PATH -x PATH -x HOROVOD_MPI_THREADS_DISABLE=1 -x NCCL_SOCKET_IFNAME=^virbr0,lo -mca btl openib,self -mca pml ob1 singularity exec --nv horovod.sif python /examples/keras_mnist_advanced.py
