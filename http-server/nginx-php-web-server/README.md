@@ -47,7 +47,7 @@ $ mkdir -p nginx/php
 
 <br>
 
-### Create the PHP file:
+Create the PHP file:
 
 There are two PHP files in this repo.<br>
 We will first test the `index.php` file.
