@@ -116,7 +116,7 @@ And you should see your web page.
 Now we will run a simple PHP test form that's in this repo.
 
 The PHP file will access a file called `data.txt`.<br>
-That file will be in `nginx/tmp/data.txt`.
+That file will be in `/srv/nginx/data.txt`, or `nginx/data.txt` since there are linked.
 
 <br>
 
@@ -129,7 +129,34 @@ $ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/exam
 
 <br>
 
-We already created `nginx/tmp/data.txt`, and the bind points are already set up in our start script.
+Now create `nginx/data.txt`:
+
+There are two ways of doing this, of corse you can just do:
+
+```
+$ touch nginx/data.txt
+```
+
+But you can also do it this way:
+
+```
+$ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif 
+> touch /srv/nginx/data.txt
+```
+
+<br>
+
+Ether way you do it, you need to change who owns it:
+
+```
+$ sudo chown www-data:www-data nginx/data.txt
+```
+
+Or if your in the container:
+
+```
+> chown www-data:www-date /srv/nginx/data.txt
+```
 
 <br>
 
@@ -138,7 +165,15 @@ Finally, restart the instance:
 ```
 $ sudo singularity instance stop nginx
 # then startup the instance
-$ sudo ./start.sh
+$ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
+```
+
+Or, if your in the container:
+
+```
+> fuser -k 80/tcp  # optional
+> /etc/init.d/nginx restart
+> /etc/init.d/php7.0-fpm restart
 ```
 
 <br>
@@ -165,6 +200,13 @@ To stop the instance, we will use the `instance stop` function:
 $ sudo singularity instance list
 [...]
 $ sudo singularity instance stop nginx
+```
+
+Or if your in the container:
+
+```
+> /etc/init.d/nginx stop
+> /etc/init.dphp7.0-fpm stop
 ```
 
 <br>
