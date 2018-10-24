@@ -1,0 +1,53 @@
+Bootstrap: library
+From: ubuntu:16.04
+
+%environment
+
+	CONTIKI=/contiki
+	export CONTIKI
+%help
+
+	Singularity container with ContikiOS installation for Ubuntu 18.04.
+
+%post
+
+	apt-get update
+
+	#Install dependencies
+	apt-get -y install wget \
+	unzip \
+	git
+
+	#Get the contiki installation
+	wget -c https://github.com/contiki-os/contiki/archive/3.0.zip
+
+	#Unzip the previous downloaded package
+	unzip ./3.0.zip
+
+	#Rename the folder
+  mv contiki-3.0 contiki
+
+	#Installing support for MSP430-based platforms
+	apt-get -y install build-essential \
+	binutils-msp430 \
+	gcc-msp430 \
+	msp430-libc \
+	msp430mcu \
+	mspdebug \
+	gcc-arm-none-eabi \
+	gdb-arm-none-eabi \
+	openjdk-8-jdk \
+	openjdk-8-jre \
+	ant \
+	lib32ncurses5 \
+	libncurses5-dev \
+
+%runscript
+
+	#Run the hello world program
+	cd /contiki/examples/hello-world
+
+	#Compile for the native platform
+	make TARGET=native
+
+	./hello-world.native
