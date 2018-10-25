@@ -413,6 +413,11 @@ ____
    - Nginx needs to be restarted. Fix: Stop, then start the instance.
 <br>
 
+ - The page isn’t redirecting properly:
+   - Make sure the URL is typed corectly.
+   - Make sure the `/index.php` is at the end of the URL.
+<br>
+
  - Nginx wont start:
    - Incorect, or no bind points.
    - Incorect, or no bind directorys.
