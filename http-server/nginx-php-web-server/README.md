@@ -404,7 +404,7 @@ ____
 <br>
 
  - Web page does not load:
-   - Try: [http://[YOUR_IP_ADDRESS]/index.php]() insted of [http://localhost/index.php]().
+   - Try: [http://[YOUR_IP_ADDRESS]/index.php]() insted of [http://localhost/index.php].
    - Nginx and/or PHP not running. Fix: restart the instance.
 <br>
 
