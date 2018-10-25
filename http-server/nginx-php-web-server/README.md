@@ -201,7 +201,7 @@ And you should see you web form.
 
 <br>
 
-### Stoping the instance:
+### Stopping the instance:
 
 To stop the instance, we will use the `instance stop` function:
 
