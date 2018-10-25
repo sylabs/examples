@@ -2,7 +2,7 @@
 
 In this example, we will run a simple Nginx(1.10.X) PHP-7.0 server in a container.
 
-We are installing Nginx on a Ubuntu 16.04 container.
+In this example, we will installing Nginx on a Ubuntu 16.04 container.
 
 <br>
 
@@ -118,7 +118,6 @@ $ w3m <YOUR_IP_ADDRESS>/index.php
 ```
 And you should see your web page.
 
-<br>
 <br>
 
 ### Running the test form:
