@@ -2,7 +2,7 @@
 
 In this example, we will run a simple Nginx(1.10.X) PHP-7.0 server in a container.
 
-In this example, we will installing Nginx on a Ubuntu 16.04 container.
+We will be installing Nginx on a Ubuntu 16.04 container.
 
 <br>
 
@@ -99,7 +99,7 @@ $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ 
 ```
 *The `sudo` is important.*
 
-If theres no errors, its working correctly.
+If there are no errors, it's working correctly.
 
 
 <br>
@@ -140,7 +140,7 @@ $ wget -O nginx/index.php https://raw.githubusercontent.com/sylabs/examples/mast
 
 Now create `nginx/data.txt`:
 
-There are two ways of doing this, of corse you can just do:
+There are two ways of doing this, of course you can just do:
 
 ```
 $ touch nginx/data.txt
@@ -155,13 +155,13 @@ $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif
 
 <br>
 
-Ether way you do it, you need to change who owns it:
+Either way you do it, you need to change who owns it:
 
 ```
 $ sudo chown www-data:www-data nginx/data.txt
 ```
 
-Or if your in the container:
+Or if you're in the container:
 
 ```
 > chown www-data:www-date /srv/nginx/data.txt
