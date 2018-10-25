@@ -449,8 +449,12 @@ ____
    - Build from a definition file, and change the `Bootstrap:` to `docker`.
 <br>
 
+ - Error on web form: `Error: [2] filesize(): stat failed for /srv/nginx/data.txt`:
+   - `/srv/nginx/data.txt` or `nginx/data.txt` dose not exist. Fix: `touch nginx/data.txt`.
+<br>
+
  - Error on web form: `Error: [2] fopen(/srv/nginx/data.txt): failed to open stream: Permission denied`<br>
-`Error: [2] fwrite() expects parameter 1 to be resource, boolean given`
+`Error: [2] fwrite() expects parameter 1 to be resource, boolean given`:
    - `srv/nginx/data.txt` owner and group not set correctly. Fix: `sudo chown www-data:www-data nginx/data.txt`.
 <br>
 
