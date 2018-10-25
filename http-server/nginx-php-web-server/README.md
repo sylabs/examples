@@ -227,7 +227,14 @@ From: ubuntu:16.04
 %help
 Nginx 1.10.3 web server in a Ubuntu 16.04 container.
 
+for more infomation,
+visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server
+
 Usage:
+
+  setup:
+    $ mkdir -p nginx/php
+  $ touch nginx/index.php  # add your php script here.
 
   instance start:
   $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
@@ -238,33 +245,56 @@ Usage:
   you may need to run this, after shelling into to container, but before starting nginx.
   > fuser -k 80/tcp
 
-
 %startscript
 fuser -k 80/tcp
 nginx -t
 /etc/init.d/php7.0-fpm restart
 /etc/init.d/nginx restart
 
+%runscript
+echo "Nginx 1.10.3 web server in a Ubuntu 16.04 container."
+echo
+echo "for more infomation,"
+echo "visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server"
+echo
+echo "Usage:"
+echo 
+echo "  setup:"
+echo "    $ mkdir -p nginx/php"
+echo "  $ touch nginx/index.php  # add your php script here."
+echo
+echo "  instance start:"
+echo "  $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx"
+echo
+echo "  or to shell:"
+echo "  $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif"
+echo
+echo "  you may need to run this, after shelling into to container, but before starting nginx."
+echo "  > fuser -k 80/tcp"
+echo
 
 %post
+echo "=> installing: nginx, and php..."
 apt-get -y update
 apt-get -y install nginx
 apt-get -y install php-fpm php-mysql
 
 echo "=> creating nginx directory: /srv/nginx/"
-
 mkdir /srv/nginx
-#mkdir /srv/nginx/php
+mkdir /srv/nginx/php
 
-#mkdir /run/php
+mkdir /run/php
+touch /run/php/php7.0-fpm.sock
 
+echo "=> creating bind files..."
 touch /srv/nginx/error.log
 touch /srv/nginx/access.log
 touch /srv/nginx/index.php
 touch /srv/nginx/php7.0-fpm.log
-touch /srv/nginx/php7.0-fpm.sock
 touch /srv/nginx/php7.0-fpm.log
+touch /srv/nginx/nginx.pid
 
+echo "=> binding files..."
 rm -f /var/log/nginx/error.log
 ln -s /srv/nginx/error.log /var/log/nginx/error.log
 
@@ -277,14 +307,19 @@ ln -s /srv/nginx/index.php /var/www/html/index.php
 rm -f /var/log/php7.0-fpm.log
 ln -s /srv/nginx/php7.0-fpm.log /var/log/php7.0-fpm.log
 
-#ln -s /srv/nginx/php/ /run/php/
+rm -f /run/nginx.pid
+ln -s /srv/nginx/nginx.pid /run/nginx.pid
 
-#chown www-data:www-data /run/php/
+ls /srv/nginx/
+ls /srv/nginx/php/
+ls /run/php/
 
+echo "=> prepare nginx..."
 mkdir /var/lib/nginx/body
 mkdir /srv/nginx/body
 ln -s /var/lib/nginx/body /srv/nginx/body
 
+echo "=> preparing nginx config file..."
 cat << EOF > /etc/nginx/sites-available/default 
 server {
         listen 80 default_server;
@@ -313,49 +348,11 @@ server {
 
 EOF
 
-
-cat << EOF > /etc/nginx/nginx.conf
-user www-data;
-worker_processes auto;
-pid /srv/nginx/nginx.pid;
-
-events {
-	worker_connections 768;
-	# multi_accept on;
-}
-
-http {
-
-	sendfile on;
-	tcp_nopush on;
-	tcp_nodelay on;
-	keepalive_timeout 65;
-	types_hash_max_size 2048;
-
-	include /etc/nginx/mime.types;
-	default_type application/octet-stream;
-
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
-	ssl_prefer_server_ciphers on;
-
-	access_log /srv/nginx/access.log;
-	error_log /srv/nginx/error.log;
-
-	gzip on;
-	gzip_disable "msie6";
-
-	include /etc/nginx/conf.d/*.conf;
-	include /etc/nginx/sites-enabled/*;
-}
-
-EOF
-
-
+echo "=> testing nginx..."
 nginx -t
 
-
+echo "=> preparing php config file..."
 cat << EOF > /etc/php/7.0/fpm/php-fpm.conf 
-
 [global]
 
 pid = /srv/nginx/php7.0-fpm.pid
@@ -365,6 +362,8 @@ error_log = /srv/nginx/php7.0-fpm.log
 include=/etc/php/7.0/fpm/pool.d/*.conf
 
 EOF
+
+echo "=> done."
 
 ```
 
