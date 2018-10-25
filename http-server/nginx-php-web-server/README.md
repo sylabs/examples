@@ -29,8 +29,18 @@ $ cd ~/nginx/
 Now you can pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/nginx.sif:latest
+$ singularity pull library://sylabs/examples/nginx:latest
 ```
+
+<br>
+
+Then change the name of the container:
+
+```
+$ mv nginx_latest.sif nginx.sif
+```
+
+<br>
 
 Or you can build from a definition file. Click [here](#building-from-a-definition-file) or scroll down.
 
