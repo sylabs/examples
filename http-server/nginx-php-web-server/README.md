@@ -97,7 +97,7 @@ If theres no errors, its working correctly.
 ### Testing it:
 
 To test it, open you browser to: http://localhost/index.php,<br>
-or: [http://<YOUR_IP_ADDRESS>/index.php]()
+or: [http://[YOUR_IP_ADDRESS]/index.php](http://111.111.1.111) 
 
 You can also use `w3m`:
 
@@ -179,7 +179,7 @@ Or, if your in the container:
 <br>
 
 Now open you browser to: http://localhost/index.php,<br>
-or: [http://<YOUR_IP_ADDRESS>/index.php]()
+or: [http://[YOUR_IP_ADDRESS]/index.php](http://111.111.1.111) 
 
 Or with `w3m`:
 
@@ -404,7 +404,7 @@ ____
 <br>
 
  - Web page does not load:
-   - Try: [http://[YOUR_IP_ADDRESS]/index.php]() insted of [http://localhost/index.php].
+   - Try: [http://[YOUR_IP_ADDRESS]/index.php](http://111.111.1.111) insted of http://localhost/index.php.
    - Nginx and/or PHP not running. Fix: restart the instance.
 <br>
 
