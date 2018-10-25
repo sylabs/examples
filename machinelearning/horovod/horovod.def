@@ -23,7 +23,7 @@ From: nvidia/cuda:9.0-devel-ubuntu16.04
 
 %post
 # -----------------------------------------------------------------------------------
-# this will install all necessary packages and prepare the contianer
+# this will install all necessary packages and prepare the container
 
 # TensorFlow version is tightly coupled to CUDA and cuDNN so it should be selected carefully
 # Python 2.7 or 3.5 is supported by Ubuntu Xenial out of the box
