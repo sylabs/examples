@@ -21,7 +21,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
 
  - [http-server](https://github.com/sylabs/examples/tree/master/http-server)
    - [httpd apache2 web server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
-   - [nginx php web server](https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server)
+   - [Nginx PHP web server](https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server)
 
  - [languages](https://github.com/sylabs/examples/tree/master/lang)
    - [java script](https://github.com/sylabs/examples/tree/master/lang/javascript)
