@@ -168,7 +168,7 @@ $ sudo singularity instance stop nginx
 $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
 ```
 
-Or, if your in the container:
+Or, if you're in the container:
 
 ```
 > fuser -k 80/tcp  # optional
@@ -202,7 +202,7 @@ $ sudo singularity instance list
 $ sudo singularity instance stop nginx
 ```
 
-Or if your in the container:
+Or if you're in the container:
 
 ```
 > /etc/init.d/nginx stop
@@ -227,14 +227,14 @@ From: ubuntu:16.04
 %help
 Nginx 1.10.3 web server in a Ubuntu 16.04 container.
 
-for more infomation,
+for more information,
 visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server
 
 Usage:
 
   setup:
     $ mkdir -p nginx/php
-  $ touch nginx/index.php  # add your php script here.
+    $ touch nginx/index.php  # add your php script here.
 
   instance start:
   $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
@@ -242,7 +242,7 @@ Usage:
   or to shell:
   $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif
 
-  you may need to run this, after shelling into to container, but before starting nginx.
+  you may need to run this, after shelling into the container, but before starting nginx.
   > fuser -k 80/tcp
 
 %startscript
@@ -254,7 +254,7 @@ nginx -t
 %runscript
 echo "Nginx 1.10.3 web server in a Ubuntu 16.04 container."
 echo
-echo "for more infomation,"
+echo "for more information,"
 echo "visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server"
 echo
 echo "Usage:"
@@ -269,7 +269,7 @@ echo
 echo "  or to shell:"
 echo "  $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif"
 echo
-echo "  you may need to run this, after shelling into to container, but before starting nginx."
+echo "  you may need to run this, after shelling into the container, but before starting nginx."
 echo "  > fuser -k 80/tcp"
 echo
 
@@ -392,14 +392,14 @@ ____
 
 <br>
 
-## Trouble shooting:
+## Troubleshooting:
 
  - `404 not found`:
    - No `index.php` file. Fix: make a `index.php` file in `nginx/index.php`.
 <br>
 
  - `502 Bad Gateway`:
-   - PHP not running. Fix: start PHP sevrer.
+   - PHP not running. Fix: start PHP server.
    - Nginx does not recognize the PHP file.
 <br>
 
@@ -408,7 +408,7 @@ ____
    - Nginx and/or PHP not running. Fix: restart the instance.
 <br>
 
- - Web page loads, but nothings there:
+ - Web page loads, but nothing is in there:
    - PHP file is blank.
    - Nginx needs to be restarted. Fix: Stop, then start the instance.
 <br>
@@ -419,23 +419,23 @@ ____
 <br>
 
  - Nginx wont start:
-   - Incorect, or no bind points.
-   - Incorect, or no bind directorys.
-   - Nginx already running elsewhere on your divice.
+   - Incorrect, or no bind points.
+   - Incorrect, or no bind directories.
+   - Nginx already running elsewhere on your device.
    - Some other process is using port 80. Fix: `sudo singularity exec nginx.sif fuser -k 80/tcp`.
 <br>
 
  - PHP wont start:
-   - Incorect, or no bind points.
-   - Incorect, or no bind directorys.
-   - PHP already running elsewhere on your divice.
+   - Incorrect, or no bind points.
+   - Incorrect, or no bind directories.
+   - PHP already running elsewhere on your device.
 <br>
 
- - Nginx container wont build on `armv7l` (`32 bit`):
+ - Nginx container won't build on `armv7l` (`32 bit`):
    - Change the `Bootstrap:` to `docker`.
 <br>
 
- - Nginx container pulled from the library wont run on `armv7l` (`32 bit`):
+ - Nginx container pulled from the library won't run on `armv7l` (`32 bit`):
    - Build from a definition file, and change the `Bootstrap:` to `docker`.
 <br>
 
