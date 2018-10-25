@@ -106,15 +106,15 @@ If there are no errors, it's working correctly.
 
 ### Testing it:
 
-To test it, open you browser to: http://localhost/index.php,<br>
-or: [http://[YOUR_IP_ADDRESS]/index.php](http://111.111.1.111) 
+To test it, open you browser to: http://localhost,<br>
+or: [http://[YOUR_IP_ADDRESS](http://111.111.1.111) 
 
 You can also use `w3m`:
 
 ```
-$ w3m localhost/index.php
+$ w3m localhost
 # or
-$ w3m <YOUR_IP_ADDRESS>/index.php
+$ w3m <YOUR_IP_ADDRESS>
 ```
 And you should see your web page.
 
@@ -187,15 +187,15 @@ Or, if you're in the container:
 
 <br>
 
-Now open you browser to: http://localhost/index.php,<br>
-or: [http://[YOUR_IP_ADDRESS]/index.php](http://111.111.1.111) 
+Now open you browser to: http://localhost,<br>
+or: [http://[YOUR_IP_ADDRESS]](http://111.111.1.111) 
 
 Or with `w3m`:
 
 ```
-$ w3m localhost/index.php
+$ w3m localhost
 # or
-$ w3m <YOUR_IP_ADDRESS>/index.php
+$ w3m <YOUR_IP_ADDRESS>
 ```
 And you should see you web form.
 
@@ -339,10 +339,6 @@ server {
         index index.php index.html index.htm index.nginx-debian.html;
 
         server_name _;
-
-        location / {
-	    try_files $uri $uri/ =404;
-        }
 
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
