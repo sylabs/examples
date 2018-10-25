@@ -123,8 +123,8 @@ That file will be in `/srv/nginx/data.txt`, or `nginx/data.txt` since there are 
 To start, replace the hello world `index.php` with the PHP form:
 
 ```
-$ rm nginx/www/html/index.php
-$ wget -O nginx/www/html/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/form_index.php
+$ rm nginx/index.php
+$ wget -O nginx/index.php https://raw.githubusercontent.com/sylabs/examples/master/http-server/nginx-php-web-server/form_index.php
 ```
 
 <br>
