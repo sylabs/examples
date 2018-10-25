@@ -1,5 +1,7 @@
 # Orange 3 for Data Mining
 
+![Orange logo](orange_logo.png)
+
 Orange is a Data Mining environment used for machine learning and data visualization. It offers interactive data analysis workflows with a large toolbox.
 You can explore statistical distributions, box plots, scatter plots or dive deeper with decision trees, hierarchical clustering and/or heatmaps. The programming is done visually, as Orange introduces the use of data exploration through widgets that connect and load your datasets.
 

@@ -1,0 +1,43 @@
+Bootstrap:library
+From: debian:9
+
+%environment
+
+	#Setting up the hostname and port
+	HOSTNAME=127.0.0.1
+	PORT=27017
+	export HOSTNAME PORT
+
+%help
+
+	Singularity container running MongoDB v4.0.3 Community Edition for Debian 9 (Stretch)
+
+%post
+
+	#Setting up where data will reside
+	mkdir -p /data/db
+	#Give access to the folder
+	chmod -R 777 /data/db
+
+	#Needed dependencies from GnuPG
+	apt-get update && apt-get install -y gnupg
+
+	#Importing the public key
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+
+	#Obtaining and installing MongoDB for Debian 9 (Stretch)
+	echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+	apt-get -y update
+	apt-get install -y mongodb-org
+
+	#Giving access to the mongodb user from the mongodb group user (these are the defaults from MongoDB)
+	chown -R mongodb:mongodb /data/db
+
+%startscript
+
+	#Stops the daemon if it is already running
+	mongod --repair
+	#Starts the daemon
+	mongod
+	#Starts the mongo shell in the hostname and port set from environment
+	mongo --host $HOSTNAME:$PORT
