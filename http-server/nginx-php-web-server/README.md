@@ -426,6 +426,13 @@ ____
    - PHP already running elsewhere on your divice.
 <br>
 
+ - Nginx container wont build on `armv7l` (`32 bit`):
+   - Change the `Bootstrap:` to `docker`.
+<br>
+
+ - Nginx container pulled from the library wont run on `armv7l` (`32 bit`):
+   - Build from a definition file, and change the `Bootstrap:` to `docker`.
+<br>
 
 <br>
 <br>
