@@ -1,4 +1,4 @@
-# examples
+# Examples
 Here you can find files and instructions for creating and using example 
 containers from the [sylabs.io blog](https://www.sylabs.io/lab-notes/).  
 
@@ -22,6 +22,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
 
  - [HTTP Server](https://github.com/sylabs/examples/tree/master/http-server)
    - [Apache2 Web Server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
+   - [Nginx PHP web server](https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server)
 
  - [Languages](https://github.com/sylabs/examples/tree/master/lang)
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
