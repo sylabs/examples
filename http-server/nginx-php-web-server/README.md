@@ -97,7 +97,7 @@ If theres no errors, its working correctly.
 ### Testing it:
 
 To test it, open you browser to: http://localhost/index.php,<br>
-or: http://<YOUR_IP_ADDRESS>/index.php
+or: [http://<YOUR_IP_ADDRESS>/index.php]()
 
 You can also use `w3m`:
 
@@ -179,7 +179,7 @@ Or, if your in the container:
 <br>
 
 Now open you browser to: http://localhost/index.php,<br>
-or: http://<YOUR_IP_ADDRESS>/index.php
+or: [http://<YOUR_IP_ADDRESS>/index.php]()
 
 Or with `w3m`:
 
@@ -390,6 +390,41 @@ Now you can [Prepare our directory for the Nginx container](#prepare-our-directo
 
 ____
 
+<br>
+
+## Trouble shooting:
+
+ - `404 not found`:
+   - No `index.php` file. Fix: make a `index.php` file in `nginx/index.php`.
+<br>
+
+ - `502 Bad Gateway`:
+   - PHP not running. Fix: start PHP sevrer.
+   - Nginx does not recognize the PHP file.
+<br>
+
+ - Web page does not load:
+   - Try: [http://[YOUR_IP_ADDRESS]/index.php]() insted of [http://localhost/index.php]().
+   - Nginx and/or PHP not running. Fix: restart the instance.
+<br>
+
+ - Web page loads, but nothings there:
+   - PHP file is blank.
+   - Nginx needs to be restarted. Fix: Stop, then start the instance.
+<br>
+
+ - Nginx wont start:
+   - Incorect, or no bind points.
+   - Incorect, or no bind directorys.
+   - Nginx already running elsewhere on your divice.
+   - Some other process is using port 80. Fix: `sudo singularity exec nginx.sif fuser -k 80/tcp`.
+<br>
+
+ - PHP wont start:
+   - Incorect, or no bind points.
+   - Incorect, or no bind directorys.
+   - PHP already running elsewhere on your divice.
+<br>
 
 
 <br>
