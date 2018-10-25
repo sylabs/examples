@@ -233,8 +233,8 @@ visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-
 Usage:
 
   setup:
-    $ mkdir -p nginx/php
-    $ touch nginx/index.php  # add your php script here.
+  $ mkdir -p nginx/php
+  $ touch nginx/index.php  # add your php script here.
 
   instance start:
   $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx
@@ -260,7 +260,7 @@ echo
 echo "Usage:"
 echo 
 echo "  setup:"
-echo "    $ mkdir -p nginx/php"
+echo "  $ mkdir -p nginx/php"
 echo "  $ touch nginx/index.php  # add your php script here."
 echo
 echo "  instance start:"
