@@ -107,7 +107,7 @@ If there are no errors, it's working correctly.
 ### Testing it:
 
 To test it, open you browser to: http://localhost,<br>
-or: [http://[YOUR_IP_ADDRESS](http://111.111.1.111) 
+or: [http://[YOUR_IP_ADDRESS]](http://111.111.1.111) 
 
 You can also use `w3m`:
 
