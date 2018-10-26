@@ -31,6 +31,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+   - [RStudio](https://github.com/sylabs/examples/tree/master/lang/RStudio)
 
  - [Machine Learning](https://github.com/sylabs/examples/tree/master/machinelearning)
    - [Caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
@@ -38,6 +39,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
    - [Jupyter Notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
+   - [Spark](https://github.com/sylabs/examples/tree/master/machinelearning/spark)
    - [Weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
 
 <br>
