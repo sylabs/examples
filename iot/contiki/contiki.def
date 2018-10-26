@@ -3,31 +3,31 @@ From: ubuntu:16.04
 
 %environment
 
-	CONTIKI=/contiki
-	export CONTIKI
+	export CONTIKI=/contiki
+
 %help
 
-	Singularity container with ContikiOS installation for Ubuntu 18.04.
+	Singularity container with ContikiOS 3.0 installation for Ubuntu 16.04. It also contains the Cooja simulator and the ContikiOS examples.
+
+	To build the container you should run:
+
+	$ sudo singularity build contiki.sif contiki.def
+
+	To run the container you should do:
+
+	$ sudo singularity run --bind /contiki/examples/hello-world:/contiki/examples/hello-world,/contiki/tools:/contiki/tools contiki.sif
 
 %post
 
+	#Install and update dependencies
 	apt-get update
-
-	#Install dependencies
 	apt-get -y install wget \
-	unzip \
 	git
 
-	#Get the contiki installation
-	wget -c https://github.com/contiki-os/contiki/archive/3.0.zip
+	#Get the ContikiOS source code
+	git clone --recursive https://github.com/contiki-os/contiki.git
 
-	#Unzip the previous downloaded package
-	unzip ./3.0.zip
-
-	#Rename the folder
-  mv contiki-3.0 contiki
-
-	#Installing support for MSP430-based platforms
+	#Installing support for MSP430-based platforms and Java for Cooja
 	apt-get -y install build-essential \
 	binutils-msp430 \
 	gcc-msp430 \
@@ -40,11 +40,11 @@ From: ubuntu:16.04
 	openjdk-8-jre \
 	ant \
 	lib32ncurses5 \
-	libncurses5-dev \
+	libncurses5-dev
 
 %runscript
 
-	#Run the hello world program
+	#Run the hello world program (remember to bind your /contiki/examples/hello-world and /contiki/tools folders at runtime)
 	cd /contiki/examples/hello-world
 
 	#Compile for the native platform
