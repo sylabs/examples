@@ -147,8 +147,16 @@ Singularity contiki.sif:/contiki/tools/cooja> JAVA_TOOL_OPTIONS=-Dfile.encoding=
 
 You will see the `Cooja simulator` start, from the upper panel option, start a new simulation.
 
-We will call the simulation `SingularitySimulation` and then add a new node from the upper panel options, we will choose the type `Sky mote`.
+We will call the simulation `SingularitySimulation`. You should see something similar to the picture below.
 
-For the node, we will explore the `/contiki/examples/hello-world/hello-world.c` code. Select it and compile it, you should see some similar output as the image below.
+![Start a new simulation](contiki1.png)
+
+Then, add a new node from the upper panel options, we will choose the type `Sky mote`.
+
+For the node, we will select the `/contiki/examples/hello-world/hello-world.c` code. Select it and compile it, you should see some similar output as the image below.
+
+![Add a new mote](contiki2.png)
 
 After this process, hit `Start` to start the simulation and you will see the following output from the node as shown from the image below:
+
+![Start the simulation](contiki3.png)
