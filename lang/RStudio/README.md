@@ -29,9 +29,9 @@ When you use run for the IDE, you may need to execute it like:
 ```$ SINGULARITYENV_DISPLAY=${DISPLAY} \
   singularity run rstudio.sif```
 
-This is needed only if the DISPLAY environment variable does not automatically propagate from your host environment to the container.
+This is needed only if the `DISPLAY` environment variable does not automatically propagate from your host environment to the container.
 
-For a modification of rstudio-server, you can create a rstudio.conf file, and bind mount it into the container. For example to run on port 9999:
+For a modification of rstudio-server, you can create a `rstudio.conf` file, and bind mount it into the container. For example to run on port 9999:
 
 
 ```$ echo "www-port=9999" > rserver.conf
@@ -39,15 +39,5 @@ $ singularity instance start \
   -B rserver.conf:/etc/rstudio/rserver.conf \
   rstudio.sif rs```
 
-You will then access your rstudio-server instance at:  https://localhost:9999
-
-## Related Posts
-
-* R AND SINGULARITY
-I believe the idiosyncrasies of most HPC technologies represent the major road block to their adoption (in any language or…
-
-* SINGULARITY ON THE OPEN SCIENCE GRID
-Singularity is a container platform designed for use on computational resources. Several sites have deployed Singularity for their users and…
-
-* OPEN SCIENCE GRID USER GUIDE: SINGULARITY CONTAINERS
+You will then access your rstudio-server instance at:  [http://localhost:9999](http://localhost:9999)
 
