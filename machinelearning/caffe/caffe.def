@@ -1,0 +1,61 @@
+Bootstrap:library
+From: debian:9
+
+%environment
+
+	#Setting the environment variables needed
+	CAFFE_ROOT=/caffe
+	PREFIX=/usr/local/bootstrap
+	BOOTSTRAP=/usr/local/bootstrap/bin
+	export CAFFEROOT PREFIX BOOTSTRAP
+
+%help
+
+	Singularity container with Caffe Deep learning framework (with CPU support only) installation v1.0.0 for Debian 9 Stretch. This installation uses Python 2.7.15.
+
+%post
+
+	#Installing all dependencies
+	apt update
+	apt-get -y install wget \
+	git \
+	cmake
+
+	#Installing Caffe for CPU support
+	apt install -y caffe-cpu caffe-doc
+	caffe
+	python3 -c 'import caffe; print(caffe.__path__)'
+	dpkg -L caffe-doc
+
+	#First modify the /etc/apt/sources.list
+	echo "deb http://ftp2.cn.debian.org/debian sid main contrib non-free" >> /etc/apt/sources.list
+	echo "deb-src http://ftp2.cn.debian.org/debian sid main contrib non-free" >> /etc/apt/sources.list
+
+	#Building caffe deb files
+	apt update
+	apt install -y build-essential debhelper devscripts libhdf5-dev libatlas-base-dev libopencv-dev python-numpy
+	apt build-dep -y caffe-cpu
+
+	#Obtaining the source code from GitLab (supported for debian)
+	git clone https://salsa.debian.org/science-team/caffe.git
+	cd caffe
+	cp Makefile.config.example Makefile.config
+
+	#Specifying it is only for CPU support
+	echo "CPU_ONLY := 1" >> ./Makefile.config
+
+	#Configuring the makefile before building
+	sed -i 's/LIBRARY_DIRS := \$(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib/& \/usr\/lib\/x86_64-linux-gnu\/hdf5\/serial/' ./Makefile.config
+	sed -i 's/INCLUDE_DIRS := \$(PYTHON_INCLUDE) \/usr\/local\/include/& \/usr\/include\/hdf5\/serial\//' ./Makefile.config
+
+	#Building caffe and running tests
+	mkdir build
+	cd build
+	cmake ..
+	make all
+	make install
+	make runtest
+
+%runscript
+
+	caffe --version
