@@ -1,0 +1,38 @@
+BootStrap: library
+From: ubuntu:16.04
+
+%environment
+  PATH=/usr/local/spark/bin:/usr/local/spark/sbin:$PATH
+
+  # Port option should match what we set Dropbear to listen on
+  SPARK_SSH_OPTS="-p 2222 -o StrictHostKeyChecking=no"
+
+  export PATH SPARK_SSH_OPTS
+
+%runscript
+  /usr/local/spark/bin/spark-submit "$@"
+
+%startscript
+  /etc/init.d/dropbear start
+
+%post
+  apt-get update && apt-get install -y curl wget gzip \
+    rsync openjdk-8-jre python2.7
+
+  ln -s /usr/bin/python2.7 /usr/bin/python
+
+  cd /usr/local
+
+  wget https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
+  gzip -d spark-2.3.1-bin-hadoop2.7.tgz
+  tar xf spark-2.3.1-bin-hadoop2.7.tar
+
+  mv spark-2.3.1-bin-hadoop2.7 spark
+  rm -f spark-2.3.1-bin-hadoop2.7.tar
+
+  # Install OpenSSH to communicate between containers, and dropbear SSH server
+  apt-get install -y --no-install-recommends --allow-change-held-packages openssh-client dropbear
+
+  # Set Dropbear port to 2222 (or whatever port was selected above)
+  sed -i -e 's@\(DROPBEAR_PORT=\).*@\12222@' /etc/default/dropbear
+
