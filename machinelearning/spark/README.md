@@ -1,21 +1,21 @@
 # Spark
 
-Apache Spark is a fast, in-memory data processing engine applicable to large-scale data processing, for both batch and streaming machine learning that requires fast access to data sets. Apache Spark’s run-everywhere ethos is now taken a few steps further with the BYOE mentality of Singularity; bring your own environment with mobility of compute.
+Apache Spark is a fast, in-memory data processing engine applicable to large-scale data processing, for both batch and streaming machine learning that requires fast access to data sets. Apache Spark's run-everywhere ethos is now taken a few steps further with the BYOE mentality of Singularity; bring your own environment with mobility of compute.
 
 Spark can be a tricky application to install and configure. But by installing Spark within a Singularity container your installation becomes portable and reproducible, allowing you to spin up instances in the same way on your laptop, in an HPC center or in the cloud. Additionally, since you are using Singularity you can leverage specialized hardware on the underlying hosts like GPUs, or other hardware necessities such as host interconnects, if required by your workload.
 
-We’re going to be making a few assumptions on your setup:
+We're going to be making a few assumptions on your setup:
 
 You have a shared home directory across the cluster
 You have passwordless access between nodes on the cluster, even to a single node
-You have a directory in $HOME for Spark related files (i.e. $HOME/spark)
+You have a directory in `$HOME` for Spark related files (i.e. `$HOME/spark`)
 
 The SIF image can be built like so:
 
 ```$ cd ~/spark/
 $ sudo singularity build spark.sif spark.def```
 
-To finish the setup, it’s necessary to execute a few commands from within the image in our current directory:
+To finish the setup, it's necessary to execute a few commands from within the image in our current directory:
 
 ```$ singularity shell spark.sif
 Singularity spark.sif:~/spark>```
@@ -45,13 +45,13 @@ This creates the following directory structure  in ~/spark:
 `-- work/```
 The preceding command created:
 
-```log/ – Master/Worker logs
-run/ – Dropbear PID files
-work/ – Job work logs```
+```log/ -- Master/Worker logs
+run/ -- Dropbear PID files
+work/ -- Job work logs```
 
 ## Single Node
 
-As a preliminary test we’ll run a single node Spark instance:
+As a preliminary test we'll run a single node Spark instance:
 
 ```$ singularity instance start \
   --bind $(mktemp -d run/hostname` _XXXX):/run \
@@ -59,7 +59,7 @@ As a preliminary test we’ll run a single node Spark instance:
   --bind log/:/usr/local/spark/logs \
   --bind work/:/usr/local/spark/work \
   spark.sif spark-single```
-Once the instance is initiated, we’ll use exec to start the Spark Master/Worker process. Here is the command run, and expected output.
+Once the instance is initiated, we'll use exec to start the Spark Master/Worker process. Here is the command run, and expected output.
 
 ```$ singularity exec instance://spark-single /usr/local/spark/sbin/start-all.sh
 starting org.apache.spark.deploy.master.Master, logging to /usr/local/spark/logs/spark-[user]-org.apache.spark.deploy.master.Master-1-[host].out
