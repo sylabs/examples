@@ -7,7 +7,7 @@ file.
 
 
 All definition files provided by Sylabs are under the BSD-3 clause license,
-Unless noted in the file themselves. See the LICENSE.md file for more information.
+unless noted in the file themselves. See the LICENSE.md file for more information.
 
 
 ### Here is the example map:
