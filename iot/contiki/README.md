@@ -12,7 +12,7 @@ power meters, industrial monitoring, radiation monitoring,
 construction site monitoring, alarm systems, remote house monitoring,
 and so on.
 
-For more information, see the Contiki website [here](http://contiki-os.org)
+For more information, see the Contiki website [here](http://contiki-os.org).
 
 In this example, we will build a Singularity container with ContikiOS.
 We will base this example on the `contiki.def` (`def` for definition) file.
@@ -62,7 +62,14 @@ $ mkdir ~/contiki
 $ cd ~/contiki
 ```
 
-And then you can build the container with a single command like this:
+You can obtain the contiki definition file like so:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/iot/contiki/contiki.def
+```
+
+
+And then, once you already have the def file, you can build the container with a single command like this:
 
 ```
 $ sudo singularity build contiki.sif contiki.def
