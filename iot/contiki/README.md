@@ -88,10 +88,10 @@ $ mkdir -p ~/contiki/{examples/hello-world,tools}
 After this, your directory structure will look like this:
 
 ```
-~/contiki
-|     |--examples
-|     |        \--hello-world
-|     \--tools
+~/contiki/
+|     |--examples/
+|     |        \--hello-world/
+|     \--tools/
 ```
 
 Another task to do before using the container is to copy certain code that resides inside the container and that will be later bound into your host. To do this, you will first shell into the container like so:
