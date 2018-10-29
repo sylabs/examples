@@ -44,7 +44,7 @@ From: ubuntu:16.04
 
 %runscript
 
-	#Run the hello world program (remember to bind your /contiki/examples/hello-world and /contiki/tools folders at runtime)
+	#Run the hello world program (remember to bind your ~/contiki/examples/hello-world and ~/contiki/tools folders at runtime)
 	cd /contiki/examples/hello-world
 
 	#Compile for the native platform
