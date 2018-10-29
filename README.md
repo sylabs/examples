@@ -6,7 +6,7 @@ Each example resides in its own subdirectory with its own README.md and definiti
 file.
 
 
-All Definition files provided by Sylabs are under the BSD-3 clause license,
+All definition files provided by Sylabs are under the BSD-3 clause license,
 Unless noted in the file themselves. See the LICENSE.md file for more information.
 
 

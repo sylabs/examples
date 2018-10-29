@@ -20,9 +20,9 @@ First, we will go through an explanation of every section inside the `contiki.de
 
 #### Environment section:
 
-Here we define all the needed environment variables for ContikiOS to work fine.
+Here we define all the needed environment variables for ContikiOS to work properly.
 For this specific example the only needed variable is `CONTIKI` which is set to the
-path of the installation of contiki in the container.
+path of the installation of Contiki in the container.
 
 #### Help section:
 
@@ -62,7 +62,7 @@ $ mkdir ~/contiki
 $ cd ~/contiki
 ```
 
-You can obtain the contiki definition file like so:
+You can obtain the Contiki definition file like so:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/iot/contiki/contiki.def
