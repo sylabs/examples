@@ -50,7 +50,7 @@ How to build my Singularity ContikiOS container:
 To build this container, you will need the following:
 
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
- - A text editor, like: `micro`, `vim` or `nano`.
+ - A text editor, like: `micro`, `vim`, or `nano`.
  - Root access.
 
 #### Build the container:
@@ -69,7 +69,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/iot/contiki/cont
 ```
 
 
-And then, once you already have the def file, you can build the container with a single command like this:
+And then, once you have the `def` file, you can build the container with a single command like this:
 
 ```
 $ sudo singularity build contiki.sif contiki.def
