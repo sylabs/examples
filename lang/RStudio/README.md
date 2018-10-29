@@ -21,7 +21,7 @@ The definiton file affords some flexibility, allowing you to run RStudio several
 
 To build the image run:
 
-```$ sudo singularity build rstudio.sif rstudio.def```
+```$ sudo singularity build rstudio.sif RStudio.def```
 
 When you use run for the IDE, you may need to execute it like:
 
