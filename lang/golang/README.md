@@ -1,6 +1,6 @@
 # Golang container
 
-In this example, we will compile a go source code in a Singularity container.
+In this example, we will compile a Go source code in a Singularity container.
 
 <br>
 
@@ -61,7 +61,7 @@ $ ./hello-world
 hello world!
 ```
 
-The `golang.sif` is baslily the `go` command, running in the container.
+The `golang.sif` is basically the `go` command, running in the container.
 
 <br>
 
