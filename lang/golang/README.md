@@ -13,7 +13,9 @@ In this example, we will compile a go source code in a Singularity container.
 
 
 
-## To start, make the working directory:
+## Setup:
+
+First, make the working directory:
 
 ```
 $ mkdir golang-container
