@@ -28,6 +28,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [ContikiOS](https://github.com/sylabs/examples/tree/master/iot/contiki)
 
  - [Languages](https://github.com/sylabs/examples/tree/master/lang)
+   - [Golang](https://github.com/sylabs/examples/tree/master/lang/golang)
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
