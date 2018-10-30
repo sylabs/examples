@@ -7,7 +7,6 @@ In this example, we will compile a go source code in a Singularity container.
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
- - A text editor, like: `micro`, `vim`, or `nano`.
  - Go source code, (like this [example](https://raw.githubusercontent.com/sylabs/examples/master/lang/golang/hello-world.go)).
 
 <br>
