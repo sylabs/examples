@@ -7,9 +7,5 @@ usage: ./golang.sif [go option] <YOUR_GO_SOURCE_CODE>
   examples:
   $ ./golang.sif build hello-world.go
 
-%environment
-export GOPATH=${HOME}/go
-export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
-
 %runscript
 go "$@"
