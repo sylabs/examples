@@ -73,7 +73,19 @@ $ export PATH=$PATH:/$HOME/golang-container/
 
 Now you should have `golang.sif` command.
 
+<br>
 
+## Building the container from a definition file:
+
+You will need root access when building from a definition file.
+
+Here's the [definition file](https://raw.githubusercontent.com/sylabs/examples/master/lang/golang/golang.def), you can modify this as you need.
+
+Then to build the container:
+
+```
+$ sudo singularity build golang.sif golang.def
+```
 
 <br>
 
