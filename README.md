@@ -1,4 +1,4 @@
-# examples
+# Examples
 Here you can find files and instructions for creating and using example 
 containers from the [sylabs.io blog](https://www.sylabs.io/lab-notes/).  
 
@@ -12,32 +12,35 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
 
 ### Here is the example map:
 
- - [Data base](https://github.com/sylabs/examples/tree/master/database)
+ - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
+   - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
 
 - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
    - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
 
- - [http-server](https://github.com/sylabs/examples/tree/master/http-server)
-   - [httpd apache2 web server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
+ - [HTTP Server](https://github.com/sylabs/examples/tree/master/http-server)
+   - [Apache2 Web Server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
+   - [Nginx PHP web server](https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server)
 
- - [languages](https://github.com/sylabs/examples/tree/master/lang)
-   - [java script](https://github.com/sylabs/examples/tree/master/lang/javascript)
-     - [node js](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
-   - [julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+ - [Languages](https://github.com/sylabs/examples/tree/master/lang)
+   - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
+     - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
+   - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+   - [RStudio](https://github.com/sylabs/examples/tree/master/lang/RStudio)
 
- - [machinelearning](https://github.com/sylabs/examples/tree/master/machinelearning)
-   - [detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
-   - [jupyter-notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
+ - [Machine Learning](https://github.com/sylabs/examples/tree/master/machinelearning)
+   - [Caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
+   - [Detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
+   - [H2o4gpu](https://github.com/sylabs/examples/tree/master/machinelearning/h2o4gpu)
+   - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
+   - [Jupyter Notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
-   - [weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
-
+   - [Spark](https://github.com/sylabs/examples/tree/master/machinelearning/spark)
+   - [Weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
 
 
 <br>
 <br>
-
-
-
 
