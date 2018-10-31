@@ -19,7 +19,7 @@ First, make the working directory:
 
 ```
 $ mkdir golang-container
-$ cd goland-container/
+$ cd golang-container/
 ```
 
 <br>
