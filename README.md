@@ -1,5 +1,5 @@
 # Examples
-Here you can find files and instructions for creating and using example 
+Here you can find files and instructions for creating and using example
 containers from the [sylabs.io blog](https://www.sylabs.io/lab-notes/).  
 
 Each example resides in its own subdirectory with its own README.md and definition
@@ -28,6 +28,7 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [ContikiOS](https://github.com/sylabs/examples/tree/master/iot/contiki)
 
  - [Languages](https://github.com/sylabs/examples/tree/master/lang)
+   - [Golang](https://github.com/sylabs/examples/tree/master/lang/golang)
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
@@ -43,7 +44,5 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Spark](https://github.com/sylabs/examples/tree/master/machinelearning/spark)
    - [Weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
 
-
 <br>
 <br>
-
