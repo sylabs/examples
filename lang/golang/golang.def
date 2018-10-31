@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: golang:1.11.1
+
+%help
+usage: ./golang.sif [go option] <YOUR_GO_SOURCE_CODE>
+
+examples:
+  $ ./golang.sif build hello-world.go
+
+%runscript
+go "$@"
