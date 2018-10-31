@@ -83,6 +83,11 @@ Set a variable with some value:
 ```
 127.0.0.1:6379> set mykey somevalue
 OK
+```
+
+Obtain or read the variable value from the database with the following command:
+
+```
 127.0.0.1:6379> get mykey
 "somevalue"
 ```
