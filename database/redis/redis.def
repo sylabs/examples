@@ -1,0 +1,31 @@
+Bootstrap:library
+From: debian:9
+
+%help
+
+	Singularity container running Redis 5.0.0 for Debian 9 (Stretch)
+
+%post
+
+	apt-get update
+
+	apt-get install -y wget build-essential
+
+	wget http://download.redis.io/releases/redis-5.0.0.tar.gz
+
+	tar xzf redis-5.0.0.tar.gz
+
+	cd redis-5.0.0
+
+	make
+
+%startscript
+
+	#Start the daemon of the server with this command
+	cd /redis-5.0.0/src/
+	./redis-server
+
+%runscript
+
+	cd /redis-5.0.0/src/
+	./redis-cli
