@@ -72,6 +72,8 @@ Before storing some data in the database, set the following configuration:
 
 ```
 127.0.0.1:6379> config set stop-writes-on-bgsave-error no
+127.0.0.1:6379> config set dir /tmp/
+127.0.0.1:6379> config dbfilename temp.rdb
 ```
 
 To test the database, we will follow an example similar to what can be obtained from [here](https://redis.io/topics/data-types-intro) specifically, on Redis Strings.
