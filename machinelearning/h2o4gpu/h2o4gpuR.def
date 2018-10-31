@@ -1,10 +1,6 @@
 BootStrap: docker
 From: nvidia/cuda:9.2-devel-ubuntu18.04
 
-# -----------------------------------------------------------------------------------
-# This is a port of the Dockerfile maintained at https://github.com/uber/horovod
-
-
 %environment
 # -----------------------------------------------------------------------------------
 
