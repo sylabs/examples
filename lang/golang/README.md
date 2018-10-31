@@ -68,7 +68,7 @@ The `golang.sif` is basically the `go` command, running in the container.
 Adding `golang.sif` to `$PATH`:
 
 ```
-$ export PATH=$PATH:/$HOME/golang-container/
+$ export PATH=$PATH:$HOME/golang-container/
 ```
 
 Now you should have `golang.sif` command.
@@ -79,7 +79,7 @@ Now you should have `golang.sif` command.
 
 You will need root access when building from a definition file.
 
-Here's the [definition file](https://raw.githubusercontent.com/sylabs/examples/master/lang/golang/golang.def), you can modify this as you need.
+Here's the [definition file](https://raw.githubusercontent.com/sylabs/examples/master/lang/golang/golang.def), which can be modified as needed.
 
 Then to build the container:
 
