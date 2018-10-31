@@ -24,6 +24,9 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Apache2 Web Server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
    - [Nginx PHP web server](https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server)
 
+ - [Internet of Things](https://github.com/sylabs/examples/tree/master/iot)
+   - [ContikiOS](https://github.com/sylabs/examples/tree/master/iot/contiki)
+
  - [Languages](https://github.com/sylabs/examples/tree/master/lang)
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
