@@ -72,9 +72,11 @@ Before storing some data in the database, set the following configuration:
 
 ```
 127.0.0.1:6379> config set stop-writes-on-bgsave-error no
-127.0.0.1:6379> config set dir /tmp/
+127.0.0.1:6379> config set dir ./
 127.0.0.1:6379> config dbfilename temp.rdb
 ```
+
+The first command means that the snapshots are disabled (this is in order to avoid saving data every specific amount of time), second command sets the working directory to save your data on a file at the local directory where you are at host and the third command is to rename the database filename to `temp.rdb`.
 
 To test the database, we will follow an example similar to what can be obtained from [here](https://redis.io/topics/data-types-intro) specifically, on Redis Strings.
 
