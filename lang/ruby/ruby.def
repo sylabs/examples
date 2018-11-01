@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: ruby:latest
+From: ruby:2.6.0
 
 %runscript
 "$@"
