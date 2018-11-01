@@ -39,6 +39,19 @@ Then change the name of the container:
 $ mv ruby_latest.sif ruby.sif
 ```
 
+<br>
+
+Verify the container: (Optional)
+
+```
+$ singularity verify ruby.sif 
+Verifying image: ruby.sif
+Data integrity checked, authentic and signed by:
+        westleyk (examples) <westley@sylabs.io>, KeyID F1E47D55A7F3A56C
+```
+
+<br>
+
 Or make your own Ruby container [Here](#building-from-a-definition-file).<br>
 If you make you container from a definition file, you can embed you Ruby script in the container, so it can't be changed.
 
