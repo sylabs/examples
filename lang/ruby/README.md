@@ -74,7 +74,7 @@ ____
 
 To build from a definition file, you will need root access.
 
-Start by downloading the [definition file]():
+Start by downloading the [definition file](https://raw.githubusercontent.com/sylabs/examples/master/lang/ruby/ruby.def):
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/ruby/ruby.def
