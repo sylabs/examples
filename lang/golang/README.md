@@ -40,6 +40,17 @@ $ mv golang_latest.sif golang.sif
 
 <br>
 
+Verify the container: (Optional)
+
+```
+$ singularity verify golang_latest.sif 
+Verifying image: golang_latest.sif
+Data integrity checked, authentic and signed by:
+        westleyk (examples) <westley@sylabs.io>, KeyID F1E47D55A7F3A56C
+```
+
+<br>
+
 
 ## Testing it:
 
