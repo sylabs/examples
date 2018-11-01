@@ -105,6 +105,15 @@ Then to build the container:
 $ sudo singularity build ruby.sif ruby.def
 ```
 
+<br>
+
+To run the script:
+
+```
+$ ./ruby.sif
+hello world from a ruby container!
+```
+
 
 <br>
 
