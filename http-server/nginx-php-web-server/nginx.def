@@ -87,10 +87,6 @@ ln -s /srv/nginx/php7.0-fpm.log /var/log/php7.0-fpm.log
 rm -f /run/nginx.pid
 ln -s /srv/nginx/nginx.pid /run/nginx.pid
 
-ls /srv/nginx/
-ls /srv/nginx/php/
-ls /run/php/
-
 echo "=> prepare nginx..."
 mkdir /var/lib/nginx/body
 mkdir /srv/nginx/body
