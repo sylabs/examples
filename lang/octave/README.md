@@ -3,9 +3,9 @@
 ![octave-logo](octave-logo.svg)
 
 [GNU Octave](https://www.gnu.org/software/octave/) is a free and open source
-(FOSS) high-level language for array manipulation and linear algebra language
-(very similar to [MATLAB](https://www.mathworks.com/products/matlab.html)). It 
-ships with an IDE and is very good for things like curve-fitting, modeling and 
+(FOSS) high-level language for array manipulation and linear algebra (very 
+similar to [MATLAB](https://www.mathworks.com/products/matlab.html)). It ships 
+with an IDE and is very good for things like curve-fitting, modeling and 
 parameter optimization, signal processing, and image manipulation.  
 
 In this example, we'll create an Ubuntu 18.04 based container with a basic
