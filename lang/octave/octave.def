@@ -1,0 +1,11 @@
+Bootstrap: library
+From: ubuntu:18.04
+
+%post
+    apt-get update && apt-get -y install octave less libcanberra-gtk3-module
+
+%environment
+    export LC_ALL=C
+
+%runscript
+    octave "$@"
