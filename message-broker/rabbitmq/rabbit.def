@@ -1,0 +1,16 @@
+Bootstrap: library
+From: alpine:3.8
+
+%environment
+
+
+%help
+
+	Singularity container with RabbitMQ message broker for Alpine 3.8.
+
+%post
+
+  apt-get update
+  
+
+%runscript

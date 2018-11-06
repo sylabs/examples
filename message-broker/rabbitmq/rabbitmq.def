@@ -1,0 +1,77 @@
+Bootstrap: library
+From: alpine:3.8
+
+%environment
+
+  RABBITMQ_LOGS=-
+  RABBITMQ_SASL_LOGS=-
+  RABBITMQ_HOME=/opt/rabbitmq
+  PATH=$RABBITMQ_HOME/sbin:$PATH
+  RABBITMQ_GPG_KEY=0A9AF2115F4687BD29803A206B73A36E6026DFCA
+  RABBITMQ_VERSION=3.7.8-rc.4
+  RABBITMQ_GITHUB_TAG=v3.7.8-rc.4
+  HOME=/var/lib/rabbitmq
+
+  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME
+
+%help
+
+	Singularity container with RabbitMQ message broker for Alpine 3.8.
+
+%post
+
+  #Exporting all this stuff because on the env it is done later...
+  RABBITMQ_LOGS=-
+  RABBITMQ_SASL_LOGS=-
+  RABBITMQ_HOME=/opt/rabbitmq
+  PATH=$RABBITMQ_HOME/sbin:$PATH
+  RABBITMQ_GPG_KEY=0A9AF2115F4687BD29803A206B73A36E6026DFCA
+  RABBITMQ_VERSION=3.7.8-rc.4
+  RABBITMQ_GITHUB_TAG=v3.7.8-rc.4
+  HOME=/var/lib/rabbitmq
+
+  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME
+
+  apk add --no-cache --virtual \
+    ca-certificates \
+		gnupg \
+		libressl \
+		wget \
+		xz \
+    \
+    wget -O rabbitmq-server.tar.xz.asc "https://github.com/rabbitmq/rabbitmq-server/releases/download/$RABBITMQ_GITHUB_TAG/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz.asc"; \
+  	wget -O rabbitmq-server.tar.xz     "https://github.com/rabbitmq/rabbitmq-server/releases/download/$RABBITMQ_GITHUB_TAG/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz"; \
+    \
+
+    export GNUPGHOME="$(mktemp -d)"; \
+	  gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$RABBITMQ_GPG_KEY"; \
+	  gpg --batch --verify rabbitmq-server.tar.xz.asc rabbitmq-server.tar.xz; \
+	  command -v gpgconf && gpgconf --kill all || :; \
+	  rm -rf "$GNUPGHOME"; \
+	  \
+	  mkdir -p "$RABBITMQ_HOME"; \
+
+    tar \
+		  --extract \
+		  --verbose \
+		  --file rabbitmq-server.tar.xz \
+		  --directory "$RABBITMQ_HOME" \
+		  --strip-components 1 \
+	  ; \
+
+    rm -f rabbitmq-server.tar.xz*; \
+	   \
+     grep -qE '^SYS_PREFIX=\$\{RABBITMQ_HOME\}$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"; \
+	   sed -ri 's!^(SYS_PREFIX=).*$!\1!g' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"; \
+	   grep -qE '^SYS_PREFIX=$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"; \
+	    \
+	   apk del .build-deps
+
+     mkdir -p /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl \
+	   && chown -R rabbitmq:rabbitmq /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl \
+	   && chmod -R 777 /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
+
+     ln -sf /var/lib/rabbitmq/.erlang.cookie /root/
+     ln -sf "$RABBITMQ_HOME/plugins" /plugins
+
+%runscript
