@@ -1,6 +1,6 @@
 # Ruby
 
-In this example, we will run a Ruby script in a container.
+In this example, we will run a Ruby script in a Singularity Container.
 
 <br>
 
@@ -53,7 +53,7 @@ Data integrity checked, authentic and signed by:
 <br>
 
 Or make your own Ruby container [Here](#building-from-a-definition-file).<br>
-If you make you container from a definition file, you can embed you Ruby script in the container, so it can't be changed.
+If you make your container from a definition file, you can embed you Ruby script in the container, so it can't be changed.
 
 <br>
 
@@ -95,15 +95,14 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/ruby/ruby.d
 
 <br>
 
-If you want you script embeded in the container, change the `%runscript` fo this:
+If you want your script embedded in the container, change the `%runscript` fo this:
 
 ```
 %runscript
 cat << EOF | ruby
-
 # put your ruby script here:
 
-print "hello world from a ruby container!\n"
+print "hello world from a Singularity Container!\n"
 
 EOF
 ```
