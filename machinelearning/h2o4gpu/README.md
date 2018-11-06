@@ -2,20 +2,18 @@
 
 H2O4GPU is an open source, GPU-accelerated machine learning package with APIs in Python and R that allows anyone to take advantage of GPUs to build advanced machine learning models. A variety of popular algorithms are available including Gradient Boosting Machines (GBM’s), Generalized Linear Models (GLM’s), and K-Means Clustering.
 
-https://www.h2o.ai/products/h2o4gpu/
+<https://www.h2o.ai/products/h2o4gpu/>
 
 H2O4GPU is a collection of GPU solvers by H2Oai with APIs in Python and R. The Python API builds upon the easy-to-use scikit-learn API and its well-tested CPU-based algorithms. It can be used as a drop-in replacement for scikit-learn (i.e. import h2o4gpu as sklearn) with support for GPUs on selected (and ever-growing) algorithms. H2O4GPU inherits all the existing scikit-learn algorithms and falls back to CPU algorithms when the GPU algorithm does not support an important existing scikit-learn class option. The R package is a wrapper around the H2O4GPU Python package, and the interface follows standard R conventions for modeling.
 
 
-The h2o4gpu code is at: https://github.com/h2oai/h2o4gpu
+The h2o4gpu code is at: <https://github.com/h2oai/h2o4gpu>
 
 The metrics pR package that is used in the R sample run is located at: https://github.com/mfrasco/Metrics
 
-## Instructions
-
 ### Build Instructions
 
-sudo singularity build h2o4gpuR.sif h2o4gpuR.def
+```sudo singularity build h2o4gpuR.sif h2o4gpuR.def```
 
 ### Infrastructure Requirements
 
@@ -25,6 +23,7 @@ Nvidia GPU with Compute Capability >= 3.5
 
 #### Python test
 Shell into the container:
+```
 [user@host ]$ singularity shell --nv h2o4gpuR.sif
 Singularity h2o4gpuR.sif:~/singularity3_containers/h2o> python
 Python 3.6.6 (default, Sep 12 2018, 18:26:19) 
@@ -40,9 +39,10 @@ array([[1. , 0.5],
 >>> 
 Singularity h2o4gpuR.sif:~/singularity3_containers/h2o> exit
 [user@host ]$ 
+```
 
-
-#### R test 
+#### R test
+``` 
 Shell into the container:
 [user@host ]$ singularity shell --nv h2o4gpuR.sif
 Singularity h2o4gpuR.sif:~/singularity3_containers/h2o> R
@@ -86,4 +86,4 @@ The following object is masked from 'package:base':
 Save workspace image? [y/n/c]: n
 Singularity h2o4gpuR.sif:~/singularity3_containers/h2o> exit
 [user@host ]$ 
-
+```

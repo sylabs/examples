@@ -1,6 +1,8 @@
 BootStrap: docker
 From: nvidia/cuda:9.2-devel-ubuntu18.04
 
+# Note: This container will have only the Python API enabled
+
 %environment
 # -----------------------------------------------------------------------------------
 
