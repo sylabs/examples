@@ -6,9 +6,9 @@ In this example, we will generate a Singularity container running Redis server v
 
 To run this example you will need:
 
-	- Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
-	- A text editor, like: `micro`, `vim`, or `nano`.
-	- Root access.
+ - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
+ - A text editor, like: `micro`, `vim`, or `nano`.
+ - Root access.
 
 We'll go through the explanation of every section in the definition file:
 
@@ -39,6 +39,12 @@ After that you could simply run the following command:
 
 ```
 $ sudo singularity build redis.sif redis.def
+```
+
+You can also pull the container from our library like so:
+
+```
+$ singularity pull library://sylabs/examples/redis:latest
 ```
 
 After that, your Redis Singularity container will be ready to be used. Remember that as the default port and hostname, Redis takes the `127.0.0.1 (localhost)` and port `6379`.

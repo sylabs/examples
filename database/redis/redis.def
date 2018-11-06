@@ -26,5 +26,4 @@ From: debian:9
 %runscript
 
 	#Start the Redis client with this command
-	cd /redis-5.0.0/src/
-	./redis-cli
+	/redis-5.0.0/src/redis-cli
