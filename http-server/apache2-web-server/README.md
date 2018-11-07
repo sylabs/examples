@@ -55,6 +55,18 @@ Data integrity checked, authentic and signed by:
 
 We now have a simple container that will run a HTTP server listening on port 8080.
 
+### Getting help from the container:
+
+To get the help output, we can use the `run-help` command:
+
+```
+$ singularity run-help httpd.sif
+```
+Or, for this spcifice container, you can just run it:
+```
+$ ./httpd.sif
+```
+
 <br>
 
 ## Prepare our directory for the container:
