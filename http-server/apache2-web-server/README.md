@@ -57,7 +57,7 @@ We now have a simple container that will run a HTTP server listening on port 808
 
 <br>
 
-## prepare are directory for the container:
+## Prepare are directory for the container:
 
 Our web content, and logs, are going to be stored from a share on the host. So, we will create a directory tree on the host system:
 
