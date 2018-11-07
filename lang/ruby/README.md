@@ -71,7 +71,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/ruby/hello-
 Then to run the script:
 
 ```
-$ ./ruby.sif ruby hello-world.rb
+$ ./ruby.sif hello-world.rb
 hello world from Ruby!
 ```
 
