@@ -8,7 +8,9 @@ In this example, we will run a simple Apache Web server in a Singularity Contain
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
- 
+
+
+____
 
 <br>
 
@@ -179,5 +181,10 @@ $ singularity build --remote httpd.sif httpd.def
 Now you should have your container (`httpd.sif`) and you don't need to download it.
 
 <br>
+
+
+____
+
+
 <br>
 
