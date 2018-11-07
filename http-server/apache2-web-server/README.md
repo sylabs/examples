@@ -37,7 +37,7 @@ If your running on `32 bit` os, you will need to build from a definition file, c
 Now, Rename the container you just pulled:
 
 ```
-$ mv httpd.sif_latest.sif httpd.sif
+$ mv httpd_latest.sif httpd.sif
 ```
 
 <br>
