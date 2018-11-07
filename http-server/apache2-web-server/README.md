@@ -67,7 +67,7 @@ $ mkdir -p httpd/{htdocs,logs}
 
 <br>
 
-Then add a basic index.html file to serve:
+Then add a basic [`index.html`](https://raw.githubusercontent.com/WestleyK/examples/master/http-server/apache2-web-server/index.html) file to serve:
 
 ```
 $ nano httpd/htdocs/index.html
@@ -150,7 +150,7 @@ $ singularity instance stop httpd
 
 To build the container from a recipe, you will need root access, and the definition file.
 
-First, download the definition file:
+First, download the [definition file](https://raw.githubusercontent.com/WestleyK/examples/master/http-server/apache2-web-server/httpd.def):
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/httpd.def
