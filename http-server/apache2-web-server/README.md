@@ -12,7 +12,9 @@ In this example, we will run a simple Apache Web server in a Singularity Contain
 
 <br>
 
-### To start, make the working directory:
+### Setup:
+
+First, make the working directory:
 
 ```
 $ mkdir ~/httpd
@@ -50,6 +52,10 @@ Data integrity checked, authentic and signed by:
 <br>
 
 We now have a simple container that will run a HTTP server listening on port 8080.
+
+<br>
+
+## prepare are directory for the container:
 
 Our web content, and logs, are going to be stored from a share on the host. So, we will create a directory tree on the host system:
 
@@ -100,27 +106,12 @@ httpd/
 
 <br>
 
+## Start the instance:
+
 To use this structure, we start up an instance binding our host path into the container:
 
 ```
 $ singularity instance start -B httpd/:/srv/httpd/ httpd.sif httpd
-```
-
-<br>
-
-```
-$ singularity instance start \
- -B web/htdocs:/usr/local/apache2/htdocs \
- -B web/logs:/usr/local/apache2/logs \
- httpd.sif httpd
-```
-
-<br>
-
-*FYI:* the above command is the same as:
-
-```
-$ singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs:/usr/local/apache2/logs httpd.sif httpd
 ```
 
 <br>
@@ -134,13 +125,17 @@ Or:
 $ w3m http://localhost:8080
 ```
 
-And access the `index.html` file being served from the `web/htdocs/` location.
+<br>
 
+Remember, you must open the web page on the same host thats running the instance.
+
+Then assecc the `index.html` file being served from `httpd/htdocs/` directory.
 
 <br>
 
+## Stoping the instance:
 
-### To stop the server, run this command:
+To stop the instance, run this command:
 
 ```
 $ singularity instance stop httpd
@@ -151,7 +146,7 @@ $ singularity instance stop httpd
 <br>
 
 
-### Building the contianer from a definition file:
+## Building the contianer from a definition file:
 
 To build the container from a recipe, you will need root access, and the definition file.
 
@@ -168,6 +163,8 @@ Then to build the container:
 ```
 $ sudo singularity build httpd.sif httpd.def
 ```
+
+<br>
 
 Or use remote builder:
 
