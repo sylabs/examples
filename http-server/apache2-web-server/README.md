@@ -57,7 +57,7 @@ We now have a simple container that will run a HTTP server listening on port 808
 
 <br>
 
-## Prepare are directory for the container:
+## Prepare our directory for the container:
 
 Our web content, and logs, are going to be stored from a share on the host. So, we will create a directory tree on the host system:
 
@@ -178,7 +178,7 @@ $ singularity build --remote httpd.sif httpd.def
 
 <br>
 
-Now you should have your container (`httpd.sif`) and you don't need to download it.
+Now you can [Prepare our directory for the container](#prepare-our-directory-for-the-container).
 
 <br>
 
