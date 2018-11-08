@@ -20,8 +20,7 @@ From: debian:9
 %startscript
 
 	#Start the server daemon with this command
-	cd /redis-5.0.0/src/
-	./redis-server
+	/redis-5.0.0/src/redis-server
 
 %runscript
 
