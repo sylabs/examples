@@ -55,14 +55,17 @@ From: alpine:3.8
 	grep -qE '^SYS_PREFIX=$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
 
   mkdir -p /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
+  mkdir /var/lib/rabbitmq/mnesia
 	#chown -R /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
   #chmod -R 777 /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
+
   touch /var/lib/rabbitmq/.erlang.cookie
   chmod 777 /var/lib/rabbitmq/.erlang.cookie
 
-  #ln -sf /var/lib/rabbitmq/.erlang.cookie /
-  #ln -sf "$RABBITMQ_HOME/plugins" /plugins
+  ln -sf /var/lib/rabbitmq/ /
+  ln -sf "$RABBITMQ_HOME/plugins" /plugins
 
 %runscript
 
-  rabbitmq-server
+  rabbitmqctl status
+  #rabbitmq-server
