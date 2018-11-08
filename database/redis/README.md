@@ -62,6 +62,13 @@ You can also pull the container from our library like so:
 $ singularity pull library://sylabs/examples/redis:latest
 ```
 
+Then rename the container as it follows:
+
+```
+$ mv redis_latest.sif redis.sif
+```
+
+
 #### Verifying my Redis Singularity container
 
 The `verify` command allows you to verify that the container has been signed using a `PGP` key. Please remind that you should first obtain an access token from the Sylabs Cloud to make use of this feature.  Follow the steps below to generate a valid access token:
