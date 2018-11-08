@@ -15,6 +15,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
    - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
+   - [Redis](https://github.com/sylabs/examples/tree/master/database/redis)
 
  - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
