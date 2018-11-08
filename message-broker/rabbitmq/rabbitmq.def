@@ -35,7 +35,7 @@ From: alpine:3.8
   export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE
 
   apk add ca-certificates libressl wget xz gnupg git
-  apk add procps erlang-asn1 erlang-hipe erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang erlang-os-mon erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-syntax-tools erlang-xmerl
+  apk add procps erlang-asn1 erlang-hipe erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang erlang-os-mon erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-syntax-tools erlang-xmerl py-pika
 
   wget -O rabbitmq-server.tar.xz.asc "https://github.com/rabbitmq/rabbitmq-server/releases/download/$RABBITMQ_GITHUB_TAG/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz.asc"
   wget -O rabbitmq-server.tar.xz     "https://github.com/rabbitmq/rabbitmq-server/releases/download/$RABBITMQ_GITHUB_TAG/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz"
@@ -51,7 +51,7 @@ From: alpine:3.8
 	tar --extract --verbose --file rabbitmq-server.tar.xz --directory "$RABBITMQ_HOME" --strip-components 1
 	rm -f rabbitmq-server.tar.xz*
 
-  #Update SYS_PREFIX (first making sure it's set to what we expect it to be)
+# update SYS_PREFIX (first making sure it's set to what we expect it to be)
 	grep -qE '^SYS_PREFIX=\$\{RABBITMQ_HOME\}$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
 	sed -ri 's!^(SYS_PREFIX=).*$!\1!g' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
 	grep -qE '^SYS_PREFIX=$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
