@@ -33,6 +33,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+   - [Octave](https://github.com/sylabs/examples/tree/master/lang/octave)
    - [RStudio](https://github.com/sylabs/examples/tree/master/lang/RStudio)
    - [Ruby](https://github.com/sylabs/examples/tree/master/lang/ruby)
 
