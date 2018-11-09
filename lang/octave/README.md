@@ -21,26 +21,7 @@ will help keep your space tidy.
 $ mkdir ~/octave && cd ~/octave
 ```
 
-Open an editor (such as `nano` or `vim`) and copy the following contents into a 
- _definition file_.  In this example we will call it `octave.def` but you can 
- name it whatever you like.
-
-```
-Bootstrap: library
-From: ubuntu:18.04
-
-%post
-    apt-get update && apt-get -y install octave less libcanberra-gtk3-module
-
-%environment
-    export LC_ALL=C
-
-%runscript
-    octave "$@"
-```
-
-Alternatively, you can obtain the definition file directly from this repo with 
-the following command:
+You can obtain the definition file directly from this repo with the following command:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/octave/octave.def
