@@ -30,11 +30,11 @@ Then, pull the container from the library:
 ```
 $ singularity pull library://sylabs/examples/httpd:latest
 ```
-If your running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down for instructions.
+If you're running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down for instructions.
 
 <br>
 
-Now, Rename the container you just pulled:
+Now, rename the container you just pulled:
 
 ```
 $ mv httpd_latest.sif httpd.sif
@@ -62,7 +62,7 @@ To get the help output, we can use the `run-help` command:
 ```
 $ singularity run-help httpd.sif
 ```
-Or, for this spcifice container, you can just run it:
+Or, for this specific container, you can just run it:
 ```
 $ ./httpd.sif
 ```
@@ -81,7 +81,7 @@ $ mkdir -p httpd/{htdocs,logs}
 
 <br>
 
-Then add a basic [`index.html`](https://raw.githubusercontent.com/WestleyK/examples/master/http-server/apache2-web-server/index.html) file to serve:
+Then, add a basic [`index.html`](https://raw.githubusercontent.com/WestleyK/examples/master/http-server/apache2-web-server/index.html) file to serve:
 
 ```
 $ nano httpd/htdocs/index.html
@@ -101,7 +101,7 @@ $ nano httpd/htdocs/index.html
 </html>
 ```
 
-Or Download it from this repo:
+Or download it from this repo:
 
 ```
 $ wget -O httpd/htdocs/index.html https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html
@@ -112,10 +112,10 @@ $ wget -O httpd/htdocs/index.html https://raw.githubusercontent.com/sylabs/examp
 Now our directory map should look like this:
 
 ```
-httpd/
-|-- htdocs/
-|   `-- index.html
-`-- logs/
+~/httpd/
+ |-- htdocs/
+ |   `-- index.html
+ `-- logs/
 ```
 
 <br>
@@ -141,13 +141,13 @@ $ w3m http://localhost:8080
 
 <br>
 
-Remember, you must open the web page on the same host thats running the instance.
+Remember, you must open the web page on the same host that is running the instance.
 
-Then assecc the `index.html` file being served from `httpd/htdocs/` directory.
+Then access the `index.html` file being served from `httpd/htdocs/` directory.
 
 <br>
 
-## Stoping the instance:
+## Stopping the instance:
 
 To stop the instance, run this command:
 
@@ -160,7 +160,7 @@ $ singularity instance stop httpd
 <br>
 
 
-## Building the contianer from a definition file:
+## Building the container from a definition file:
 
 To build the container from a recipe, you will need root access, and the definition file.
 
