@@ -6,8 +6,8 @@ Each example resides in its own subdirectory with its own README.md and definiti
 file.
 
 
-All Definition files provided by Sylabs are under the BSD-3 clause license,
-Unless noted in the file themselves. See the LICENSE.md file for more information. 
+All definition files provided by Sylabs are under the BSD-3 clause license,
+unless noted in the file themselves. See the LICENSE.md file for more information.
 
 
 ### Here is the example map:
@@ -15,8 +15,9 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
    - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
+   - [Redis](https://github.com/sylabs/examples/tree/master/database/redis)
 
-- [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
+ - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
    - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
 
@@ -32,7 +33,9 @@ Unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+   - [Octave](https://github.com/sylabs/examples/tree/master/lang/octave)
    - [RStudio](https://github.com/sylabs/examples/tree/master/lang/RStudio)
+   - [Ruby](https://github.com/sylabs/examples/tree/master/lang/ruby)
 
  - [Machine Learning](https://github.com/sylabs/examples/tree/master/machinelearning)
    - [Caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
