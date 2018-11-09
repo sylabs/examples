@@ -81,7 +81,7 @@ $ mkdir -p httpd/{htdocs,logs}
 
 <br>
 
-Then, add a basic [`index.html`](https://raw.githubusercontent.com/WestleyK/examples/master/http-server/apache2-web-server/index.html) file to serve:
+Then, add a basic [`index.html`]https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html) file to serve:
 
 ```
 $ nano httpd/htdocs/index.html
