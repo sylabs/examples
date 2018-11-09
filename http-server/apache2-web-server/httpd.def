@@ -18,23 +18,7 @@ usage:
   $ singularity instance stop httpd
 
 %runscript
-cat << EOF
-Apache2 web server running in a Singularity Container.
-For full tutorial, visit: https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server
-
-usage:
-
-  setup:
-  $ mkdir -p httpd/{htdocs,logs}
-  $ touch httpd/htdocs/index.html  # this is your html file.
-
-  starting the instance:
-  $ singularity instance start -B httpd/:/srv/httpd/ httpd.sif httpd
-
-  stoping the instance:
-  $ singularity instance stop httpd
-
-EOF
+cat /.singularity.d/runscript.help
 
 %post
 # Change the port we are listening on to 8080 instead of 80
