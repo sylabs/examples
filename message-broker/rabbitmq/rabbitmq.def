@@ -35,7 +35,7 @@ From: alpine:3.8
   export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE
 
   apk add ca-certificates libressl wget xz gnupg git
-  apk add procps erlang-asn1 erlang-hipe erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang erlang-os-mon erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-syntax-tools erlang-xmerl py-pika
+  apk add procps erlang-asn1 erlang-hipe erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang erlang-os-mon erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-syntax-tools erlang-xmerl
 
   wget -O rabbitmq-server.tar.xz.asc "https://github.com/rabbitmq/rabbitmq-server/releases/download/$RABBITMQ_GITHUB_TAG/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz.asc"
   wget -O rabbitmq-server.tar.xz     "https://github.com/rabbitmq/rabbitmq-server/releases/download/$RABBITMQ_GITHUB_TAG/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz"
@@ -60,6 +60,7 @@ From: alpine:3.8
 	chown -R root:root /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
   chmod -R 777 /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
 
-%runscript
+%startscript
 
+  # Start the server instance by default on localhost:6379
   rabbitmq-server
