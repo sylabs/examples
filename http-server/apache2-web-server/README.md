@@ -30,7 +30,7 @@ Then, pull the container from the library:
 ```
 $ singularity pull library://sylabs/examples/httpd:latest
 ```
-If you're running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down for instructions.
+If you're running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-container-from-a-definition-file) or scroll down for instructions.
 
 <br>
 
@@ -42,7 +42,7 @@ $ mv httpd_latest.sif httpd.sif
 
 <br>
 
-Verify the container: (Optional)
+### Verify the container: (Optional)
 
 ```
 $ singularity verify httpd.sif
