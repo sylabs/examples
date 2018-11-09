@@ -12,7 +12,7 @@ In this example, we'll create an Ubuntu 18.04 based container with a basic
 Octave installation. The definition file will allow for easily starting the 
 Octave IDE, or running a script.
 
-## writing the definition file
+## Writing the Definition File
 
 First, create a directory for your Octave assets. This step is optional, but it 
 will help keep your space tidy.
@@ -46,17 +46,17 @@ the following command:
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/octave/octave.def
 ```
 
-### the definition file explained 
+### The Definition File Explained
 
 The definition file header instructs Singularity to download a base Ubuntu 18.04
 container from the [Sylabs Container Library](https://cloud.sylabs.io/library).
 
-The `%post` section is executed inside the container at build time.  This is 
+The `%post` section is executed inside the container at build time. This is 
 where the container is updated and Octave is installed along with some 
 dependencies. 
 
 If you need to install additional Octave toolboxes, you can do so with `apt`.  
-For instance, if you need the Octave signal processing  toolbox, add the 
+For instance, if you need the Octave signal processing toolbox, add the 
 following line to the `%post` section of the definition file.
 
 ```
@@ -71,7 +71,7 @@ Finally, the `%runscript` section defines the commands that the container will
 execute when it is called either with `singularity run` or called by name as if 
 it were an executable.
 
-## building the container
+## Building the Container
 
 After writing or downloading the Octave definition file, you can build the 
 container with the following command:
@@ -103,19 +103,27 @@ files there. The containers will show up under your username in the
 `remote-builds` collection. Then you can download it with the `singularity pull`
 command.
 
-## running the container
+## Running the Container
 
 After using one of the methods above to build your container, you can run it 
-several different ways.  
+several different ways.
 
-### starting the Octave IDE
+**NOTE:** Octave runs best when it can write to the `/run` directory. Before 
+running the `octave.sif` container it's best to set the `$SINGULARITY_BIND`
+variable like so:
+
+```
+$ export SINGULARITY_BIND=/run
+```
+
+### Starting the Octave IDE
 
 If you want to start an interactive development session you can either invoke
 the container using the `singularity run` command, or you can treat the 
 container like an executable and start it like so:
 
 ```
-$ ./octave
+$ ./octave.sif
 ```
 
 The runscript within the container will execute the command `octave "$@"`. Since
@@ -124,7 +132,7 @@ command `octave` within the container, which will begin an interactive
 programming session. (Note that this assumes your environment can support a 
 graphical user interface.)
 
-### running a script through your octave container
+### Running a Script Through your Octave Container
 
 If you would rather use your Octave container to execute a script, you can pass 
 it as an argument. In this repo, we are providing the following example script.
@@ -182,7 +190,7 @@ input = uint8(input);
 imwrite(input, output, format)
 ```
 
-This script takes 2 images as input.  The first image (`colors`) serves as a
+This script takes 2 images as input. The first image (`colors`) serves as a
 reference image and the second image (`input`) is an image to manipulate.  The
 script will produce a new image (`output`) where the pixels of the input image
 have been replaced by the pixels of the color reference image. The new image 
@@ -225,7 +233,7 @@ minions in the soft glow of the forest.
 
 ![out](out.jpg)
 
-## obtaining and verifying this container from the Container Library
+## Obtaining and Verifying this Container from the Container Library
 
 If you'd like to play around with the `octave.sif` container from this example
 without building it yourself, you can always pull it from the Container Library.
@@ -265,7 +273,7 @@ Data integrity checked, authentic and signed by:
 ```
 
 Signing and verifying containers produces an unbroken chain of trust between the
-container author and the end user.  If you want more information about signing
+container author and the end user. If you want more information about signing
 and verifying your own containers so that you can share them with your friends 
 or colleagues securely, check the 
 [Singularity docs](https://www.sylabs.io/guides/3.0/user-guide/signNverify.html).
