@@ -180,9 +180,7 @@ $ sudo singularity build httpd.sif httpd.def
 
 <br>
 
-Or use remote builder:
-
-You do not need root access.
+If you do not have root access, you can use our remote builder.
 
 ```
 $ singularity build --remote httpd.sif httpd.def
