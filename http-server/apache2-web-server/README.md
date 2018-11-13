@@ -81,7 +81,7 @@ $ mkdir -p httpd/{htdocs,logs}
 
 <br>
 
-Then, add a basic [`index.html`]https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html) file to serve:
+Then, add a basic [`index.html`](https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html) file to serve:
 
 ```
 $ nano httpd/htdocs/index.html
@@ -180,7 +180,7 @@ $ sudo singularity build httpd.sif httpd.def
 
 <br>
 
-If you do not have root access, you can use our remote builder.
+If you do not have root access, you can use our remote builder:
 
 ```
 $ singularity build --remote httpd.sif httpd.def
