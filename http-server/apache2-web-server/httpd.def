@@ -27,9 +27,7 @@ sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
 # to avoid a error message
 sed -ie "s/\#ServerName\ www.example.com:80/ServerName\ localhost/" /usr/local/apache2/conf/httpd.conf
 
-mkdir /srv/httpd
-mkdir /srv/httpd/htdocs
-mkdir /srv/httpd/logs
+mkdir -p /srv/httpd/htdocs /srv/httpd/logs
 
 rm -rf /usr/local/apache2/htdocs/
 ln -s /srv/httpd/htdocs/ /usr/local/apache2/htdocs
