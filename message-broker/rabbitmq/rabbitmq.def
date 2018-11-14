@@ -14,14 +14,15 @@ From: alpine:3.8
   RABBITMQ_ERLANG_COOKIE=/var/lib/rabbitmq
   HOME=/var/lib/rabbitmq
   PYTHON_VERSION=3.7.1
+  GPG_KEY=0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
 
   #Exporting environment variables
-  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE PYTHON_VERSION
+  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE PYTHON_VERSION GPG_KEY
 
 %help
 
   #Description of the container
-	Singularity container with RabbitMQ message broker for Alpine 3.8.
+	Singularity container with RabbitMQ message broker for Alpine 3.8. The example depends on Python 3.7.1.
 
 %post
 
@@ -36,8 +37,9 @@ From: alpine:3.8
   HOME=/var/lib/rabbitmq
   RABBITMQ_ERLANG_COOKIE=/var/lib/rabbitmq
   PYTHON_VERSION=3.7.1
+  GPG_KEY=0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
 
-  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE PYTHON_VERSION
+  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE PYTHON_VERSION GPG_KEY
 
   #Installing dependencies
   apk add ca-certificates libressl wget xz gnupg git
@@ -81,12 +83,18 @@ From: alpine:3.8
   apk add bzip2-dev coreutils dpkg-dev dpkg expat-dev findutils gcc gdbm-dev libc-dev libffi-dev libnsl-dev libressl-dev libtirpc-dev linux-headers make ncurses-dev pax-utils readline-dev sqlite-dev tcl-dev tk tk-dev util-linux-dev xz-dev zlib-dev
 
   cd /usr/src/python
+    ./configure
   make
   make install
 
   python3 --version
+  python3 -m ensurepip
+  pip3 install --upgrade pip setuptools
+  if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
+  if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
+  pip install pika
 
-%runscript
+%startscript
 
   # Start the server instance by default on localhost:5672 on node rabbit@root
   rabbitmq-server
