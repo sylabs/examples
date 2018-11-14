@@ -38,8 +38,8 @@ After this, we will need the next folders inside  `~/rabbitmq`:
 
 ```
 $ mkdir -p ~/rabbitmq/var
-$ mkdir -p ~/rabbitmq/var/rabbitmq
 $ mkdir -p ~/rabbitmq/var/{lib,log}
+$ mkdir -p ~/rabbitmq/var/lib/rabbitmq
 ```
 
 Then, please do make sure you have the following directory structure before following the example:
