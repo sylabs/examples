@@ -115,7 +115,60 @@ $ cd ~/rabbitmq
 $ sudo singularity build rabbitmq.sif rabbitmq.def
 ```
 
-This will generate a container called `rabbitmq.sif`. From here you will just need to run the example by:
+If you do not own root permissions you can always build your RabbitMQ Singularity container with the help of our [remote builder](https://cloud.sylabs.io/builder) like so:
+
+```
+$ singularity build --remote rabbitmq.sif rabbitmq.def
+```
+
+If this is the first time using the Remote Builder, use the following [instructions](https://cloud.sylabs.io/auth) to create an identification token. Your container will be built on the Remote Builder and all standard out
+and standard err will be directed back to your terminal. When finished, the
+container will be automatically downloaded to your local machine.
+ If you do not have Singularity installed on your machine, or you are in a non-Linux environment, you can also make use of the remote builder. For this, you should sign into the Sylabs Cloud and compose your definition files directly in the main window from  [Remote Builder](https://cloud.sylabs.io/builder) page. You can also drag and drop text files there. The container you build will appear under your username in the `remote-builds` collection. After this, you can download your container with the `pull` command explained below.
+ You can also pull the container from our library like so:
+
+```
+$ singularity pull library://sylabs/examples/rabbitmq:latest
+```
+
+Then rename the container as it follows:
+
+```
+$ mv rabbitmq_latest.sif rabbitmq.sif
+```
+
+This will generate a container called `rabbitmq.sif`.
+
+#### Verifying my RabbitMQ Singularity container:
+
+The `verify` command allows you to verify that the container has been signed using a `PGP` key. Please remind that you should first obtain an access token from the Sylabs Cloud to make use of this feature.  Follow the steps below to generate a valid access token:
+   1. Go to : https://cloud.sylabs.io/
+  2. Click “Sign in to Sylabs” and follow the sign in steps.
+  3. Click on your login id (same and updated button as the Sign in one).
+  4. Select “Access Tokens” from the drop down menu.
+  5. Click the “Manage my API tokens” button from the “Account Management” page.
+  6. Click “Create”.  
+  7. Click “Copy token to Clipboard” from the “New API Token” page.
+  8. Paste the token string into your ~/.singularity/sylabs-token file.
+ Now you can verify containers that you pull from the library, ensuring they are bit-for-bit reproductions of the original
+image.
+ ```
+$ singularity search rabbitmq
+ No collections found for 'rabbitmq'
+ Found 1 containers for 'rabbitmq'
+	library://sylabs/examples/rabbitmq
+		Tags: latest
+ ```
+
+And you can also pull this container as mentioned before through the `pull` command like so:
+
+```
+$ singularity pull rabbitmq.sif library://sylabs/examples/rabbitmq
+```
+
+#### Start an instance of your RabbitMQ Singularity container:
+
+From here you will just need to run the example by:
 
 ```
 $ sudo singularity instance start --bind ~/rabbitmq/var/lib:/var/lib,~/rabbitmq/var/lib/rabbitmq:/var/lib/rabbitmq,~/rabbitmq/var/log:/var/log rabbitmq.sif
