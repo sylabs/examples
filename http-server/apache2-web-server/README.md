@@ -105,9 +105,9 @@ Now our directory map should look like this:
 
 ```
 ~/httpd/
- |-- htdocs/
- |   `-- index.html
- `-- logs/
+ |-- httpd/
+ |   `-- htdocs/index.html
+ |   `-- logs/
 ```
 
 <br>
