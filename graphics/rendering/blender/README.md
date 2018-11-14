@@ -2,7 +2,7 @@
 
 Blender is a free and open source software used for editing and rendering.
 
-In this example, we will install Blender in a [Ubuntu container](https://cloud.sylabs.io/library/library/default/ubuntu).
+In this example, we will install Blender in a [Ubuntu container 16.04](https://cloud.sylabs.io/library/library/default/ubuntu).
 
 <br>
 
@@ -13,30 +13,35 @@ In this example, we will install Blender in a [Ubuntu container](https://cloud.s
 
 <br>
 
-### To start, Make the working directory:
+## To start, Make the working directory:
 
 ```
 $ mkdir ~/blender
 $ cd ~/blender/
 ```
 
+We will run this example in this directory, not necessary but its cleaner.
+
 <br>
 
-Then, pull the container from the library:
+### Then, pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/blender.sif:latest
+$ singularity pull blender.sif library://sylabs/examples/blender:latest
 ```
 
 If your building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
 
 <br>
 
-Now, rename the container you just pulled:
+### Verify the container: (Optional)
 
 ```
-$ mv blender.sif_latest.sif blender.sif
+$ singularity verify blender.sif
+nothing nothing
+        nothing
 ```
+
 
 <br>
 
