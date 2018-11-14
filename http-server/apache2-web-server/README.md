@@ -28,17 +28,9 @@ $ cd ~/httpd/
 Then, pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/httpd:latest
+$ singularity pull httpd.sif library://sylabs/examples/httpd:latest
 ```
 If you're running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-container-from-a-definition-file) or scroll down for instructions.
-
-<br>
-
-Now, rename the container you just pulled:
-
-```
-$ mv httpd_latest.sif httpd.sif
-```
 
 <br>
 
