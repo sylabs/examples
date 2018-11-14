@@ -3,6 +3,7 @@ From: alpine:3.8
 
 %environment
 
+  #Setting up environment variables
   RABBITMQ_LOGS=-
   RABBITMQ_SASL_LOGS=-
   RABBITMQ_HOME=/opt/rabbitmq
@@ -12,16 +13,19 @@ From: alpine:3.8
   RABBITMQ_GITHUB_TAG=v3.7.8-rc.4
   RABBITMQ_ERLANG_COOKIE=/var/lib/rabbitmq
   HOME=/var/lib/rabbitmq
+  PYTHON_VERSION=3.7.1
 
-  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE
+  #Exporting environment variables
+  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE PYTHON_VERSION
 
 %help
 
+  #Description of the container
 	Singularity container with RabbitMQ message broker for Alpine 3.8.
 
 %post
 
-  #Exporting all this stuff because on the env it is done later...
+  #Exporting variables needed
   RABBITMQ_LOGS=-
   RABBITMQ_SASL_LOGS=-
   RABBITMQ_HOME=/opt/rabbitmq
@@ -31,9 +35,11 @@ From: alpine:3.8
   RABBITMQ_GITHUB_TAG=v3.7.8
   HOME=/var/lib/rabbitmq
   RABBITMQ_ERLANG_COOKIE=/var/lib/rabbitmq
+  PYTHON_VERSION=3.7.1
 
-  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE
+  export RABBITMQ_LOGS RABBITMQ_SASL_LOGS RABBITMQ_HOME PATH RABBITMQ_GITHUB_TAG HOME RABBITMQ_ERLANG_COOKIE PYTHON_VERSION
 
+  #Installing dependencies
   apk add ca-certificates libressl wget xz gnupg git
   apk add procps erlang-asn1 erlang-hipe erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang erlang-os-mon erlang-os-mon erlang-public-key erlang-sasl erlang-ssl erlang-syntax-tools erlang-xmerl
 
@@ -51,7 +57,7 @@ From: alpine:3.8
 	tar --extract --verbose --file rabbitmq-server.tar.xz --directory "$RABBITMQ_HOME" --strip-components 1
 	rm -f rabbitmq-server.tar.xz*
 
-# update SYS_PREFIX (first making sure it's set to what we expect it to be)
+  #Update SYS_PREFIX
 	grep -qE '^SYS_PREFIX=\$\{RABBITMQ_HOME\}$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
 	sed -ri 's!^(SYS_PREFIX=).*$!\1!g' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
 	grep -qE '^SYS_PREFIX=$' "$RABBITMQ_HOME/sbin/rabbitmq-defaults"
@@ -60,7 +66,28 @@ From: alpine:3.8
 	chown -R root:root /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
   chmod -R 777 /var/lib/rabbitmq /etc/rabbitmq /var/log/rabbitmq /tmp/rabbitmq-ssl
 
-%startscript
+  #Installing here the dependencies correspondant to the example with Pika Python
+  wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz"
+	wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc"
+	export GNUPGHOME="$(mktemp -d)"
+	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"
+	gpg --batch --verify python.tar.xz.asc python.tar.xz
+	{ command -v gpgconf > /dev/null && gpgconf --kill all || :; }
+	rm -rf "$GNUPGHOME" python.tar.xz.asc
+	mkdir -p /usr/src/python
+	tar -xJC /usr/src/python --strip-components=1 -f python.tar.xz
+	rm python.tar.xz
 
-  # Start the server instance by default on localhost:6379
+  apk add bzip2-dev coreutils dpkg-dev dpkg expat-dev findutils gcc gdbm-dev libc-dev libffi-dev libnsl-dev libressl-dev libtirpc-dev linux-headers make ncurses-dev pax-utils readline-dev sqlite-dev tcl-dev tk tk-dev util-linux-dev xz-dev zlib-dev
+
+  cd /usr/src/python
+  make
+  make install
+
+  python3 --version
+
+%runscript
+
+  # Start the server instance by default on localhost:5672 on node rabbit@root
   rabbitmq-server
+  rabbitmqctl status
