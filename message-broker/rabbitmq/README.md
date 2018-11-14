@@ -28,7 +28,7 @@ After this, on the `%startscript` section, whenever a container instance is star
 
 #### Setting up the environment
 
-To run this example, we will work on a folder called `rabbitmq` located at the home directory.You can create it with the next command like so:
+To run this example, we will work on a folder called `rabbitmq` located at the home directory. You can create it with the next command like so:
 
 ```
 $ mkdir ~/rabbitmq
@@ -48,7 +48,7 @@ Then, please do make sure you have the following directory structure before foll
  ~/rabbitmq
         |---var
              |--lib
-                |--rabbitmq
+             |    |--rabbitmq
              |--log
 ```
 
@@ -121,10 +121,15 @@ If you do not own root permissions you can always build your RabbitMQ Singularit
 $ singularity build --remote rabbitmq.sif rabbitmq.def
 ```
 
-If this is the first time using the Remote Builder, use the following [instructions](https://cloud.sylabs.io/auth) to create an identification token. Your container will be built on the Remote Builder and all standard out
+If this is the first time using the Remote Builder, use the following [instructions](https://cloud.sylabs.io/auth) to create an identification token.
+
+Your container will be built on the Remote Builder and all standard out
 and standard err will be directed back to your terminal. When finished, the
 container will be automatically downloaded to your local machine.
- If you do not have Singularity installed on your machine, or you are in a non-Linux environment, you can also make use of the remote builder. For this, you should sign into the Sylabs Cloud and compose your definition files directly in the main window from  [Remote Builder](https://cloud.sylabs.io/builder) page. You can also drag and drop text files there. The container you build will appear under your username in the `remote-builds` collection. After this, you can download your container with the `pull` command explained below.
+
+ If you do not have Singularity installed on your machine, or you are in a non-Linux environment, you can also make use of the remote builder. For this, you should sign into the Sylabs Cloud and compose your definition files directly in the main window from  [Remote Builder](https://cloud.sylabs.io/builder) page. You can also drag and drop text files there.
+
+ The container you build will appear under your username in the `remote-builds` collection. After this, you can download your container with the `pull` command explained below.
  You can also pull the container from our library like so:
 
 ```
