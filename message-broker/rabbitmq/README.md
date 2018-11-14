@@ -1,4 +1,4 @@
-### RabbitMQ
+## RabbitMQ
 
 RabbitMQ is a message broker that supports multiple messaging protocols.
 
