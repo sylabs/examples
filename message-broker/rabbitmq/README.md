@@ -10,9 +10,9 @@ This container also includes the installation of Python 3.7.1 to follow the exam
 
 To run this example you will need:
 
-	- Singularity, which you can download and install from [here](https://github.com/sylabs/singularity)
-	- A text editor (e.g. `vim` or `nano`)
-	- Root access
+ - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity)
+ - A text editor (e.g. `vim` or `nano`)
+ - Root access
 
 #### Sections in the definition file:
 
