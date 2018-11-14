@@ -1,6 +1,6 @@
 # HTTP Server
 
-In this example, we will run a simple Apache Web server in a Singularity Container.
+In this example, we will make a simple Apache Web server on port 8080, running in a Singularity Container.
 
 <br>
 
