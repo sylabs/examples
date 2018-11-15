@@ -26,20 +26,19 @@ In the `%post` section, the needed dependencies are installed and also the expor
 
 After this, on the `%startscript` section, whenever a container instance is started, the server is started and the status is printed on the output of the console. By default, the server will start listening on node `localhost` on port `5672`.
 
-#### Setting up the environment
+#### Setting up the environment:
 
 To run this example, we will work on a folder called `rabbitmq` located at the home directory. You can create it with the next command like so:
 
 ```
 $ mkdir ~/rabbitmq
+$ cd ~/rabbitmq
 ```
 
 After this, we will need the next folders inside  `~/rabbitmq`:
 
 ```
-$ mkdir -p ~/rabbitmq/var
-$ mkdir -p ~/rabbitmq/var/{lib,log}
-$ mkdir -p ~/rabbitmq/var/lib/rabbitmq
+$ mkdir -p ~/rabbitmq/var/{lib/rabbitmq,log}
 ```
 
 Then, please do make sure you have the following directory structure before following the example:
@@ -132,15 +131,9 @@ container will be automatically downloaded to your local machine.
  The container you build will appear under your username in the `remote-builds` collection. After this, you can download your container with the `pull` command explained below.
  You can also pull the container from our library like so:
 
-```
-$ singularity pull library://sylabs/examples/rabbitmq:latest
-```
-
-Then rename the container as it follows:
-
-```
-$ mv rabbitmq_latest.sif rabbitmq.sif
-```
+ ```
+ $ singularity pull rabbitmq.sif library://sylabs/examples/rabbitmq
+ ```
 
 This will generate a container called `rabbitmq.sif`.
 
@@ -165,11 +158,6 @@ $ singularity search rabbitmq
 		Tags: latest
  ```
 
-And you can also pull this container as mentioned before through the `pull` command like so:
-
-```
-$ singularity pull rabbitmq.sif library://sylabs/examples/rabbitmq
-```
 
 #### Start an instance of your RabbitMQ Singularity container:
 
@@ -207,7 +195,7 @@ On the image, a producer sends messages to the "hello" queue, the consumer then 
 
 RabbitMQ speaks `AMQP 0.9.1` which is an open, general-purpose protocol for messaging. There are a number of clients for RabbitMQ in many different languages. In this tutorial we will use Pika 0.11.0, which is the Python client recommended by the RabbitMQ team. It is already installed in our Singularity container.
 
-#### Explanation of the send.py program
+#### Explanation of the send.py program:
 
 On our example. we will use the program `send.py` we created to send a single message saying "Hello World from RabbitMQ on a Singularity container!". We will go through the code of `send.py` we created before:
 
@@ -248,7 +236,7 @@ Before exiting, we will need to make sure that the network buffers were flushed 
 connection.close()
 ```
 
-#### Explanation of the receive.py program
+#### Explanation of the receive.py program:
 
 The second program we created will be in charge of receiving the message that we sent using `send.py`. For this, we will again need to connect to the RabbitMQ server, then we will check again that the location of queue "hello" exists, so in practice these two instructions are pretty much the same, what changes is the following part on the code:
 
@@ -276,7 +264,7 @@ channel.start_consuming()
 ```
 
 
-#### Running the example
+#### Running the example:
 
 To run the example, at this point you should have one console running the instance of the RabbitMQ server, open another console, shell and bind into the container and run the `receive.py` program like so:
 
