@@ -88,7 +88,7 @@ $ singularity run --nv blender.sif my_scene.blend run/output 5
 
 <br>
 
-The above examples are all using the `–nv` option, for bringing into the container the nVidia libraries from the host.
+The above examples are all using the `–-nv` option, for bringing into the container the nVidia libraries from the host.
 
 
 <br>
