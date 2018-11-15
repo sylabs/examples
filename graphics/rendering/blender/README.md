@@ -30,7 +30,7 @@ We will run this example in the `~/blender/` directory, not necessary but its cl
 $ singularity pull blender.sif library://sylabs/examples/blender:latest
 ```
 
-If your building the container from a recipe, click [here](#building-the-contianer-from-a-recipe) or scroll down.
+If your building the container from a recipe, click [here](#building-the-contianer-from-a-definition-file) or scroll down.
 
 <br>
 
@@ -95,7 +95,7 @@ The above examples are all using the `–-nv` option, for bringing into the cont
 <br>
 <br>
 
-### Building the contianer from a recipe:
+## Building the contianer from a definition file:
 
 To build the container from a recipe, you will need root access, and the recipe file.
 
