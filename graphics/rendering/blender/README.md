@@ -99,7 +99,7 @@ The above examples are all using the `–-nv` option, for bringing into the cont
 
 To build the container from a recipe, you will need root access, and the recipe file.
 
-First download the definition file:
+First, download the definition file:
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/graphics/rendering/blender/blender.def
