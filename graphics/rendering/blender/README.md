@@ -46,7 +46,7 @@ Data integrity checked, authentic and signed by:
 
 <br>
 
-### Running the container:
+## Running the container:
 
 Now, you can run the following to render .blend (blender scene) files.<br>
 Make sure you have your [blender file](https://www.blender.org/download/demo-files/).
@@ -113,7 +113,7 @@ Then, build the container:
 $ sudo singularity build blender.sif blender.def
 ```
 
-Now you should have your container (`blender.sif`) and you don't need to download it.
+Now you can [run the container](#running-the-container).
 
 
 <br>
