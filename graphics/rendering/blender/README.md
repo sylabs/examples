@@ -48,7 +48,7 @@ Data integrity checked, authentic and signed by:
 
 ## Running the container:
 
-Now, you can run the following to render .blend (blender scene) files.<br>
+Now, you can run the following to render `.blend` (blender scene) files.<br>
 Make sure you have your [blender file](https://www.blender.org/download/demo-files/).
 
 ```
