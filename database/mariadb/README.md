@@ -6,7 +6,7 @@ In this example, we will run a simple database server.
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access.
+ - A access token form [here](https://cloud.sylabs.io/auth), or root access.
  - mySQL, installed by `sudo apt-get install mysql-server`.
  
 <br>
@@ -55,11 +55,23 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/database/mariadb
 
 <br>
 
+**REMEMBER** to change `<YOUR_USERNAME>` to your username.
+
+<br>
+
 To build the container, run:
 
 ```
 $ sudo singularity build mariadb.sif mariadb.def
 ```
+
+Or use remote builder:
+
+```
+$ singularity build --remote mariadb.sif mariadb.def
+```
+
+You don't need root access to use remote builder, but you do need a token, click [here](https://cloud.sylabs.io/auth) for more information.
 
 <br>
 
@@ -263,4 +275,7 @@ will stop `mariadb` instance.
 
 
 <br>
+
+___
+
 <br>
