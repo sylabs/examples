@@ -20,7 +20,7 @@ $ mkdir ~/blender
 $ cd ~/blender/
 ```
 
-We will run this example in this directory, not necessary but its cleaner.
+We will run this example in the `~/blender/` directory, not necessary but its cleaner this way.
 
 <br>
 
