@@ -38,8 +38,9 @@ If your building the container from a recipe, click [here](#building-the-contian
 
 ```
 $ singularity verify blender.sif
-nothing nothing
-        nothing
+Verifying image: blender.sif
+Data integrity checked, authentic and signed by:
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 
