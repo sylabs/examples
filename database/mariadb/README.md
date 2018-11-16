@@ -1,4 +1,4 @@
-## MariaDB
+# MariaDB
 
 In this example, we will run a simple database server.
 
