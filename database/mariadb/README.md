@@ -55,7 +55,12 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/database/mariadb
 
 <br>
 
-**REMEMBER** to change `<YOUR_USERNAME>` to your username.
+**REMEMBER** to change `<YOUR_USERNAME>` to your username, otherwise you will get this error when `> mysql_install_db`:
+
+```
+chown: invalid user: '<YOUR_USER_NAME>'
+Cannot change ownership of the database directories to the '<YOUR_USER_NAME>'
+```
 
 <br>
 
