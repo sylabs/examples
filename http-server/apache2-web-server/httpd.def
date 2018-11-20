@@ -18,6 +18,7 @@ usage:
   $ singularity instance stop httpd
 
 %runscript
+# print help menu
 cat /.singularity.d/runscript.help
 
 %post
