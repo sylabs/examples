@@ -1,0 +1,16 @@
+Bootstrap:library
+From: ubuntu:18.04
+
+%help
+
+	Singularity container running Memcached v1.5.12 for Ubuntu 18.04
+
+%post
+
+  apt-get update
+  apt-get install -y memcached telnet
+
+%startscript
+
+  #Listen on TCP port 11211 and UDP port 11111 as a daemon process
+  memcached -p 11211 -U 11111 -u root -d
