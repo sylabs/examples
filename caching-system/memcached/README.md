@@ -1,4 +1,4 @@
-## Memcached
+# Memcached
 
 Memcached is a free and open source, high performance, distributed memory object caching system intended to be used to speed-up dynamic web applications by alleviating database load.
 
@@ -79,7 +79,7 @@ This will generate a container called `memcached.sif`.
 #### Verifying my Memcached Singularity container:
 
 The `verify` command allows you to verify that the container has been signed using a `PGP` key. Please remind that you should first obtain an access token from the Sylabs Cloud to make use of this feature.  Follow the steps below to generate a valid access token:
-   1. Go to : https://cloud.sylabs.io/
+  1. Go to : https://cloud.sylabs.io/
   2. Click “Sign in to Sylabs” and follow the sign in steps.
   3. Click on your login id (same and updated button as the Sign in one).
   4. Select “Access Tokens” from the drop down menu.

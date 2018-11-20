@@ -7,10 +7,10 @@ From: ubuntu:18.04
 
 %post
 
-  apt-get update
+  apt-get -y update
   apt-get install -y memcached telnet
 
 %startscript
 
-  #Listen on TCP port 11211 and UDP port 11111 as a daemon process
+  # Listen on TCP port 11211 and UDP port 11111 as a daemon process
   memcached -p 11211 -U 11111 -u root -d
