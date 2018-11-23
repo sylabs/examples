@@ -1,0 +1,89 @@
+Bootstrap: library
+From: ubuntu:18.04
+
+%runscript
+
+install_rbenv() {
+    echo "installing rbenv..."
+    if [ -d "${HOME}/.rbenv" ]; then
+        echo "rbenv already installed on your system"
+        return 1
+    fi
+    git clone https://github.com/rbenv/rbenv.git ${HOME}/.rbenv
+    cd ${HOME}/.rbenv && src/configure && make -C src
+    cd
+
+    echo "installing ruby-build..."
+    mkdir -p ${HOME}/.rbenv/plugins
+    git clone https://github.com/rbenv/ruby-build.git ${HOME}/.rbenv/plugins/ruby-build
+    echo "done."
+    return 0
+}
+
+
+if [ ! -d "${HOME}/.rbenv" ]; then
+    echo "rbenv is not installed on you system."
+    echo "to install rbenv, do:"
+    echo "    $ ./rbenv.sif install-rbenv"
+    return 1
+fi
+
+if [ -z "$1" ]; then
+    cat /.singularity.d/runscript.help
+    return 0
+fi
+
+if [ "$1" = "install-rbenv" ]; then
+    install_rbenv
+elif [ "$1" = "--help" ] || [ "$1" = "--run-help" ]; then
+    cat /.singularity.d/runscript.help
+    return 0
+fi
+
+"$@"
+
+return 0
+
+%help
+Rbenv running in a Singularity Container
+
+USAGE:
+    ./rbenv.sif [command]... [options]...
+
+CONTAINER COMMANDS:
+    install-rbenv       : install rbenv on you system
+
+CONTAINER OPTIONS:
+    --help, --run-help  : print container help
+
+EXAMPLES:
+    install a ruby version, like 2.5.0:
+    $ ./rbenv.sif rbenv install 2.5.0
+    then make 2.5.0 the global version:
+    $ ./rbenv.sif rbenv global 2.5.0
+    check the global ruby version:
+    $ ./rbenv.sif rbenv global
+
+    difrant ways to checking the ruby version:
+    $ ./rbenv.sif ruby --version
+    $ ./rbenv.sif rbenv global
+
+for more info, visit: https://github.com/sylabs/examples/tree/master/lang/ruby/rbenv
+
+%environment
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=${PATH}:${HOME}/.rbenv/shims
+export LANG=C
+
+%post
+apt-get -y update
+apt-get -y install git
+apt-get -y install curl
+apt-get -y install wget
+apt-get -y install build-essential
+apt-get -y install libssl-dev libreadline-dev zlib1g-dev
+
+
+#
+# end def file
+#
