@@ -7,6 +7,7 @@ In this example, we will make a simple Apache Web server on port 8080, running i
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
+ - A access token form [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
 
 
