@@ -37,10 +37,40 @@ Verifying the container:
 $ singularity verify ronn.sif
 Verifying image: ronn.sif
 Data integrity checked, authentic and signed by:
-    Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 <br>
+
+### Adding the container to your PATH:
+
+We are going to do this without any root access, so we will install `ronn.sif` to `~/.local/bin/`:<br>
+You can skip this step if you already have `${HOME}/.local/bin/`.
+
+First, make the `${HOME}/.local/bin/`:
+
+```
+$ mkdir -p ${HOME}/.local/bin/
+```
+
+Then Add it to your PATH:
+
+```
+$ echo 'export PATH=${PATH}:${HOME}/.local/bin/' >> ~/.bashrc
+$ source ~/.bashrc
+```
+
+<br>
+
+Finaly, add `ronn.sif` to `~/.local/bin/`
+
+```
+$ mv ronn.sif ~/.local/bin/
+```
+
+<br>
+
+## Usage:
 
 
 
