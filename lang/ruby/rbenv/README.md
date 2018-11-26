@@ -70,31 +70,31 @@ This will install Rbenv on your system, now you are ready to use it.
 
 ### Installing a Ruby version:
 
-To install Ruby, (2.5.0 for this example) run this command:
+To install Ruby, (2.5.3 for this example) run this command:
 
 ```
-$ ./rbenv.sif rbenv install 2.5.0
+$ ./rbenv.sif rbenv install 2.5.3
 ```
 
 Or you can `shell` into the container and install it:
 
 ```
 $ singularity shell rbenv.sif
-> rbenv install 2.5.0
+> rbenv install 2.5.3
 ```
 
 The install prossess could take more then 20 minutes, (especially for a raspberry pi).
 
-After the install fisished, we need to make 2.5.0 the global Ruby version:
+After the install fisished, we need to make 2.5.3 the global Ruby version:
 
 ```
-$ ./rbenv.sif rbenv global 2.5.0
+$ ./rbenv.sif rbenv global 2.5.3
 ```
 
 Or if your shelling into the container:
 
 ```
-> rbenv global 2.5.0
+> rbenv global 2.5.3
 ```
 
 Now you can test the Ruby version:
@@ -112,7 +112,7 @@ Or if your in the container:
 And the output should be somthing like:
 
 ```
-ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
+ruby 2.5.3p105 (2018-10-18 revision 65156) [x86_64-linux]
 ```
 
 <br>
