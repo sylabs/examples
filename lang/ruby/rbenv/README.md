@@ -144,6 +144,7 @@ Or for remote builder:
 $ singularity build --remote rbenv.sif rbenv.def
 ```
 
+Now you should have your container (`rbenv.sif`) and its ready to be used.
 
 <br>
 
