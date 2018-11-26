@@ -72,6 +72,30 @@ $ mv ronn.sif ~/.local/bin/
 
 ## Usage:
 
+For this example, let make a manpage for this container.
+
+First, download the markdown file:
+
+```
+wget https://raw.githubusercontent.com/WestleyK/examples/WestleyK-ronn/file-generating/ronn/ronn.sif.md
+```
+
+<br>
+
+Then, generate the manpage:
+
+```
+$ ronn.sif --man ronn.sif.md
+```
+
+We use the `--man` option to only generate the manpage, and not a `.html`, and `.gzip` file.<br>
+So if you just want a `.gzip` file, use the `--gzip` option, same for `--html`, and `--man`.
+
+Viewing the manpage:
+
+```
+$ man ./ronn.sif.1
+```
 
 
 
