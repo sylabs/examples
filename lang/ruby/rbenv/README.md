@@ -117,7 +117,7 @@ ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
 
 <br>
 
-For more info Rbenv, click [here](https://github.com/rbenv/rbenv).
+For more info Rbenv, check out the repo [here](https://github.com/rbenv/rbenv).
 
 <br>
 
@@ -129,13 +129,19 @@ If you have a [access token](https://cloud.sylabs.io/auth/tokens) you can use re
 First, download the definition file:
 
 ```
-$ wget fooooooo
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/ruby/rbenv/ruby.def
 ```
 
 Then, build the container:
 
 ```
+$ sudo singularity build rbenv.sif rbenv.def
+```
 
+Or for remote builder:
+
+```
+$ singularity build --remote rbenv.sif rbenv.def
 ```
 
 
