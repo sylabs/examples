@@ -2,13 +2,12 @@
 
 Manage your Ruby version with Rbenv.
 
-For This example, we will install Rbenv
+For This example, we will install Rbenv on your system, and we will interact with it through the container.
 
 <br>
 
-#### What you need:
- - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
- 
+All you need for this example is Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
+
 <br>
 
 ____
