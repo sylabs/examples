@@ -25,7 +25,7 @@ if [ "$1" = "view" ] || [ "$1" = "view-file" ]; then
     # check if file is a directory
     if [ -d "$2" ]; then
         echo "$2: Is a directory"
-        return 1
+        return 2
     fi
     if [ "${2: -3}" = ".md" ] || [ "${2: -5}" = ".ronn"]; then
         echo "ronn.sif: INFO: makeing tmp file..."
@@ -74,7 +74,7 @@ check_args() {
         return
     else
         echo "${OPTION}: Option not found"
-        exit 1
+        exit 4
     fi
     return
 }
@@ -92,14 +92,17 @@ if [ -z "$MD_FILE" ]; then
     return 1
 fi
 if [ ! -e "$MD_FILE" ]; then
+    echo "FATAL ERROR: somthing VERY bad happend..."
+    echo "FATAL: variables failed to match"
+    echo "FATAL: 255"
     echo "$MD_FILE: No such file or directory"
-    return 1
+    return 255
 fi
 
 # check if file is a directory
 if [ -d "$MD_FILE" ]; then
     echo "$MD_FILE: Is a directory"
-    return 1
+    return 2
 fi
 
 # get the file name without the extention
@@ -109,7 +112,7 @@ elif [ "${MD_FILE: -5}" = ".ronn" ]; then
     FILE=` echo "$MD_FILE" | rev | cut -c6- | rev `
 else
     echo "${MD_FILE}: Unknown file extention"
-    return 1
+    return 2
 fi
 
 # the tmp file
@@ -247,9 +250,6 @@ OPTIONS:
 VARIABLES:
     o=, out=[string.1]      : specify a output file
 
-NOTE:
-    the markdown file must be the last argument
-
 COMMANDS:
     view, view-file [file]  : view a manpage file in the container
     ronn [ronn_command]     : execute a ronn command, eg --version, etc...
@@ -274,6 +274,13 @@ EXAMPLES:
     executing a ronn command in the container:
     $ ./ronn.sif ronn --version
 
+EXIT CODE:
+    0   - no error, oporation successful
+    1   - file does not exist, or already exist
+    2   - file is a directory, or unknown file extention
+    4   - option not found
+    255 - somthing very bad happend
+
 for more info/tutorial, visit: https://github.com/sylabs/examples
 EOF_HELP
 
@@ -285,7 +292,7 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.0.5
+    def fle version      : v1.0.6
     container location   : library://westleyk/commands/ronn
     ronn version:  v0.7.3
 
