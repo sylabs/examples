@@ -125,7 +125,6 @@ $ ronn.sif --man out=some-output-file.1 your_markdown_file.md
 
 <br>
 
-**Note:** the markdown file should always be last argument.
 
 <br>
 
