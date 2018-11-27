@@ -292,9 +292,9 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.0.8
+    def fle version      : v1.1.0
     container location   : library://westleyk/commands/ronn
-    ronn version:  v0.7.3
+    ronn version         : v0.7.3
 
 for more info/tutorial, visit: https://github.com/sylabs/examples
 EOF_INFO
