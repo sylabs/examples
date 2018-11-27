@@ -2,6 +2,10 @@
 
 Ronn (v0.7.3) running in a Alpine (3.8) container.
 
+Ronn is based off Ruby, and depending on your system, it could be easily installed.<br>
+But what if you don't have Ronn package for your system, or you don't have root access,<br>
+then heres a good example for a container use.
+
 <br>
 
 #### What you need:
