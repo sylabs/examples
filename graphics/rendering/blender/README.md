@@ -113,6 +113,14 @@ Then, build the container:
 $ sudo singularity build blender.sif blender.def
 ```
 
+<br>
+
+Or you can use remote builder: (you will need a [access token](https://cloud.sylabs.io/auth/tokens)).
+
+```
+$ singularity build --remote blender.sif blender.def
+```
+
 Now you can [run the container](#running-the-container).
 
 
