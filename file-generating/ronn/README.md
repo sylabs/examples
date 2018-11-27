@@ -30,7 +30,7 @@ $ singularity pull ronn.sif library://sylabs/examples/ronn:latest
 For `armv7l`: (`32bit`)
 
 ```
-$ singularity pull ronn.sif library://sylabs/examples/ronn32:latest
+$ singularity pull ronn.sif library://sylabs/examples/ronn-armv7l:latest
 ```
 
 <br>
