@@ -121,7 +121,7 @@ Now you should have your `your_markdown_file.1.gzip`, and `your_markdown_file.1.
 To specify the output file, use the `out=` function:
 
 ```
-$ ronn.sif --man out=some-output-file.1 your_markdown_file.md
+$ ronn.sif --man out=some_output_file.1 your_markdown_file.md
 ```
 
 <br>
