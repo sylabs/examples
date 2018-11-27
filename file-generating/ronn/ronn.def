@@ -1,0 +1,308 @@
+Bootstrap: library
+From: alpine:3.8
+
+%help
+for container help:
+  $ ./ronn.sif --run-help
+
+for container info:
+  $ ./ronn.sif --run-info
+
+%runscript
+if [ -z "$1" ] || [ "$1" = "--help" ] || [ "$1" = "--run-help" ]; then
+    cat /container/runscript.help
+    return 0
+fi
+if [ "$1" = "--info" ] || [ "$1" = "--run-info" ]; then
+    cat /container/runscript.info
+    return 0
+fi
+if [ "$1" = "view" ] || [ "$1" = "view-file" ]; then
+    if [ ! -e "$2" ]; then
+        echo "$2: No such file or directory"
+        return 1
+    fi
+    # check if file is a directory
+    if [ -d "$2" ]; then
+        echo "$2: Is a directory"
+        return 1
+    fi
+    if [ "${2: -3}" = ".md" ] || [ "${2: -5}" = ".ronn"]; then
+        echo "ronn.sif: INFO: makeing tmp file..."
+        TMP_FILE="$2.tmp.1.ronn"
+        cat "$2" > "$TMP_FILE"
+        ronn -r "$TMP_FILE" >/dev/null 2>&1
+        rm -f "$TMP_FILE"
+        FILE=` echo "$2" | cut -f 1 -d '.' `
+        mandoc "./$FILE.1"
+        rm -f "$FILE.1"
+        return 0
+    fi
+    mandoc "./$2"
+    return 0
+elif [ "$1" = "ronn" ]; then
+    comd=` echo "$@" | cut -d ' ' -f2- `
+    ronn "$comd"
+    return 0
+fi
+
+IS_OUT="false"
+
+check_args() {
+    if [ "$OPTION" = "-m" ] || [ "$OPTION" = "--man" ]; then
+        ONLY_MAN="true"
+        return
+    elif [ "$OPTION" = "-g" ] || [ "$OPTION" = "--gzip" ]; then
+        ONLY_GZIP="true"
+        return
+    elif [ "$OPTION" = "-h" ] || [ "$OPTION" = "--html" ]; then
+        ONLY_HTML="true"
+        return
+    elif [ ! -z $(echo "$OPTION" | grep "o=") ]; then
+        OUT_FILE=`echo "$OPTION" | cut -c 3- `
+        IS_OUT="true"
+    elif  [ ! -z $(echo "$OPTION" | grep "out=") ]; then
+        OUT_FILE=`echo "$OPTION" | cut -c 5- `
+        IS_OUT="true"
+    else
+        echo "${OPTION}: Option not found"
+        exit 1
+    fi
+    return
+}
+
+# check if theres options
+
+if [ ! -z "$1" ]; then
+    MD_FILE="$1"
+    KEEP_ALL="true"
+fi
+if [ ! -z "$2" ]; then
+    MD_FILE="$2"
+    OPTION="$1"
+    check_args
+    KEEP_ALL="false"
+fi
+if [ ! -z "$3" ]; then
+    MD_FILE="$3"
+    OPTION="$2"
+    check_args
+    KEEP_ALL="false"
+fi
+if [ ! -z "$4" ]; then
+    MD_FILE="$4"
+    OPTION="$3"
+    check_args
+    KEEP_ALL="false"
+fi
+
+if [ ! -z "$5" ]; then
+    MD_FILE="$5"
+    OPTION="$4"
+    check_args
+    KEEP_ALL="false"
+fi
+
+# check if file exist
+if [ ! -e "$MD_FILE" ]; then
+    echo "$MD_FILE: No such file or directory"
+    return 1
+fi
+
+# check if file is a directory
+if [ -d "$MD_FILE" ]; then
+    echo "$MD_FILE: Is a directory"
+    return 1
+fi
+
+# get the file name without the extention
+if [ "${MD_FILE: -3}" = ".md" ]; then
+    FILE=` echo "$MD_FILE" | rev | cut -c4- | rev `
+elif [ "${MD_FILE: -5}" = ".ronn" ]; then
+    FILE=` echo "$MD_FILE" | rev | cut -c6- | rev `
+else
+    echo "${MD_FILE}: Unknown file extention"
+    return 2
+fi
+
+# the tmp file
+TMP_FILE="${FILE}.tmp.1.ronn"
+
+# check is TMP_FILE exist
+if [ -e "$TMP_FILE" ]; then
+    echo "${TMP_FILE}: Already exist"
+    return 1
+fi
+
+# make the TMP_FILE
+cat "$MD_FILE" > "$TMP_FILE"
+
+# check if manpage exist
+if [ -e "${FILE}.1" ]; then
+    echo "${FILE}.1: Aleady exist"
+    echo "Aborting"
+    rm -f "$TMP_FILE"
+    return 1
+fi
+
+# check if HTML file exist
+if [ -e "${FILE}.1.html" ]; then
+    echo "${FILE}.1.html: Already exist"
+    echo "Aborting"
+    rm -f "$TMP_FILE"
+    return 1
+fi
+
+# generate the manpage
+echo "gererating the manPage..."
+ronn "$TMP_FILE" >/dev/null 2>&1
+
+# rename the output files
+FILE_NAME=` echo "${TMP_FILE%%.*}"`
+
+if [ "$IS_OUT" = "true" ]; then
+    mv "${FILE_NAME}.1" "$OUT_FILE"
+    mv "${FILE_NAME}.1.html" "${OUT_FILE}.html"
+else
+    mv "${FILE_NAME}.1" "${FILE}.1"
+    mv "${FILE_NAME}.1.html" "${FILE}.1.html"
+fi
+
+# check if gzip file exist
+if [ -e "${FILE}.1.gz" ]; then
+    echo "${FILE}.1.gz: Aleady exist"
+    echo "Not creating gzip file"
+    rm -f "$TMP_FILE"
+    return 1
+fi
+
+# check and gzip the file
+if [ "$IS_OUT" = "true" ]; then
+    if [ -e "${FILE_OUT}.gz" ]; then
+        echo "${FILE_OUT}.gz: Aleady exist"
+        echo "Not creating gzip file"
+        rm -f "$TMP_FILE"
+        return 1
+    fi
+    gzip -k "${OUT_FILE}"
+else
+    gzip -k "${FILE}.1"
+fi
+
+# remove the tmp file
+rm -f "$TMP_FILE"
+
+echo "Done."
+echo
+
+if [ "$IS_OUT" = "true" ]; then
+    FILE="$OUT_FILE"
+else
+    FILE="$FILE.1"
+fi
+
+# more argument prosesing
+if [ "$KEEP_ALL" = "true" ]; then
+    echo "manPage:     ${FILE}"
+    echo "gzip file:   ${FILE}.gz"
+    echo "html file:   ${FILE}.html"
+    return 0
+fi
+if [ "$ONLY_MAN" != "true" ]; then
+    rm -f "${FILE}"
+fi
+if [ "$ONLY_GZIP" != "true" ]; then
+    rm -f "${FILE}.gz"
+fi
+if [ "$ONLY_HTML" != "true" ]; then
+    rm -f "${FILE}.html"
+fi
+
+# what file exist for output message
+if [ "$ONLY_MAN" = "true" ]; then
+    echo "manPage:     ${FILE}"
+fi
+if [ "$ONLY_GZIP" = "true" ]; then
+    echo "gzip file:   ${FILE}.gz"
+fi
+if [ "$ONLY_HTML" = "true" ]; then
+    echo "html file:   ${FILE}.html"
+fi
+
+return 0
+
+%post
+# download tools
+apk update
+apk add ronn
+apk add gzip
+apk add man
+
+# our help and info will be stored here
+mkdir /container
+
+# make the help file
+echo "makeing the help file"
+cat << EOF_HELP > /container/runscript.help
+Ronn (v0.7.3) running in a Alpine (3.8) container
+
+USAGE:
+  ./ronn.sif [option]... [out=output_file.1] [your_markdown_or_ronn_file]
+  ./ronn.sif [command]
+
+OPTIONS:
+    --help, --run-help      : print container help
+    --info, --run-info      : print container info
+    -m, --man               : only generate manpage (*.1)
+    -g, --gzip              : only generate gzip file (*.1.gz)
+    -h, --html              : only generate html file (*.1.html)
+
+VARIABLES:
+    o=, out=[string.1]      : specify a output file
+
+COMMANDS:
+    view, view-file [file]  : view a manpage file in the container
+    ronn [ronn_command]     : execute a ronn command, eg --version, etc...
+
+EXAMPLES:
+    makeing a manpage:
+    $ ./ronn.sif manpage-test.md
+
+    generating only the manpage:
+    $ ./ronn.sif --man manpage-test.md
+
+    generating only manpage with a output file:
+    $ ./ronn.sif --man out=output-file.1 manpage-test.md
+
+    generating only the manpage and gzip file:
+    $ ./ronn.sif --man --gzip manpage-test.md
+
+    viewing a manpage: (can view a *.1, *.1.gz, or *.md file)
+    color/bold effects will not be shown :P
+    $ ./ronn.sif view manpage-test.1
+
+    executing a ronn command in the container:
+    $ ./ronn.sif ronn --version
+
+for more info/tutorial, visit: https://github.com/sylabs/examples
+EOF_HELP
+
+# make the info file
+echo "makeing the info file"
+cat << EOF_INFO > /container/runscript.info
+CONTAINER INFO
+    container type       : alpine
+    container version    : 3.8
+    built with           : singularity v3.0
+    built date           : $(date "+%B %d, %Y")
+    def fle version      : v1.0.2
+    container location   : library://westleyk/commands/ronn
+
+RONN INFO
+    ronn version:  v0.7.3
+
+EOF_INFO
+
+#
+# end def file
+#
