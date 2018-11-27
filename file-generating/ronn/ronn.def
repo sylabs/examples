@@ -64,9 +64,14 @@ check_args() {
     elif [ ! -z $(echo "$OPTION" | grep "o=") ]; then
         OUT_FILE=`echo "$OPTION" | cut -c 3- `
         IS_OUT="true"
+        return
     elif  [ ! -z $(echo "$OPTION" | grep "out=") ]; then
         OUT_FILE=`echo "$OPTION" | cut -c 5- `
         IS_OUT="true"
+        return
+    elif [ -e "$OPTION" ]; then
+        MD_FILE="$OPTION"
+        return
     else
         echo "${OPTION}: Option not found"
         exit 1
@@ -74,33 +79,18 @@ check_args() {
     return
 }
 
-# check if theres options
-if [ ! -z "$1" ]; then
-    MD_FILE="$1"
-    KEEP_ALL="true"
-fi
-if [ ! -z "$2" ]; then
-    MD_FILE="$2"
-    OPTION="$1"
+# prosses the arguments
+KEEP_ALL="true"
+
+for OPTION in "$@"; do
     check_args
-fi
-if [ ! -z "$3" ]; then
-    MD_FILE="$3"
-    OPTION="$2"
-    check_args
-fi
-if [ ! -z "$4" ]; then
-    MD_FILE="$4"
-    OPTION="$3"
-    check_args
-fi
-if [ ! -z "$5" ]; then
-    MD_FILE="$5"
-    OPTION="$4"
-    check_args
-fi
+done
 
 # check if file exist
+if [ -z "$MD_FILE" ]; then
+    echo "No file specified"
+    return 1
+fi
 if [ ! -e "$MD_FILE" ]; then
     echo "$MD_FILE: No such file or directory"
     return 1
@@ -295,7 +285,7 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.0.4
+    def fle version      : v1.0.5
     container location   : library://westleyk/commands/ronn
     ronn version:  v0.7.3
 
