@@ -101,7 +101,29 @@ Viewing the manpage:
 $ man ./ronn.sif.1
 ```
 
+<br>
 
+### More examples:
+
+Lets say you only want a `.gz`, and a `.html`, then run this:
+
+```
+$ ronn.sif --gzip --html your_markdown_file.md
+```
+
+Now you should have your `your_markdown_file.1.gzip`, and `your_markdown_file.1.html`.
+
+<br>
+
+### Specifying the output file:
+
+To specify the output file, use the `out=` function:
+
+```
+$ ronn.sif --man out=some-output-file.1 your_markdown_file.md
+```
+
+**Note:** the markdown file should always be last argument.
 
 <br>
 <br>
