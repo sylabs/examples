@@ -66,7 +66,7 @@ $ source ~/.bashrc
 
 <br>
 
-Finaly, add `ronn.sif` to `~/.local/bin/`
+Finaly, move `ronn.sif` to `~/.local/bin/`
 
 ```
 $ mv ronn.sif ~/.local/bin/
