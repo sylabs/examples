@@ -281,7 +281,7 @@ EXIT CODE:
     4   - option not found
     255 - somthing very bad happend
 
-for more info/tutorial, visit: https://github.com/sylabs/examples
+for more info/tutorial/bug report, visit: https://github.com/sylabs/examples
 EOF_HELP
 
 # make the info file
@@ -292,7 +292,7 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.0.6
+    def fle version      : v1.0.8
     container location   : library://westleyk/commands/ronn
     ronn version:  v0.7.3
 
