@@ -51,12 +51,15 @@ IS_OUT="false"
 check_args() {
     if [ "$OPTION" = "-m" ] || [ "$OPTION" = "--man" ]; then
         ONLY_MAN="true"
+        KEEP_ALL="false"
         return
     elif [ "$OPTION" = "-g" ] || [ "$OPTION" = "--gzip" ]; then
         ONLY_GZIP="true"
+        KEEP_ALL="false"
         return
     elif [ "$OPTION" = "-h" ] || [ "$OPTION" = "--html" ]; then
         ONLY_HTML="true"
+        KEEP_ALL="false"
         return
     elif [ ! -z $(echo "$OPTION" | grep "o=") ]; then
         OUT_FILE=`echo "$OPTION" | cut -c 3- `
@@ -72,7 +75,6 @@ check_args() {
 }
 
 # check if theres options
-
 if [ ! -z "$1" ]; then
     MD_FILE="$1"
     KEEP_ALL="true"
@@ -81,26 +83,21 @@ if [ ! -z "$2" ]; then
     MD_FILE="$2"
     OPTION="$1"
     check_args
-    KEEP_ALL="false"
 fi
 if [ ! -z "$3" ]; then
     MD_FILE="$3"
     OPTION="$2"
     check_args
-    KEEP_ALL="false"
 fi
 if [ ! -z "$4" ]; then
     MD_FILE="$4"
     OPTION="$3"
     check_args
-    KEEP_ALL="false"
 fi
-
 if [ ! -z "$5" ]; then
     MD_FILE="$5"
     OPTION="$4"
     check_args
-    KEEP_ALL="false"
 fi
 
 # check if file exist
@@ -122,7 +119,7 @@ elif [ "${MD_FILE: -5}" = ".ronn" ]; then
     FILE=` echo "$MD_FILE" | rev | cut -c6- | rev `
 else
     echo "${MD_FILE}: Unknown file extention"
-    return 2
+    return 1
 fi
 
 # the tmp file
@@ -137,7 +134,7 @@ fi
 # make the TMP_FILE
 cat "$MD_FILE" > "$TMP_FILE"
 
-# check if manpage exist
+# check if the manpage exist
 if [ -e "${FILE}.1" ]; then
     echo "${FILE}.1: Aleady exist"
     echo "Aborting"
@@ -145,7 +142,7 @@ if [ -e "${FILE}.1" ]; then
     return 1
 fi
 
-# check if HTML file exist
+# check if the HTML file exist
 if [ -e "${FILE}.1.html" ]; then
     echo "${FILE}.1.html: Already exist"
     echo "Aborting"
@@ -153,7 +150,7 @@ if [ -e "${FILE}.1.html" ]; then
     return 1
 fi
 
-# generate the manpage
+# generate the manpage/html
 echo "gererating the manPage..."
 ronn "$TMP_FILE" >/dev/null 2>&1
 
@@ -260,6 +257,9 @@ OPTIONS:
 VARIABLES:
     o=, out=[string.1]      : specify a output file
 
+NOTE:
+    the markdown file must be the last argument
+
 COMMANDS:
     view, view-file [file]  : view a manpage file in the container
     ronn [ronn_command]     : execute a ronn command, eg --version, etc...
@@ -295,12 +295,11 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.0.2
+    def fle version      : v1.0.4
     container location   : library://westleyk/commands/ronn
-
-RONN INFO
     ronn version:  v0.7.3
 
+for more info/tutorial, visit: https://github.com/sylabs/examples
 EOF_INFO
 
 #
