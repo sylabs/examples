@@ -1,9 +1,41 @@
 Bootstrap: docker
-From: httpd:latest
+From: httpd:2.4.37
+
+%help
+Apache2 web server running in a Singularity Container.
+For full tutorial, visit: https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server
+
+usage:
+
+  setup:
+  $ mkdir -p httpd/logs
+  $ touch httpd/index.html  # this is your html file.
+
+  starting the instance:
+  $ singularity instance start -B httpd/:/srv/httpd/ httpd.sif httpd
+
+  stoping the instance:
+  $ singularity instance stop httpd
+
+%runscript
+# print help menu
+cat /.singularity.d/runscript.help
 
 %post
-    # Change the port we are listening on to 8080 instead of 80
-    sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
+# Change the port we are listening on to 8080 instead of 80
+sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
+
+# to avoid a error message
+sed -ie "s/\#ServerName\ www.example.com:80/ServerName\ localhost/" /usr/local/apache2/conf/httpd.conf
+
+# replace the stock locations with symlinks to our bind point
+mkdir -p /srv/httpd/htdocs /srv/httpd/logs
+
+rm -rf /usr/local/apache2/htdocs/
+ln -s /srv/httpd/htdocs/ /usr/local/apache2/htdocs
+
+rm -rf /usr/local/apache2/logs
+ln -s /srv/httpd/logs/ /usr/local/apache2/logs
 
 %startscript
-    httpd
+httpd
