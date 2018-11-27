@@ -49,7 +49,8 @@ Data integrity checked, authentic and signed by:
 ### Adding the container to your PATH:
 
 We are going to do this without any root access, so we will install `ronn.sif` to `~/.local/bin/`:<br>
-You can skip this step if you already have `${HOME}/.local/bin/`.
+You can skip this step if you already have `${HOME}/.local/bin/`.<br>
+Of course you can always move it to `/usr/local/bin/`, but that requires root access.
 
 First, make the `${HOME}/.local/bin/`:
 
