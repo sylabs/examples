@@ -11,7 +11,7 @@ then heres a good example for a container use.
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim`, or `nano`.
- - A markdown test file, like [this one](https://foo).
+ - A markdown test file, like [this one](https://raw.githubusercontent.com/sylabs/examples/master/file-generating/ronn/manpage-test.md).
 
 
 ___
