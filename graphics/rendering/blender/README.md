@@ -2,7 +2,7 @@
 
 Blender is a free and open source software used for editing and rendering.
 
-In this example, we will run Blender in a [Ubuntu container 16.04](https://cloud.sylabs.io/library/library/default/ubuntu).
+In this example, we will install and run Blender in a [Ubuntu container 16.04](https://cloud.sylabs.io/library/library/default/ubuntu).
 
 <br>
 
