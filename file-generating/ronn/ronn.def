@@ -17,6 +17,10 @@ if [ "$1" = "--info" ] || [ "$1" = "--run-info" ]; then
     cat /container/runscript.info
     return 0
 fi
+if [ "$1" = "--ronn-licence" ]; then
+    cat /container/runscript.ronn.licence
+    return 0
+fi
 if [ "$1" = "view" ] || [ "$1" = "view-file" ]; then
     if [ ! -e "$2" ]; then
         echo "$2: No such file or directory"
@@ -255,6 +259,7 @@ USAGE:
 OPTIONS:
     --help, --run-help      : print container help
     --info, --run-info      : print container info
+    --ronn-licence          : view ronn licence
     -m, --man               : only generate manpage (*.1)
     -g, --gzip              : only generate gzip file (*.1.gz)
     -h, --html              : only generate html file (*.1.html)
@@ -305,12 +310,38 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.1.2
+    def fle version      : v1.1.3
     container location   : library://westleyk/commands/ronn
     ronn version         : v0.7.3
 
 for more info/tutorial, visit: https://github.com/sylabs/examples
 EOF_INFO
+
+# make the ronn licence
+echo "makeing ronn licence"
+cat << EOF_RONN_LICENCE > /container/runscript.ronn.licence
+       Copyright (C) 2009 Ryan Tomayko <tomayko.com/about>
+
+Permission  is  hereby granted, free of charge, to any person ob-
+taining a copy of  this  software  and  associated  documentation
+files  (the "Software"), to deal in the Software without restric-
+tion, including without limitation the rights to use, copy, modi-
+fy, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is  fur-
+nished to do so, subject to the following conditions:
+
+The  above  copyright  notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF  ANY  KIND,
+EXPRESS  OR  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE  AND  NONIN-
+FRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER  IN  AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  THE
+SOFTWARE.
+EOF_RONN_LICENCE
 
 #
 # end def file
