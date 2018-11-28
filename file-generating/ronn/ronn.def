@@ -42,8 +42,12 @@ if [ "$1" = "view" ] || [ "$1" = "view-file" ]; then
     return 0
 elif [ "$1" = "ronn" ]; then
     comd=` echo "$@" | cut -d ' ' -f2- `
-    ronn "$comd"
+    ronn $comd
     return 0
+elif [ "$1" = "system" ] || [ "$1" = "exec" ]; then
+    SYSTEM_COMMAND=` echo "$@" | cut -d ' ' -f2- `
+    $SYSTEM_COMMAND
+    return "$?"
 fi
 
 IS_OUT="false"
@@ -253,6 +257,7 @@ VARIABLES:
 COMMANDS:
     view, view-file [file]  : view a manpage file in the container
     ronn [ronn_command]     : execute a ronn command, eg --version, etc...
+    exec, system [command]  : execute a command in the container
 
 EXAMPLES:
     makeing a manpage:
@@ -292,7 +297,7 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.1.0
+    def fle version      : v1.1.1
     container location   : library://westleyk/commands/ronn
     ronn version         : v0.7.3
 
