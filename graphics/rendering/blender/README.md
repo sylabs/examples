@@ -30,7 +30,7 @@ We will run this example in the `~/blender/` directory, not necessary but its cl
 $ singularity pull blender.sif library://sylabs/examples/blender:latest
 ```
 
-If your building the container from a recipe, click [here](#building-the-contianer-from-a-definition-file) or scroll down.
+If your building the container from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down.
 
 <br>
 
