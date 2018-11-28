@@ -126,6 +126,15 @@ $ ronn.sif --man out=some_output_file.1 your_markdown_file.md
 
 <br>
 
+### Making your own manpage:
+
+You can use the [`template-manpage.md`](https://raw.githubusercontent.com/sylabs/examples/master/file-generating/ronn/template.md) to make your own manpage, just download it with `wget`:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/file-generating/ronn/template.md
+```
+
+Then modify it to fit your project need, then use `ronn.sif` to build your manpage.
 
 <br>
 
