@@ -115,7 +115,7 @@ $ sudo singularity build blender.sif blender.def
 
 <br>
 
-Or you can use remote builder: (you will need a [access token](https://cloud.sylabs.io/auth/tokens)).
+Or you can use remote builder: (you will need a [access token](https://cloud.sylabs.io/auth)).
 
 ```
 $ singularity build --remote blender.sif blender.def
