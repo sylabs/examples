@@ -20,17 +20,17 @@ $ mkdir ~/blender
 $ cd ~/blender/
 ```
 
-We will run this example in the `~/blender/` directory, not necessary but its cleaner this way.
+We will run this example in the `~/blender/` directory, not necessary but it's cleaner this way.
 
 <br>
 
-### Then, pull the container from the library:
+### Pull the container from library:
 
 ```
 $ singularity pull blender.sif library://sylabs/examples/blender:latest
 ```
 
-If your building the container from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down.
+If you're building the container from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down.
 
 <br>
 
@@ -95,7 +95,7 @@ The above examples are all using the `–-nv` option, for bringing into the cont
 <br>
 <br>
 
-## Building the contianer from a definition file:
+## Building the container from a definition file:
 
 To build the container from a recipe, you will need root access, and the recipe file.
 
