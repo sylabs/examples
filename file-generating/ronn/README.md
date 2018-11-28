@@ -82,7 +82,7 @@ For this example, let make a manpage for this container.
 First, download the markdown file:
 
 ```
-$ wget https://raw.githubusercontent.com/WestleyK/examples/WestleyK-ronn/file-generating/ronn/ronn.sif.md
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/file-generating/ronn/ronn.sif.md
 ```
 
 <br>
