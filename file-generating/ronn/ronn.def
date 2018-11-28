@@ -119,6 +119,14 @@ else
     return 2
 fi
 
+# check if the output file exist
+if [ "$IS_OUT" = "true" ]; then
+    if [ -e "$OUT_FILE" ]; then
+        echo "${OUT_FILE}: Already exist"
+        return 1
+    fi
+fi
+
 # the tmp file
 TMP_FILE="${FILE}.tmp.1.ronn"
 
@@ -297,7 +305,7 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.1.1
+    def fle version      : v1.1.2
     container location   : library://westleyk/commands/ronn
     ronn version         : v0.7.3
 
