@@ -8,7 +8,7 @@ In this example, we will install and run Blender in a [Ubuntu container 16.04](h
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
- - A text editor, like: `micro`, `vim` or `nano`.
+ - A [access token](https://cloud.sylabs.io/auth) (for remote builder).
  - A Blender scene file from the [demo files](https://www.blender.org/download/demo-files/).
 
 <br>
