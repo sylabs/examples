@@ -6,20 +6,20 @@ apt-get update
 apt-get -y install blender blender-data
 
 %help
-singularity run blender.sif [scene file] [output directory] <frame | start frame:end frame>
+$ singularity run blender.sif [scene file] [output directory] <frame | start frame:end frame>
 
 Example:
 Using `my_scene.blend`, render all frames, and output into `run/output`
 
-    singularity run blender.sif my_scene.blend run/output
+    $ singularity run blender.sif my_scene.blend run/output
 
 Using `my_scene.blend`, render frames 100->200, and output into `run/output`
 
-    singularity run blender.sif my_scene.blend run/output 100:200
+    $ singularity run blender.sif my_scene.blend run/output 100:200
 
 Using `my_scene.blend`, render frame 5, and output into `run/output`
 
-    singularity run blender.sif my_scene.blend run/output 5
+    $ singularity run blender.sif my_scene.blend run/output 5
 
 %runscript
 FRAME="-a"
