@@ -307,14 +307,16 @@ EOF_HELP
 echo "makeing the info file"
 cat << EOF_INFO > /container/runscript.info
 CONTAINER INFO
-    container type       : alpine
-    container version    : 3.8
-    built with           : singularity v3.0
-    built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.2.1
-    container location   : library://westleyk/commands/ronn
-    ronn version         : v0.7.3
-    ronn licence         : https://raw.githubusercontent.com/rtomayko/ronn/master/COPYING
+    container type          : alpine
+    container version       : 3.8
+    built with              : singularity v3.0
+    built date              : $(date "+%B %d, %Y")
+    built on os/arch        : $(uname -o) $(uname -m)
+    definition file version : v1.2.2
+    container location(1)   : library://westleyk/commands/ronn
+    container location(2)   : library://westleyk/ronn/ronn:1.2.2
+    ronn version            : v0.7.3
+    ronn licence            : https://raw.githubusercontent.com/rtomayko/ronn/master/COPYING
 
 for more info/tutorial, visit: https://github.com/sylabs/examples
 EOF_INFO
