@@ -65,11 +65,11 @@ check_args() {
         ONLY_HTML="true"
         KEEP_ALL="false"
         return
-    elif [ ! -z $(echo "$OPTION" | grep "o=") ]; then
+    elif [ ! -z $(echo "$OPTION" | grep ^"o=") ]; then
         OUT_FILE=`echo "$OPTION" | cut -c 3- `
         IS_OUT="true"
         return
-    elif  [ ! -z $(echo "$OPTION" | grep "out=") ]; then
+    elif  [ ! -z $(echo "$OPTION" | grep ^"out=") ]; then
         OUT_FILE=`echo "$OPTION" | cut -c 5- `
         IS_OUT="true"
         return
@@ -85,7 +85,6 @@ check_args() {
 
 # prosses the arguments
 KEEP_ALL="true"
-
 for OPTION in "$@"; do
     check_args
 done
@@ -160,7 +159,14 @@ echo "gererating the manPage..."
 ronn "$TMP_FILE" >/dev/null 2>&1
 
 # rename the output files
-FILE_NAME=` echo "${TMP_FILE%%.*}"`
+FILE_NAME=` echo "${TMP_FILE%%.*}" `
+
+if [ ! -e "$FILE_NAME.1" ]; then
+    echo "FATAL: unable to get output file from ronn"
+    echo "FATAL: 255"
+    rm -f "$TMP_FILE"
+    exit 255
+fi
 
 if [ "$IS_OUT" = "true" ]; then
     mv "${FILE_NAME}.1" "$OUT_FILE"
@@ -305,7 +311,7 @@ CONTAINER INFO
     container version    : 3.8
     built with           : singularity v3.0
     built date           : $(date "+%B %d, %Y")
-    def fle version      : v1.1.3
+    def fle version      : v1.2.1
     container location   : library://westleyk/commands/ronn
     ronn version         : v0.7.3
     ronn licence         : https://raw.githubusercontent.com/rtomayko/ronn/master/COPYING
