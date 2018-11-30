@@ -138,6 +138,12 @@ Then modify it to fit your project need, then use `ronn.sif` to build your manpa
 
 <br>
 
+### Demo:
+
+[![asciicast](https://asciinema.org/a/214361.svg)](https://asciinema.org/a/214361)
+
+<br>
+
 ___
 
 <br>
