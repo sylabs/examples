@@ -1,0 +1,11 @@
+Bootstrap: docker
+From: ruby:2.6-rc-stretch
+
+%help
+Ruby 2.6 running in a Singularity Container.
+
+usage:
+  $ ./ruby.sif [YOUR_RUBY_SCRIPT]
+
+%runscript
+ruby "$@"
