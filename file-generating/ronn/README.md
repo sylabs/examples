@@ -8,6 +8,18 @@ then heres a good example for a container use.
 
 <br>
 
+Jump to:
+ - [Downloading the container](downloading-the-container).
+ - [Adding the container to your PATH](adding-the-container-to-your-path).
+ - [Usage](#usage).
+ - [More examples](#more-examples).
+ - [Specifying the output file](#specifying-the-output-file).
+ - [Making your own manpage](making-your-own-manpage).
+ - [Demo](demo).
+
+
+<br>
+
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim`, or `nano`.
