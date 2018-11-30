@@ -1,0 +1,28 @@
+Bootstrap:library
+From: debian:9
+
+%help
+
+	Singularity container running MySQL for Debian 9 (Stretch)
+
+%post
+
+	#Update and install dependencies
+	apt-get update
+	apt-get install -y wget lsb-release gnupg dialog debconf-utils systemd
+  wget https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+  dpkg -i mysql-apt-config*
+  apt-get -y upgrade
+	apt-get install -y mysql-server
+	#mkdir /usr/lib/mysql
+	#cd /var/lib/mysql
+	#ln -s /usr/lib/mysql
+
+%runscript
+
+  mysqld --no-defaults
+	#mysqld start
+	mysqladmin -u root password '1234'
+	#service mysql stop
+	#service mysql start
+	#mysql_secure_installation --user root --password=1234
