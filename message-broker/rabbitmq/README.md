@@ -1,4 +1,4 @@
-## RabbitMQ
+# RabbitMQ
 
 RabbitMQ is a message broker that supports multiple messaging protocols.
 
@@ -45,10 +45,10 @@ Then, please do make sure you have the following directory structure before foll
 
  ```
  ~/rabbitmq
-        |---var
-             |--lib
-             |    |--rabbitmq
-             |--log
+       `---var
+              |--lib
+              |   `--rabbitmq
+              `--log
 ```
 
 You can get the definition file from:
