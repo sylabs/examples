@@ -1,18 +1,23 @@
 # HTTP Server
 
-In this example, we will run a simple Apache Web server in a Singularity Container.
+In this example, we will make a simple Apache Web server on port 8080, running in a Singularity Container.
 
 <br>
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
+ - A access token form [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
- 
+
+
+____
 
 <br>
 
-### To start, make the working directory:
+## Setup:
+
+First, make the working directory:
 
 ```
 $ mkdir ~/httpd
@@ -24,48 +29,55 @@ $ cd ~/httpd/
 Then, pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/httpd.sif:latest
+$ singularity pull httpd.sif library://sylabs/examples/httpd:latest
 ```
-If your running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-contianer-from-a-definition-file) or scroll down for instructions.
+If you're running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-container-from-a-definition-file) or scroll down for instructions.
 
 <br>
 
-Now, Rename the container you just pulled:
+### Verify the container: (Optional)
 
 ```
-$ mv httpd.sif_latest.sif httpd.sif
+$ singularity verify httpd.sif
+Verifying image: httpd.sif
+Data integrity checked, authentic and signed by:
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 <br>
 
 We now have a simple container that will run a HTTP server listening on port 8080.
 
+### Getting help from the container:
+
+To get the help output, we can use the `run-help` command:
+
+```
+$ singularity run-help httpd.sif
+```
+Or, for this specific container, you can just run it:
+```
+$ ./httpd.sif
+```
+
+<br>
+
+## Prepare our directory for the container:
+
 Our web content, and logs, are going to be stored from a share on the host. So, we will create a directory tree on the host system:
 
 To create the directory tree:
 
 ```
-$ mkdir -p web/{htdocs,logs}
+$ mkdir -p httpd/{htdocs,logs}
 ```
 
 <br>
 
-Now our directory map should look like this:
+Then, add a basic [`index.html`](https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html) file to serve:
 
 ```
-web/
-|-- htdocs/
-|   `-- index.html
-`-- logs/
-```
-
-<br>
-
-
-Then add a basic index.html file to serve:
-
-```
-$ nano web/htdocs/index.html
+$ nano httpd/htdocs/index.html
 ```
 ```
 <!DOCTYPE html>
@@ -82,31 +94,31 @@ $ nano web/htdocs/index.html
 </html>
 ```
 
-Or Download it from this repo:
+Or download it from this repo:
 
 ```
-$ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html
+$ wget -O httpd/htdocs/index.html https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/index.html
 ```
-
 
 <br>
 
+Now our directory map should look like this:
+
+```
+~/httpd/
+ |-- httpd/
+ |   `-- htdocs/index.html
+ |   `-- logs/
+```
+
+<br>
+
+## Start the instance:
 
 To use this structure, we start up an instance binding our host path into the container:
 
 ```
-$ singularity instance start \
- -B web/htdocs:/usr/local/apache2/htdocs \
- -B web/logs:/usr/local/apache2/logs \
- httpd.sif httpd
-```
-
-<br>
-
-*FYI:* the above command is the same as:
-
-```
-$ singularity instance start -B web/htdocs:/usr/local/apache2/htdocs -B web/logs:/usr/local/apache2/logs httpd.sif httpd
+$ singularity instance start -B httpd/:/srv/httpd/ httpd.sif httpd
 ```
 
 <br>
@@ -120,13 +132,17 @@ Or:
 $ w3m http://localhost:8080
 ```
 
-And access the `index.html` file being served from the `web/htdocs/` location.
+<br>
 
+Remember, you must open the web page on the same host that is running the instance.
+
+Then access the `index.html` file being served from `httpd/htdocs/` directory.
 
 <br>
 
+## Stopping the instance:
 
-### To stop the server, run this command:
+To stop the instance, run this command:
 
 ```
 $ singularity instance stop httpd
@@ -137,28 +153,11 @@ $ singularity instance stop httpd
 <br>
 
 
-### Building the contianer from a definition file:
+## Building the container from a definition file:
 
 To build the container from a recipe, you will need root access, and the definition file.
 
-First, make the definition file:
-
-```
-$ nano httpd.def
-```
-```
-Bootstrap: docker
-From: httpd:latest
-
-%post
-    # Change the port we are listening on to 8080 instead of 80
-    sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
-
-%startscript
-    httpd
-```
-
-Or you can download it:
+First, download the [definition file](https://raw.githubusercontent.com/WestleyK/examples/master/http-server/apache2-web-server/httpd.def):
 
 ```
 $ wget https://raw.githubusercontent.com/sylabs/examples/master/http-server/apache2-web-server/httpd.def
@@ -172,8 +171,23 @@ Then to build the container:
 $ sudo singularity build httpd.sif httpd.def
 ```
 
-Now you should have your container (`httpd.sif`) and you don't need to download it.
+<br>
+
+If you do not have root access, you can use our remote builder:
+
+```
+$ singularity build --remote httpd.sif httpd.def
+```
 
 <br>
+
+Now you can [Prepare our directory for the container](#prepare-our-directory-for-the-container).
+
+<br>
+
+
+____
+
+
 <br>
 

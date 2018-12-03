@@ -18,8 +18,9 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Redis](https://github.com/sylabs/examples/tree/master/database/redis)
 
  - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
-   - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
-   - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
+   - [Rendering](https://github.com/sylabs/examples/tree/master/graphics/rendering)
+     - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
+     - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
 
  - [HTTP Server](https://github.com/sylabs/examples/tree/master/http-server)
    - [Apache2 Web Server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
