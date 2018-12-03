@@ -46,7 +46,7 @@ memcached -p 11211 -U 11111 -u root -d
 
 #### Building the container:
 
-After this, inside the `~/memcached` folder we will build our `Memcached` container. To do so:
+After this, inside the `~/memcached` folder we will build our Memcached container. To do so:
 
 ```
 $ cd ~/memcached
@@ -71,7 +71,7 @@ container will be automatically downloaded to your local machine.
  You can also pull the container from our library like so:
 
  ```
- $ singularity pull memcached.sif library://sylabs/examples/memcached
+ $ singularity pull memcached.sif library://sylabs/examples/memcached:latest
  ```
 
 This will generate a container called `memcached.sif`.

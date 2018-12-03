@@ -5,6 +5,8 @@ From: ubuntu:18.04
 
   Singularity container running Memcached v1.5.12 for Ubuntu 18.04
 
+  For more info on this tutorial, visit: https://github.com/sylabs/examples/tree/master/caching-system/memcached
+
 %post
 
   apt-get -y update
