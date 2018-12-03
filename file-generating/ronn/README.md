@@ -4,7 +4,7 @@ Ronn converts markdown files to manpages, and HTML manpages for the web.
 
 Ronn is based off Ruby, and depending on your system, it could be easily installed.<br>
 But what if you don't have Ronn package for your system (and don't have/want ruby installed), or you don't have root access,<br>
-then heres a good example for a container use.
+then here's a good example for a container use.
 
 <br>
 
@@ -70,7 +70,7 @@ First, make the `${HOME}/.local/bin/`:
 $ mkdir -p ${HOME}/.local/bin/
 ```
 
-Then Add it to your PATH:
+Then, add it to your PATH
 
 ```
 $ echo 'export PATH=${PATH}:${HOME}/.local/bin/' >> ~/.bashrc
@@ -89,7 +89,7 @@ $ mv ronn.sif ~/.local/bin/
 
 ## Usage:
 
-For this example, let make a manpage for this container.
+For this example, let's make a manpage for this container.
 
 First, download the markdown file:
 
@@ -118,7 +118,7 @@ $ man ./ronn.sif.1
 
 ### More examples:
 
-Lets say you only want a `.gz`, and a `.html`, then run this:
+Let's say you only want a `.gz`, and a `.html`, then run this:
 
 ```
 $ ronn.sif --gzip --html your_markdown_file.md
