@@ -1,4 +1,4 @@
-your-porgram-name(1) - quick title
+your-program-name(1) - quick title
 =============================================
 
 ## DESCRIPTION
@@ -23,8 +23,8 @@ more description on what it does
     what your command does
 
 ## EXAMPLES
-example of somthing:<br>
-`$` ./`your-program-name` --somthing
+example of something:<br>
+`$` ./`your-program-name` --something
 
 ## NOTES
 for full tutorial/info, visit: `https://...`
@@ -33,7 +33,7 @@ for full tutorial/info, visit: `https://...`
 `YOUR_NAME` <your_email>
 
 ## COPYRIGHT
-your copyright licence
+your copyright license
 
 ## REPORTING BUGS
 `https://github.com/...` or <your_email>
