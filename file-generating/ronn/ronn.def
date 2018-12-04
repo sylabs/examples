@@ -83,19 +83,19 @@ check_args() {
     return
 }
 
-# prosses the arguments
+# process the arguments
 KEEP_ALL="true"
 for OPTION in "$@"; do
     check_args
 done
 
-# check if file exist
+# check if file exists
 if [ -z "$MD_FILE" ]; then
     echo "No file specified"
     return 1
 fi
 if [ ! -e "$MD_FILE" ]; then
-    echo "FATAL ERROR: somthing VERY bad happend..."
+    echo "FATAL ERROR: something VERY bad happened..."
     echo "FATAL: variables failed to match"
     echo "FATAL: 255"
     echo "$MD_FILE: No such file or directory"
@@ -108,7 +108,7 @@ if [ -d "$MD_FILE" ]; then
     return 2
 fi
 
-# get the file name without the extention
+# get the file name without the extension
 if [ "${MD_FILE: -3}" = ".md" ]; then
     FILE=` echo "$MD_FILE" | rev | cut -c4- | rev `
 elif [ "${MD_FILE: -5}" = ".ronn" ]; then
@@ -118,10 +118,10 @@ else
     return 2
 fi
 
-# check if the output file exist
+# check if the output file exists
 if [ "$IS_OUT" = "true" ]; then
     if [ -e "$OUT_FILE" ]; then
-        echo "${OUT_FILE}: Already exist"
+        echo "${OUT_FILE}: Already exists"
         return 1
     fi
 fi
@@ -129,9 +129,9 @@ fi
 # the tmp file
 TMP_FILE="${FILE}.tmp.1.ronn"
 
-# check is TMP_FILE exist
+# check if the TMP_FILE exists
 if [ -e "$TMP_FILE" ]; then
-    echo "${TMP_FILE}: Already exist"
+    echo "${TMP_FILE}: Already exists"
     return 1
 fi
 
@@ -140,22 +140,22 @@ cat "$MD_FILE" > "$TMP_FILE"
 
 # check if the manpage exist
 if [ -e "${FILE}.1" ]; then
-    echo "${FILE}.1: Aleady exist"
+    echo "${FILE}.1: Already exists"
     echo "Aborting"
     rm -f "$TMP_FILE"
     return 1
 fi
 
-# check if the HTML file exist
+# check if the HTML file exists
 if [ -e "${FILE}.1.html" ]; then
-    echo "${FILE}.1.html: Already exist"
+    echo "${FILE}.1.html: Already exists"
     echo "Aborting"
     rm -f "$TMP_FILE"
     return 1
 fi
 
-# generate the manpage/html
-echo "gererating the manPage..."
+# generating the manpage/html
+echo "generating the manpage..."
 ronn "$TMP_FILE" >/dev/null 2>&1
 
 # rename the output files
@@ -176,9 +176,9 @@ else
     mv "${FILE_NAME}.1.html" "${FILE}.1.html"
 fi
 
-# check if gzip file exist
+# check if gzip file exists
 if [ -e "${FILE}.1.gz" ]; then
-    echo "${FILE}.1.gz: Aleady exist"
+    echo "${FILE}.1.gz: Aleady exists"
     echo "Not creating gzip file"
     rm -f "$TMP_FILE"
     return 1
@@ -187,7 +187,7 @@ fi
 # check and gzip the file
 if [ "$IS_OUT" = "true" ]; then
     if [ -e "${FILE_OUT}.gz" ]; then
-        echo "${FILE_OUT}.gz: Aleady exist"
+        echo "${FILE_OUT}.gz: Aleady exists"
         echo "Not creating gzip file"
         rm -f "$TMP_FILE"
         return 1
@@ -209,7 +209,7 @@ else
     FILE="$FILE.1"
 fi
 
-# more argument prosesing
+# more argument processing
 if [ "$KEEP_ALL" = "true" ]; then
     echo "manPage:     ${FILE}"
     echo "gzip file:   ${FILE}.gz"
@@ -226,7 +226,7 @@ if [ "$ONLY_HTML" != "true" ]; then
     rm -f "${FILE}.html"
 fi
 
-# what file exist for output message
+# verify which files exist for output message
 if [ "$ONLY_MAN" = "true" ]; then
     echo "manPage:     ${FILE}"
 fi
@@ -250,7 +250,7 @@ apk add man
 mkdir /container
 
 # make the help file
-echo "makeing the help file"
+echo "making the help file"
 cat << EOF_HELP > /container/runscript.help
 Ronn (v0.7.3) running in a Alpine (3.8) container
 
@@ -266,7 +266,7 @@ OPTIONS:
     -h, --html              : only generate html file (*.1.html)
 
 VARIABLES:
-    o=, out=[string.1]      : specify a output file
+    o=, out=[string.1]      : specify an output file
 
 COMMANDS:
     view, view-file [file]  : view a manpage file in the container
@@ -274,7 +274,7 @@ COMMANDS:
     exec, system [command]  : execute a command in the container
 
 EXAMPLES:
-    makeing a manpage:
+    making a manpage:
     $ ./ronn.sif manpage-test.md
 
     generating only the manpage:
@@ -298,13 +298,13 @@ EXIT CODE:
     1   - file does not exist, or already exist
     2   - file is a directory, or unknown file extention
     4   - option not found
-    255 - somthing very bad happend
+    255 - something very bad happened
 
 for more info/tutorial/bug report, visit: https://github.com/sylabs/examples
 EOF_HELP
 
 # make the info file
-echo "makeing the info file"
+echo "making the info file"
 cat << EOF_INFO > /container/runscript.info
 CONTAINER INFO
     container type          : alpine
@@ -312,11 +312,11 @@ CONTAINER INFO
     built with              : singularity v3.0
     built date              : $(date "+%B %d, %Y")
     built on os/arch        : $(uname -o) $(uname -m)
-    definition file version : v1.2.2
+    definition file version : v1.2.3
     container location(1)   : library://westleyk/commands/ronn
     container location(2)   : library://westleyk/ronn/ronn:1.2.2
     ronn version            : v0.7.3
-    ronn licence            : https://raw.githubusercontent.com/rtomayko/ronn/master/COPYING
+    ronn license            : https://raw.githubusercontent.com/rtomayko/ronn/master/COPYING
 
 for more info/tutorial, visit: https://github.com/sylabs/examples
 EOF_INFO
