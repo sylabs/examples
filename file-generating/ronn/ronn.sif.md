@@ -1,4 +1,4 @@
-ronn.sif(1) - ronn in a alpine container
+ronn.sif(1) - Ronn in an Alpine container
 =============================================
 
 ## SYNOPSIS
@@ -6,7 +6,7 @@ ronn.sif(1) - ronn in a alpine container
 `ronn.sif` [<OPTION>] [<COMMAND>] [<YOUR_MARKDOWN_FILE>]
 
 ## DESCRIPTION
-Ronn (v0.7.3) in a Alpine (3.8) container<br>
+Ronn (v0.7.3) in an Alpine (3.8) container<br>
 ronn can convert markdown to manpages and html files
 
 ## OPTIONS
@@ -29,7 +29,7 @@ ronn can convert markdown to manpages and html files
 ## VARIABLES:
 
 * `o=`, `out=`[<`string`>.1] :
-    specify a output file
+    specify an output file
 
 ## COMMANDS
 
@@ -43,7 +43,7 @@ ronn can convert markdown to manpages and html files
     execute a ronn command in the container
 
 ## EXAMPLES
-makeing a manpage:<br>
+making a manpage:<br>
 this will make a `*.1`, `*.1.gz` and `*.1.html` file<br>
 `$` ./ronn.sif manpage-test.md
 
@@ -73,7 +73,7 @@ running a command in the container:<br>
 ## NOTES
 for full tutorial/info, visit: `https://github.com/sylabs/examples`
 
-## AUTHER
+## AUTHOR
 definition file made by: `WestleyK` <westleyk@nym.hush.com>
 
 ## REPORTING BUGS
