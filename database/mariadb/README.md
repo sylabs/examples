@@ -122,7 +122,7 @@ Remember, we are still in the container.
 
 During this procedure, you should:
 
- - Enter your old password. If there is none just press `<ENTER>` . 
+ - Enter your old password. There is none just press `<ENTER>` . 
  - Set a new password. `[Y/n] y`
  - Type your new password (remember that password).
  - Remove anonymous users. `[Y/n] y`
