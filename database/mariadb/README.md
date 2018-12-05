@@ -83,7 +83,7 @@ You don't need root access to use remote builder, but you do need a token, click
 Then, make all the necessary directories:
 
 ```
-$ mkdir -p mariadb/{db,run,log}
+$ mkdir -p mariadb/{db,run,log,etc,conf}
 ```
 
 <br>
@@ -92,10 +92,12 @@ Now, we need to shell into the container:
 
 ```
 $ singularity shell \
- -B mariadb/db:/var/lib/mysql \
- -B mariadb/log:/var/log/mysql \
- -B mariadb/run:/var/run/mysqld \
- mariadb.sif
+-B mariadb/db:/var/lib/mysql \
+-B mariadb/log:/var/log/mysql \
+-B mariadb/run:/var/run/mysqld \
+-B mariadb/etc/:/etc/mysql/mariadb.conf.d \
+-B mariadb/conf/:/etc/mysql/conf.d \
+mariadb.sif
 ```
 
 <br>
@@ -188,18 +190,20 @@ Then, exit the container:
 
 We now have a working database, and are ready to start the instance.
 
-The database files are stored on the host under <em>mariadb/db/</em>:
+The database files are stored on the host under `mariadb/db/`:
 ```
 $ singularity instance start \
- -B mariadb/db:/var/lib/mysql \
- -B mariadb/log:/var/log/mysql \
- -B mariadb/run:/var/run/mysqld \
- mariadb.sif mariadb
+-B mariadb/db:/var/lib/mysql \
+-B mariadb/log:/var/log/mysql \
+-B mariadb/run:/var/run/mysqld \
+-B mariadb/etc/:/etc/mysql/mariadb.conf.d \
+-B mariadb/conf/:/etc/mysql/conf.d \
+mariadb.sif mariadb
 ```
 
 <br>
 
-The instance is started so we’ll connect to it as the "newuser" account we created:
+The instance is started so we’ll connect to it as the `newuser` account we created:
 
 ```
 $ mysql -u newuser -p -h <YOUR_IP_ADDRESS> workdb
