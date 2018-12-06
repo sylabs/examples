@@ -38,7 +38,7 @@ Verify the container: (Optional)
 
 ```
 $ singularity verify nginx.sif 
-Verifying image: nginx_latest.sif
+Verifying image: nginx.sif
 Data integrity checked, authentic and signed by:
 	westleyk (examples) <westley@sylabs.io>, KeyID F1E47D55A7F3A56C
 ```
