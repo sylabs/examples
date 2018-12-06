@@ -18,7 +18,6 @@ But for this example we will install julia in a [Ubuntu container](https://cloud
  - Root access (only if you're [building from a definition file](#to-build-from-a-definition-file)).
  
 
-
 ____
 
 <br>
@@ -63,19 +62,18 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello
 
 
 ```
-$ singularity pull library://sylabs/examples/julia.sif:latest
+$ singularity pull julia.sif library://sylabs/examples/julia.sif:latest
 ```
 
 <br>
 
-Rename the container you pulled:
+Verify the container: (Optional)
 
 ```
-$ mv julia.sif_latest.sif julia.sif
+$ 
 ```
 
 <br>
-
 
 To run the container:
 
@@ -399,5 +397,4 @@ ____
 
 
 <br>
-
 <br>
