@@ -7,6 +7,7 @@ In this example, we will make a simple Apache Web server on port 8080, running i
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
+ - A access token form [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
  - A browser to test it, or you can use `w3m`, and install it by `sudo apt-get install w3m w3m-img`.
 
 
@@ -14,7 +15,7 @@ ____
 
 <br>
 
-### Setup:
+## Setup:
 
 First, make the working directory:
 
@@ -28,17 +29,9 @@ $ cd ~/httpd/
 Then, pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/httpd:latest
+$ singularity pull httpd.sif library://sylabs/examples/httpd:latest
 ```
 If you're running on `32 bit` os, you will need to build from a definition file, click [here](#building-the-container-from-a-definition-file) or scroll down for instructions.
-
-<br>
-
-Now, rename the container you just pulled:
-
-```
-$ mv httpd_latest.sif httpd.sif
-```
 
 <br>
 
@@ -113,9 +106,9 @@ Now our directory map should look like this:
 
 ```
 ~/httpd/
- |-- htdocs/
- |   `-- index.html
- `-- logs/
+ |-- httpd/
+ |   `-- htdocs/index.html
+ |   `-- logs/
 ```
 
 <br>

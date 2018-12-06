@@ -15,6 +15,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
    - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
+   - [Redis](https://github.com/sylabs/examples/tree/master/database/redis)
 
  - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Rendering](https://github.com/sylabs/examples/tree/master/graphics/rendering)
@@ -33,12 +34,14 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+   - [Octave](https://github.com/sylabs/examples/tree/master/lang/octave)
    - [RStudio](https://github.com/sylabs/examples/tree/master/lang/RStudio)
    - [Ruby](https://github.com/sylabs/examples/tree/master/lang/ruby)
 
  - [Machine Learning](https://github.com/sylabs/examples/tree/master/machinelearning)
    - [Caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
    - [Detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
+   - [H2o4gpu](https://github.com/sylabs/examples/tree/master/machinelearning/h2o4gpu)
    - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
    - [Jupyter Notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)

@@ -18,6 +18,7 @@ usage:
   $ singularity instance stop httpd
 
 %runscript
+# print help menu
 cat /.singularity.d/runscript.help
 
 %post
@@ -27,6 +28,7 @@ sed -ie "s/^\(Listen\).*/\1 8080/" /usr/local/apache2/conf/httpd.conf
 # to avoid a error message
 sed -ie "s/\#ServerName\ www.example.com:80/ServerName\ localhost/" /usr/local/apache2/conf/httpd.conf
 
+# replace the stock locations with symlinks to our bind point
 mkdir -p /srv/httpd/htdocs /srv/httpd/logs
 
 rm -rf /usr/local/apache2/htdocs/

@@ -1,0 +1,64 @@
+BootStrap: docker
+From: nvidia/cuda:9.2-devel-ubuntu18.04
+
+# NOTE: This container will have both the Python and the R API's enabled
+
+%environment
+# -----------------------------------------------------------------------------------
+
+    export PYTHON_VERSION=3.6
+    export CUDA_HOME=/usr/local/cuda
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64/:$CUDA_HOME/lib/:$CUDA_HOME/extras/CUPTI/lib64
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+    export LC_ALL=C
+
+%post
+# -----------------------------------------------------------------------------------
+# this will install all necessary packages and prepare the contianer
+
+    export PYTHON_VERSION=3.6
+    export CUDA_HOME=/usr/local/cuda
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64/:$CUDA_HOME/lib/:$CUDA_HOME/extras/CUPTI/lib64
+
+    echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list
+
+    apt-get -y update && apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        curl \
+        vim \
+        wget \
+        ca-certificates \
+        libjpeg-dev \
+        libpng-dev \
+        libpython3.6-dev \
+        libopenblas-dev pbzip2 \
+        libcurl4-openssl-dev libssl-dev libxml2-dev
+
+    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python
+
+    curl -O https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
+
+    wget https://s3.amazonaws.com/h2o-release/h2o4gpu/releases/stable/ai/h2o/h2o4gpu/0.3-nccl-cuda92/h2o4gpu-0.3.0-cp36-cp36m-linux_x86_64.whl
+    pip install h2o4gpu-0.3.0-cp36-cp36m-linux_x86_64.whl
+
+    export DEBIAN_FRONTEND=noninteractive
+    export DEBCONF_NONINTERACTIVE_SEEN=true
+
+    apt-get install -y r-base r-base-dev
+    apt-get install -y libcurl4-gnutls-dev
+
+    dpkg-reconfigure -f noninteractive tzdata
+
+    R -e '
+install.packages(c("devtools","curl","Metrics"))
+'
+    R -e '
+devtools::install_github("h2oai/h2o4gpu", subdir = "src/interface_r")
+'
+
+
+
+
