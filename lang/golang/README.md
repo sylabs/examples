@@ -27,15 +27,7 @@ $ cd golang-container/
 Then, pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/golang:latest
-```
-
-<br>
-
-Rename the container:
-
-```
-$ mv golang_latest.sif golang.sif
+$ singularity pull golang.sif library://sylabs/examples/golang:latest
 ```
 
 <br>
