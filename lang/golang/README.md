@@ -18,8 +18,8 @@ In this example, we will compile a Go source code in a Singularity container.
 First, make the working directory:
 
 ```
-$ mkdir golang-container
-$ cd golang-container/
+$ mkdir ~/golang-container
+$ cd ~/golang-container/
 ```
 
 <br>
