@@ -241,6 +241,22 @@ Now, build the container:
 $ sudo singularity build nginx.sif nginx.def
 ```
 
+<br>
+
+Or you can use remote builder, you don't need root access to remote build:
+
+You will need a access token [Here](https://cloud.sylabs.io/auth),<br>
+Then paste to token to `~/.singularity/sylabs-token`.
+
+Then build the container with the `--remote` option:
+
+```
+$ singularity build --remote nginx.sif nginx.def
+```
+
+<br>
+
+
 Then you should have you container (`nginx.sif`) and you don't need to download it from the library.
 
 Now you can [Prepare our directory for the Nginx container](#prepare-our-directory-for-the-nginx-container).
