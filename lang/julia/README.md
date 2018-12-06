@@ -62,7 +62,7 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello
 
 
 ```
-$ singularity pull julia.sif library://sylabs/examples/julia.sif:latest
+$ singularity pull julia.sif library://sylabs/examples/julia:latest
 ```
 
 <br>
@@ -70,7 +70,10 @@ $ singularity pull julia.sif library://sylabs/examples/julia.sif:latest
 Verify the container: (Optional)
 
 ```
-$ 
+$ singularity verify julia.sif 
+Verifying image: julia.sif
+Data integrity checked, authentic and signed by:
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 <br>
