@@ -29,26 +29,28 @@ nginx -t
 /etc/init.d/nginx restart
 
 %runscript
-echo "Nginx 1.10.3 web server in a Ubuntu 16.04 container."
-echo
-echo "for more information,"
-echo "visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server"
-echo
-echo "Usage:"
-echo 
-echo "  setup:"
-echo "  $ mkdir -p nginx/php"
-echo "  $ touch nginx/index.php  # add your php script here."
-echo
-echo "  instance start:"
-echo "  $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx"
-echo
-echo "  or to shell:"
-echo "  $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif"
-echo
-echo "  you may need to run this, after shelling into the container, but before starting nginx."
-echo "  > fuser -k 80/tcp"
-echo
+cat << EOF
+Nginx 1.10.3 web server in a Ubuntu 16.04 container."
+
+for more information,"
+visit: https://github.com/sylabs/examples/tree/master/http-server/nginx-php-web-server"
+
+Usage:"
+
+  setup:"
+  $ mkdir -p nginx/php"
+  $ touch nginx/index.php  # add your php script here."
+
+  instance start:"
+  $ sudo singularity instance start -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif nginx"
+
+  or to shell:"
+  $ sudo singularity shell -B nginx/:/srv/nginx/ -B nginx/php/:/run/php/ nginx.sif"
+
+  you may need to run this, after shelling into the container, but before starting nginx."
+  > fuser -k 80/tcp"
+
+EOF
 
 %post
 echo "=> installing: nginx, and php..."
