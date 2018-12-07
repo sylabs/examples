@@ -3,7 +3,7 @@ From: mariadb:10.3.9
 
 %post
 # replace `your-name` with your username, run `whoami` to see your username
-YOUR_USERNAME="your-name"
+export YOUR_USERNAME="your-name"
 
 sed -ie "s/^#user.*/user = ${YOUR_USERNAME}/" /etc/mysql/my.cnf
 
