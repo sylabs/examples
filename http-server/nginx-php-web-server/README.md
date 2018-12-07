@@ -245,7 +245,7 @@ $ sudo singularity build nginx.sif nginx.def
 
 Or you can use remote builder, you don't need root access to remote build:
 
-You will need a access token [Here](https://cloud.sylabs.io/auth),<br>
+You will need a access token https://cloud.sylabs.io/auth/tokens,<br>
 Then paste to token to `~/.singularity/sylabs-token`.
 
 Then build the container with the `--remote` option:
