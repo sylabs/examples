@@ -7,7 +7,7 @@ In this example, we will run a simple database server.
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
  - A access token form [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
- - mySQL, installed by `sudo apt-get install mysql-server`.
+ - MySQL, installed by `sudo apt-get install mysql-server`.
  
 <br>
 
