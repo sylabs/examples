@@ -14,10 +14,8 @@ But for this example we will install julia in a [Ubuntu container](https://cloud
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - A test Julia script, [like this one](#make-the-test-file).
- - Root access (only if you're [building from a definition file](#to-build-from-a-definition-file)).
- 
-
+ - A test Julia script, [like this one](#make-the-test-file). 
+ - A [access token](https://cloud.sylabs.io/auth), for remote builder
 
 ____
 
@@ -63,19 +61,21 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/julia/hello
 
 
 ```
-$ singularity pull library://sylabs/examples/julia.sif:latest
+$ singularity pull julia.sif library://sylabs/examples/julia:latest
 ```
 
 <br>
 
-Rename the container you pulled:
+Verify the container: (Optional)
 
 ```
-$ mv julia.sif_latest.sif julia.sif
+$ singularity verify julia.sif 
+Verifying image: julia.sif
+Data integrity checked, authentic and signed by:
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 <br>
-
 
 To run the container:
 
@@ -101,8 +101,6 @@ $ singularity run julia.sif
 
 
 ### To build from a definition file:
-
-You will need root access to build from a recipe.
 
 First, make the definition file:
 
@@ -163,8 +161,10 @@ e.g., installing other packages.
 Now, to build the container:
 
 ```
-$ sudo singularity build julia.sif julia.def
+$ singularity build --remote julia.sif julia.def
 ```
+
+*Remote builder is optional, but it does not require root access.*
 
 <br>
 
@@ -362,8 +362,10 @@ Make sure the `hello-world.jl` is in your current directory.
 Then build the container:
 
 ```
-$ sudo singulairty build julia.sif julia.def
+$ singulairty build --remote julia.sif julia.def
 ```
+
+*Again, remote builder is optional*
 
 <br>
 
