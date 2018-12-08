@@ -101,48 +101,5 @@ After that, your MySQL Singularity container will be ready to be used. Remember 
 Use the following command to start an instance of your Redis Singularity container:
 
 ```
-$ sudo singularity instance start redis.sif redis
-```
-
-With that we're naming and starting a new instance of the server. Now we are ready to run the container.
-
-
-#### Running the Redis database client:
-
-To run the database client, you will need to run the following command:
-
-```
-$ sudo singularity run redis.sif
-```
-
-Since the container detects the instance that called the daemon and that is already running, the expected output will be to be prompted inside the database. You should see this prompt:
-
-```
-127.0.0.1:6379>
-```
-
-Before storing some data in the database, set the following configuration:
-
-```
-127.0.0.1:6379> config set stop-writes-on-bgsave-error no
-127.0.0.1:6379> config set dir ./
-127.0.0.1:6379> config set dbfilename temp.rdb
-```
-
-The first command means that the snapshots are disabled (this is in order to avoid saving data every specific amount of time), second command sets the working directory to save your data on a file at the local directory where you are at host and the third command is to rename the database filename to `temp.rdb`.
-
-To test the database, we will follow an example similar to what can be obtained from [here](https://redis.io/topics/data-types-intro) specifically, on Redis Strings.
-
-Set a variable with some value:
-
-```
-127.0.0.1:6379> set mykey somevalue
-OK
-```
-
-Obtain or read the variable value from the database with the following command:
-
-```
-127.0.0.1:6379> get mykey
-"somevalue"
+$ sudo singularity instance start -B /mysql/var/lib/mysql:/var/lib/mysql mysql.sif mysql
 ```
