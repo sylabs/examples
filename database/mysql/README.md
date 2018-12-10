@@ -46,7 +46,7 @@ $ sudo singularity build mysql.sif mysql.def
 
 #### Build your MySQL container using the Singularity Remote Builder:
 
-If you do not own root permissions you can always build your Redis Singularity container with the help of our [remote builder](https://cloud.sylabs.io/builder) like so:
+If you do not own root permissions you can always build your MySQL Singularity container with the help of our [remote builder](https://cloud.sylabs.io/builder) like so:
 
 ```
 $ singularity build --remote mysql.sif mysql.def
@@ -66,7 +66,7 @@ $ singularity pull mysql.sif library://sylabs/examples/mysql:latest
 ```
 
 
-#### Verifying my Redis Singularity container
+#### Verifying my MySQL Singularity container
 
 The `verify` command allows you to verify that the container has been signed using a `PGP` key. Please remind that you should first obtain an access token from the Sylabs Cloud to make use of this feature.  Follow the steps below to generate a valid access token:
 
@@ -98,7 +98,7 @@ After that, your MySQL Singularity container will be ready to be used. Remember 
 
 #### Start an instance of your MySQL container:
 
-Use the following command to start an instance of your Redis Singularity container:
+Use the following command to start an instance of your MySQL Singularity container:
 
 ```
 $ sudo singularity instance start -B /mysql/var/lib/mysql:/var/lib/mysql mysql.sif mysql
