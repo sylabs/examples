@@ -80,10 +80,10 @@ You don't need root access to use remote builder, but you do need a token, click
 
 <br>
 
-Then, make all the necessary directories:
+Then, make the necessary directory:
 
 ```
-$ mkdir -p mariadb/{db,run,log,etc,conf}
+$ mkdir db
 ```
 
 <br>
@@ -91,13 +91,7 @@ $ mkdir -p mariadb/{db,run,log,etc,conf}
 Now, we need to shell into the container:
 
 ```
-$ singularity shell \
--B mariadb/db:/var/lib/mysql \
--B mariadb/log:/var/log/mysql \
--B mariadb/run:/var/run/mysqld \
--B mariadb/etc/:/etc/mysql/mariadb.conf.d \
--B mariadb/conf/:/etc/mysql/conf.d \
-mariadb.sif
+$ singularity shell --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif
 ```
 
 <br>
@@ -111,6 +105,36 @@ Once we are in the container, setup MariaDB:
 *You may need to press `<ENTER>` to bring your prompt back.*
 
 <br>
+
+### If you get a error like:
+
+```
+>  mysql_install_db
+/usr/sbin/mysqld: Can't read dir of '/etc/mysql/mariadb.conf.d/' (Errcode: 13 "Permission denied")
+/usr/sbin/mysqld: Can't read dir of '/etc/mysql/conf.d/' (Errcode: 13 "Permission denied")
+Fatal error in defaults handling. Program aborted
+[...]
+```
+
+<br>
+
+Then you need to clear `/etc/apparmor.d/usr.sbin.mysqld`:
+
+```
+> exit
+$ sudo truncate -s0 /etc/apparmor.d/usr.sbin.mysqld
+```
+
+<br>
+
+Then, reboot your machine:
+
+```
+$ sudo reboot
+```
+
+**NOTE:** *You only may need to do this on `ubuntu`, Other os's like `centos`, `slackware` don't need this.*
+
 <br>
 
 Now we need to secure our installation:<br>
@@ -130,6 +154,36 @@ During this procedure, you should:
  - Remove the test database and access. `[Y/n] y`
  - Reload/flush the privilege table. `[Y/n] y`
 
+<br>
+
+If you get a error like:
+
+```
+> mysql_secure_installation
+Enter current password for root (enter for none): 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+Enter current password for root (enter for none): 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+Enter current password for root (enter for none): 
+```
+
+Then, exit the container, and stop the `mysqld daemon`:
+
+```
+> exit
+$ ps aux | grep mysqld
+[...]
+$ kill -9 [PID]
+```
+
+Then, shell into the container again, and restart the daemon:
+
+```
+$ singularity shell --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif
+> mysqld_safe --datadir=/var/lib/mysql &
+```
+
+<br>
 <br>
 
 Once your are done with that, connect as the root user to the database:
