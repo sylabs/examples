@@ -57,14 +57,7 @@ If this is the first time using the Remote Builder, use the following
 and standard err will be directed back to your terminal. When finished, the
 container will be automatically downloaded to your local machine.
 
-If you do not have Singularity installed on your machine, or you are in a non-Linux environment, you can also make use of the remote builder. For this, you should sign into the Sylabs Cloud and compose your definition files directly in the main window from  [Remote Builder](https://cloud.sylabs.io/builder) page. You can also drag and drop text files there. The container you build will appear under your username in the `remote-builds` collection. After this, you can download your container with the `pull` command explained below.
-
-You can also pull the container from our library like so:
-
-```
-$ singularity pull mysql.sif library://sylabs/examples/mysql:latest
-```
-
+If you do not have Singularity installed on your machine, or you are in a non-Linux environment, you can also make use of the remote builder. For this, you should sign into the Sylabs Cloud and compose your definition files directly in the main window from  [Remote Builder](https://cloud.sylabs.io/builder) page. You can also drag and drop text files there. The container you build will appear under your username in the `remote-builds` collection.
 
 #### Verifying my MySQL Singularity container
 
@@ -92,9 +85,6 @@ Found 1 containers for 'mysql'
 		Tags: latest
 
 ```
-
-
-After that, your MySQL Singularity container will be ready to be used. Remember that as the default port and hostname, MySQL runs on `127.0.0.1 (localhost)` and port `6379`.
 
 #### Start an instance of your MySQL container:
 
