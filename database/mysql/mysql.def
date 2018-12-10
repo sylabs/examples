@@ -19,7 +19,7 @@ From: debian:9
 	chmod 775 /var/lib/mysql/
 	rm -rf /var/lib/mysql/tc.log
 	rm -rf ./tc.log
-	sed -ie "s/^#user.*/user = $YOUR_USERNAME/" /etc/mysql/my.cnf
+	sed -ie "s/^#user.*/user = ${YOUR_USERNAME}/" /etc/mysql/my.cnf
 
 %startscript
 
