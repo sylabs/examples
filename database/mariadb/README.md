@@ -137,7 +137,8 @@ $ sudo reboot
 
 <br>
 
-Now we need to secure our installation:<br>
+### Secure our installation:
+
 Remember, we are still in the container.
 
 ```
