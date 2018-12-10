@@ -37,10 +37,10 @@ $ singularity pull library://sylabs/examples/nginx:latest
 Verify the container: (Optional)
 
 ```
-$ singularity verify nginx_latest.sif 
-Verifying image: nginx_latest.sif
+$ singularity verify nginx.sif 
+Verifying image: nginx.sif
 Data integrity checked, authentic and signed by:
-	westleyk (examples) <westley@sylabs.io>, KeyID F1E47D55A7F3A56C
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 <br>
@@ -248,6 +248,22 @@ Now, build the container:
 ```
 $ sudo singularity build nginx.sif nginx.def
 ```
+
+<br>
+
+Or you can use remote builder, you don't need root access to remote build:
+
+You will need a access token https://cloud.sylabs.io/auth/tokens,<br>
+Then paste to token to `~/.singularity/sylabs-token`.
+
+Then build the container with the `--remote` option:
+
+```
+$ singularity build --remote nginx.sif nginx.def
+```
+
+<br>
+
 
 Then you should have you container (`nginx.sif`) and you don't need to download it from the library.
 
