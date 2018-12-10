@@ -187,7 +187,9 @@ $ singularity shell --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif
 <br>
 <br>
 
-Once your are done with that, connect as the root user to the database:
+### Connect to the database:
+
+Once your are done with the Secure installation, connect as the root user to the database:
 
 ```
 > mysql -u root -p
@@ -236,24 +238,20 @@ Now we’ll shut down the MariaDB service inside the container:
 
 <br>
 
-
 Then, exit the container:
 
 ```
 > exit
 ```
 
+### Starting the instance:
+
 We now have a working database, and are ready to start the instance.
 
 The database files are stored on the host under `mariadb/db/`:
+
 ```
-$ singularity instance start \
--B mariadb/db:/var/lib/mysql \
--B mariadb/log:/var/log/mysql \
--B mariadb/run:/var/run/mysqld \
--B mariadb/etc/:/etc/mysql/mariadb.conf.d \
--B mariadb/conf/:/etc/mysql/conf.d \
-mariadb.sif mariadb
+$ singularity instance start --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif mariadb
 ```
 
 <br>
