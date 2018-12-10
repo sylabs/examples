@@ -6,7 +6,7 @@ From: mariadb:10.3.9
 YOUR_USERNAME="your-name"
 
 sed -ie "s/^#user.*/user = ${YOUR_USERNAME}/" /etc/mysql/my.cnf
-
+chmod 1777 /run/mysqld
 
 %runscript
 exec "mysqld" "$@"
