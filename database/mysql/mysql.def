@@ -7,20 +7,24 @@ From: debian:9
 
 %post
 
-	YOUR_USERNAME="joana-Lenovo-Y50-70"
+	YOUR_USERNAME="your_username"
 	#Update and install dependencies
 	apt-get update
 	apt-get install -y wget lsb-release gnupg dialog debconf-utils systemd telnet
-  wget https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
-  dpkg -i mysql-apt-config*
-  apt-get -y upgrade
+	wget https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+	dpkg -i mysql-apt-config*
+	apt-get -y upgrade
 	apt-get install -y mysql-server
 	chown mysql:root /var/lib/mysql/ -R
 	chmod 775 /var/lib/mysql/
 	rm -rf /var/lib/mysql/tc.log
-  rm -rf ./tc.log
-  sed -ie "s/^#user.*/user = $YOUR_USERNAME/" /etc/mysql/my.cnf
+	rm -rf ./tc.log
+	sed -ie "s/^#user.*/user = $YOUR_USERNAME/" /etc/mysql/my.cnf
 
 %startscript
 
   mysqld_safe --datadir=/var/lib/mysql/ --skip-grant-tables &
+
+%runscript
+
+	exec "mysqld" "$@"
