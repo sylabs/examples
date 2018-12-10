@@ -312,11 +312,11 @@ Your output should be:
 
 And on our host are the database files, owned by our user.
 ```
-$ ls -l mariadb/db/workdb/
-total 120
--rw-rw---- 1 test test     65 Sep 11 15:30 db.opt
--rw-rw---- 1 test test   1498 Sep 11 15:59 test.frm
--rw-rw---- 1 test test 114688 Sep 11 16:04 test.ibd
+$ ls -l
+total 104324
+drwxr-xr-x 2 westleyk westleyk      4096 Dec 10 13:06 db
+-rw-r--r-- 1 westleyk westleyk       276 Dec  7 11:33 mariadb.def
+-rwxr-xr-x 1 westleyk westleyk 106819584 Dec  7 11:34 mariadb.sif
 ```
 
 <br>
