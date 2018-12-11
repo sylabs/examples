@@ -118,7 +118,7 @@ Fatal error in defaults handling. Program aborted
 
 <br>
 
-Then you need to clear `/etc/apparmor.d/usr.sbin.mysqld`:<br>
+Then you may need to clear `/etc/apparmor.d/usr.sbin.mysqld`:<br>
 `exit` the container first.
 
 ```
