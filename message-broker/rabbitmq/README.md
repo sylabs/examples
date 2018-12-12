@@ -148,7 +148,10 @@ The `verify` command allows you to verify that the container has been signed usi
   6. Click “Create”.  
   7. Click “Copy token to Clipboard” from the “New API Token” page.
   8. Paste the token string into your ~/.singularity/sylabs-token file.
- Now you can verify containers that you pull from the library, ensuring they are bit-for-bit reproductions of the original
+
+#### Searching for the container:
+
+Now you can verify containers that you pull from the library, ensuring they are bit-for-bit reproductions of the original
 image.
  ```
 $ singularity search rabbitmq
