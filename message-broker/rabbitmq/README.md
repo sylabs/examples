@@ -44,11 +44,11 @@ $ mkdir -p ~/rabbitmq/var/{lib/rabbitmq,log}
 Then, please do make sure you have the following directory structure before following the example:
 
  ```
- ~/rabbitmq
-       `---var
-              |--lib
-              |   `--rabbitmq
-              `--log
+ ~/rabbitmq/
+       `---var/
+              |--lib/
+              |   `--rabbitmq/
+              `--log/
 ```
 
 You can get the definition file from:
