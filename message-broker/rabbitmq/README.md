@@ -62,7 +62,7 @@ You will also need to have on `~/rabbitmq` two Python scripts we will create on 
 The code inside the `send.py` file is this one:
 
 ```
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import pika
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
@@ -82,7 +82,7 @@ connection.close()
 And on the `receive.py` you should add:
 
 ```
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import pika
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(
@@ -167,18 +167,10 @@ $ singularity search rabbitmq
 From here you will just need to run the example by:
 
 ```
-$ sudo singularity instance start --bind ~/rabbitmq/var/lib:/var/lib,~/rabbitmq/var/lib/rabbitmq:/var/lib/rabbitmq,~/rabbitmq/var/log:/var/log rabbitmq.sif
+$ sudo singularity instance start --bind ~/rabbitmq/var/lib:/var/lib,~/rabbitmq/var/lib/rabbitmq:/var/lib/rabbitmq,~/rabbitmq/var/log:/var/log rabbitmq.sif rabbitmq
 ```
 
 This will start the container instance and at the same time bind all the needed folders we generated previously. Since at the very beginning all those folders on our `RabbitMQ` container are empty, there is no risk of removing them at the binding process.
-
-Then, you will see the instance started with the command line output similar to this one:
-
-```
-2018-11-14 14:41:24.851 [info] <0.33.0> Application rabbit started on node 'rabbit@localhost'
-2018-11-14 14:41:24.950 [info] <0.5.0> Server startup complete; 0 plugins started.
- completed with 0 plugins.
-```
 
 #### Run the Python Pika example:
 
@@ -205,7 +197,7 @@ On our example. we will use the program `send.py` we created to send a single me
 On these lines:
 
 ```
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import pika
 
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
