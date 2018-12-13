@@ -261,11 +261,27 @@ channel.start_consuming()
 
 #### Running the example:
 
+To run the programs, we will first make them executable, so open a command line and then on the working directory `rabbitmq` :
+
+```
+$ cd ~/rabbitmq
+$ chmod +x receive.py
+$ chmod +x send.py
+```
+
+Copy those 2 files to `/usr/bin/` and then you are ready to go:
+
+```
+$ cd ~/rabbitmq
+$ cp ./receive.py /usr/bin/receive.py
+$ cp ./send.py /usr/bin/send.py
+```
+
 To run the example, at this point you should have one console running the instance of the RabbitMQ server, open another console, shell and bind into the container and run the `receive.py` program like so:
 
 ```
 $ sudo singularity shell --bind ~/rabbitmq/var/lib:/var/lib,~/rabbitmq/var/lib/rabbitmq:/var/lib/rabbitmq,~/rabbitmq/var/log:/var/log rabbitmq.sif
-Singularity> python3 ./receive.py
+Singularity> /usr/bin/receive.py
 ```
 
 You should be asking yourself: why are we first running the "receiver" when we still haven't sent any message? And the reason for this is that the consumer will need to listen constantly for messages on a location, is the most similar to a subscription of a specific location where it wants to hear from.
@@ -273,7 +289,7 @@ You should be asking yourself: why are we first running the "receiver" when we s
 After running that last command, you should see this output:
 
 ```
-Singularity> python3 ./receive.py
+Singularity> /usr/bin/receive.py
  [*] Waiting for messages. To exit press CTRL+C
 ```
 
@@ -281,20 +297,20 @@ Next, we are ready to send the message, open another console and then shell, bin
 
 ```
 $ sudo singularity shell --bind ~/rabbitmq/var/lib:/var/lib,~/rabbitmq/var/lib/rabbitmq:/var/lib/rabbitmq,~/rabbitmq/var/log:/var/log rabbitmq.sif
-Singularity> python3 ./send.py
+Singularity> /usr/bin/send.py
 ```
 
 After that last command, you should see the following output in this console:
 
 ```
-Singularity> python3 ./send.py
+Singularity> /usr/bin/send.py
  [x] Sent 'Hello World from RabbitMQ on a Singularity container!'
 ```
 
 Notice that since the receiver's command line (the console in which we ran `receive.py`) was listening and waiting for messages, now it should print out the received message:
 
 ```
-Singularity> python3 ./receive.py
+Singularity> /usr/bin/receive.py
  [*] Waiting for messages. To exit press CTRL+C
  [x] Received b'Hello World from RabbitMQ on a Singularity container!'
 ```
