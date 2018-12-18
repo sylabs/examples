@@ -48,5 +48,8 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Spark](https://github.com/sylabs/examples/tree/master/machinelearning/spark)
    - [Weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
 
+ - [Message Broker](https://github.com/sylabs/examples/tree/master/message-broker)
+   - [RabbitMQ](https://github.com/sylabs/examples/tree/master/message-broker/rabbitmq)
+
 <br>
 <br>
