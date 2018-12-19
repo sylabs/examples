@@ -29,7 +29,7 @@ $ cd ~/nginx/
 Now you can pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/nginx:latest
+$ singularity pull nginx.sif library://sylabs/examples/nginx:latest
 ```
 
 <br>
@@ -41,14 +41,6 @@ $ singularity verify nginx.sif
 Verifying image: nginx.sif
 Data integrity checked, authentic and signed by:
         Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
-```
-
-<br>
-
-Then change the name of the container:
-
-```
-$ mv nginx_latest.sif nginx.sif
 ```
 
 <br>
