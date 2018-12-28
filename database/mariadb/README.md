@@ -1,4 +1,4 @@
-## MariaDB
+# MariaDB
 
 In this example, we will run a simple database server.
 
@@ -6,8 +6,8 @@ In this example, we will run a simple database server.
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - Root access.
- - mySQL, installed by `sudo apt-get install mysql-server`.
+ - A access token form [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
+ - MySQL, installed by `sudo apt-get install mysql-server`.
  
 <br>
 
@@ -34,11 +34,11 @@ Bootstrap: docker
 From: mariadb:10.3.9
 
 %post
-# <YOUR_USERNAME> is the user who will be executing the container,
-# just run: `whoami` and that's your username.
-# eg. sed -ie "s/^#user.*/user = westleyk/" /etc/mysql/my.cnf
-sed -ie "s/^#user.*/user = <YOUR_USERNAME>/" /etc/mysql/my.cnf
+# replace `your-name` with your username, run `whoami` to see your username
+YOUR_USERNAME="your-name"
 
+sed -ie "s/^#user.*/user = ${YOUR_USERNAME}/" /etc/mysql/my.cnf
+chmod 1777 /run/mysqld
 
 %runscript
 exec "mysqld" "$@"
@@ -55,18 +55,35 @@ $ wget https://raw.githubusercontent.com/sylabs/examples/master/database/mariadb
 
 <br>
 
+**REMEMBER** to change `<YOUR_USERNAME>` to your username, otherwise you will get this error when `> mysql_install_db`:
+
+```
+chown: invalid user: <YOUR_USERNAME>
+Cannot change ownership of the database directories to the <YOUR_USERNAME>
+```
+
+<br>
+
 To build the container, run:
 
 ```
 $ sudo singularity build mariadb.sif mariadb.def
 ```
 
-<br>
-
-Then, make all the necessary directories:
+Or use remote builder:
 
 ```
-$ mkdir -p mariadb/{db,run,log}
+$ singularity build --remote mariadb.sif mariadb.def
+```
+
+You don't need root access to use remote builder, but you do need a token, click [here](https://cloud.sylabs.io/auth) for more information.
+
+<br>
+
+Then, make the necessary directory:
+
+```
+$ mkdir db
 ```
 
 <br>
@@ -74,11 +91,7 @@ $ mkdir -p mariadb/{db,run,log}
 Now, we need to shell into the container:
 
 ```
-$ singularity shell \
- -B mariadb/db:/var/lib/mysql \
- -B mariadb/log:/var/log/mysql \
- -B mariadb/run:/var/run/mysqld \
- mariadb.sif
+$ singularity shell --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif
 ```
 
 <br>
@@ -92,9 +105,41 @@ Once we are in the container, setup MariaDB:
 *You may need to press `<ENTER>` to bring your prompt back.*
 
 <br>
+
+### If you get a error like:
+
+```
+>  mysql_install_db
+/usr/sbin/mysqld: Can't read dir of '/etc/mysql/mariadb.conf.d/' (Errcode: 13 "Permission denied")
+/usr/sbin/mysqld: Can't read dir of '/etc/mysql/conf.d/' (Errcode: 13 "Permission denied")
+Fatal error in defaults handling. Program aborted
+[...]
+```
+
 <br>
 
-Now we need to secure our installation:<br>
+Then you may need to clear `/etc/apparmor.d/usr.sbin.mysqld`:<br>
+`exit` the container first.
+
+```
+> exit
+$ sudo truncate -s0 /etc/apparmor.d/usr.sbin.mysqld
+```
+
+<br>
+
+Then, reboot your machine:
+
+```
+$ sudo reboot
+```
+
+**NOTE:** *You only may need to do this on `ubuntu`, Other os's like `centos`, `slackware` don't need this.*
+
+<br>
+
+### Secure our installation:
+
 Remember, we are still in the container.
 
 ```
@@ -103,7 +148,7 @@ Remember, we are still in the container.
 
 During this procedure, you should:
 
- - Enter your old password. If there is none just press `<ENTER>` . 
+ - Enter your old password. There is none just press `<ENTER>` . 
  - Set a new password. `[Y/n] y`
  - Type your new password (remember that password).
  - Remove anonymous users. `[Y/n] y`
@@ -113,7 +158,39 @@ During this procedure, you should:
 
 <br>
 
-Once your are done with that, connect as the root user to the database:
+If you get a error like:
+
+```
+> mysql_secure_installation
+Enter current password for root (enter for none): 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+Enter current password for root (enter for none): 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+Enter current password for root (enter for none): 
+```
+
+Then, exit the container, and stop the `mysqld daemon`:
+
+```
+> exit
+$ ps aux | grep mysqld
+[...]
+$ kill -9 [PID]
+```
+
+Then, shell into the container again, and restart the daemon:
+
+```
+$ singularity shell --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif
+> mysqld_safe --datadir=/var/lib/mysql &
+```
+
+<br>
+<br>
+
+### Connect to the database:
+
+Once your are done with the Secure installation, connect as the root user to the database:
 
 ```
 > mysql -u root -p
@@ -162,27 +239,25 @@ Now we’ll shut down the MariaDB service inside the container:
 
 <br>
 
-
 Then, exit the container:
 
 ```
 > exit
 ```
 
+### Starting the instance:
+
 We now have a working database, and are ready to start the instance.
 
-The database files are stored on the host under <em>mariadb/db/</em>:
+The database files are stored on the host under `mariadb/db/`:
+
 ```
-$ singularity instance start \
- -B mariadb/db:/var/lib/mysql \
- -B mariadb/log:/var/log/mysql \
- -B mariadb/run:/var/run/mysqld \
- mariadb.sif mariadb
+$ singularity instance start --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif mariadb
 ```
 
 <br>
 
-The instance is started so we’ll connect to it as the "newuser" account we created:
+The instance is started so we’ll connect to it as the `newuser` account we created:
 
 ```
 $ mysql -u newuser -p -h <YOUR_IP_ADDRESS> workdb
@@ -238,11 +313,11 @@ Your output should be:
 
 And on our host are the database files, owned by our user.
 ```
-$ ls -l mariadb/db/workdb/
-total 120
--rw-rw---- 1 test test     65 Sep 11 15:30 db.opt
--rw-rw---- 1 test test   1498 Sep 11 15:59 test.frm
--rw-rw---- 1 test test 114688 Sep 11 16:04 test.ibd
+$ ls -l
+total 104324
+drwxr-xr-x 2 westleyk westleyk      4096 Dec 10 13:06 db
+-rw-r--r-- 1 westleyk westleyk       276 Dec  7 11:33 mariadb.def
+-rwxr-xr-x 1 westleyk westleyk 106819584 Dec  7 11:34 mariadb.sif
 ```
 
 <br>
@@ -263,4 +338,7 @@ will stop `mariadb` instance.
 
 
 <br>
+
+___
+
 <br>

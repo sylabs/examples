@@ -18,8 +18,8 @@ In this example, we will compile a Go source code in a Singularity container.
 First, make the working directory:
 
 ```
-$ mkdir golang-container
-$ cd golang-container/
+$ mkdir ~/golang-container
+$ cd ~/golang-container/
 ```
 
 <br>
@@ -27,15 +27,7 @@ $ cd golang-container/
 Then, pull the container from the library:
 
 ```
-$ singularity pull library://sylabs/examples/golang:latest
-```
-
-<br>
-
-Rename the container:
-
-```
-$ mv golang_latest.sif golang.sif
+$ singularity pull golang.sif library://sylabs/examples/golang:latest
 ```
 
 <br>
@@ -43,10 +35,10 @@ $ mv golang_latest.sif golang.sif
 Verify the container: (Optional)
 
 ```
-$ singularity verify golang_latest.sif 
-Verifying image: golang_latest.sif
+$ singularity verify golang.sif 
+Verifying image: golang.sif
 Data integrity checked, authentic and signed by:
-        westleyk (examples) <westley@sylabs.io>, KeyID F1E47D55A7F3A56C
+        Sylabs Admin <support@sylabs.io>, KeyID EDECE4F3F38D871E
 ```
 
 <br>
@@ -76,11 +68,26 @@ The `golang.sif` is basically the `go` command, running in the container.
 
 <br>
 
-Adding `golang.sif` to `$PATH`:
+### Adding `golang.sif` to `$PATH`:
+
+You could do this:
 
 ```
 $ export PATH=$PATH:$HOME/golang-container/
 ```
+
+<br>
+
+But its better to copy-paste it to `~/.local/bin/`:
+
+```
+$ mkdir -p ~/.local/bin/
+$ echo 'export PATH=${PATH}:${HOME}/.local/bin/' >> ~/.bashrc  # only if you dont have the ~/.local/bin/
+# then cp golang.sif to ~/.local/bin/
+$ cp golang.sif ~/.local/bin/
+```
+
+<br>
 
 Now you should have `golang.sif` command.
 
@@ -88,14 +95,28 @@ Now you should have `golang.sif` command.
 
 ## Building the container from a definition file:
 
-You will need root access when building from a definition file.
-
 Here's the [definition file](https://raw.githubusercontent.com/sylabs/examples/master/lang/golang/golang.def), which can be modified as needed.
+
+Download the definition file:
+
+```
+$ wget https://raw.githubusercontent.com/sylabs/examples/master/lang/golang/golang.def
+```
+
+<br>
 
 Then to build the container:
 
 ```
 $ sudo singularity build golang.sif golang.def
+```
+
+<br>
+
+Or use remote builder, you don't need root access, but you do need a [access token](https://cloud.sylabs.io/auth).
+
+```
+$ singularity build --remote golang.sif golang.def
 ```
 
 <br>

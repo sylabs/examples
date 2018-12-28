@@ -1,6 +1,11 @@
 Bootstrap: library
 From: debian:9
 
+%environment
+  JUP_PORT=8888
+  JUP_IPNAME=localhost
+  export JUP_PORT JUP_IPNAME
+
 %help
 
     Container with Anaconda 2 (Conda 4.5.11 Canary) and Jupyter Notebook 5.6.0 for Debian 9.x (Stretch).
@@ -45,6 +50,16 @@ From: debian:9
   #List installed environments
   conda list
 
-%runscript
+%startscript
 
-  jupyter notebook --allow-root "$@"
+  PORT=""
+  if [ -n "$JUP_PORT" ]; then
+    PORT="--port=${JUP_PORT}"
+  fi
+
+  IPNAME=""
+  if [ -n "$JUP_IPNAME" ]; then
+    IPNAME="--ip=${JUP_IPNAME}"
+  fi
+
+  exec jupyter notebook --allow-root ${PORT} ${IPNAME}

@@ -14,13 +14,15 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
    - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
+   - [Redis](https://github.com/sylabs/examples/tree/master/database/redis)
 
  - [File Generating](https://github.com/sylabs/examples/tree/master/file-generating)
    - [Ronn](https://github.com/sylabs/examples/tree/master/file-generating/ronn)
 
  - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
-   - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
-   - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
+   - [Rendering](https://github.com/sylabs/examples/tree/master/graphics/rendering)
+     - [Arnold](https://github.com/sylabs/examples/tree/master/graphics/rendering/arnold)
+     - [Blender](https://github.com/sylabs/examples/tree/master/graphics/rendering/blender)
 
  - [HTTP Server](https://github.com/sylabs/examples/tree/master/http-server)
    - [Apache2 Web Server](https://github.com/sylabs/examples/tree/master/http-server/apache2-web-server)
@@ -34,17 +36,22 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [JavaScript](https://github.com/sylabs/examples/tree/master/lang/javascript)
      - [NodeJS](https://github.com/sylabs/examples/tree/master/lang/javascript/nodejs)
    - [Julia](https://github.com/sylabs/examples/tree/master/lang/julia)
+   - [Octave](https://github.com/sylabs/examples/tree/master/lang/octave)
    - [RStudio](https://github.com/sylabs/examples/tree/master/lang/RStudio)
    - [Ruby](https://github.com/sylabs/examples/tree/master/lang/ruby)
 
  - [Machine Learning](https://github.com/sylabs/examples/tree/master/machinelearning)
    - [Caffe](https://github.com/sylabs/examples/tree/master/machinelearning/caffe)
    - [Detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
+   - [H2o4gpu](https://github.com/sylabs/examples/tree/master/machinelearning/h2o4gpu)
    - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
    - [Jupyter Notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
    - [Spark](https://github.com/sylabs/examples/tree/master/machinelearning/spark)
    - [Weka](https://github.com/sylabs/examples/tree/master/machinelearning/weka)
+
+ - [Message Broker](https://github.com/sylabs/examples/tree/master/message-broker)
+   - [RabbitMQ](https://github.com/sylabs/examples/tree/master/message-broker/rabbitmq)
 
 <br>
 <br>

@@ -1,0 +1,21 @@
+Bootstrap: library
+From: ubuntu:18.04
+
+%post
+    apt-get update && apt-get -y install less libcanberra-gtk3-module
+    apt-get -y install octave=4.2.2-1ubuntu1
+    apt-get clean
+    apt-get autoremove
+
+%environment
+    export LC_ALL=C
+
+%runscript
+    octave "$@"
+
+%help 
+    Octave v4.2.2 running on an Ubuntu Bionic base. (Yays!)
+
+    Running the container with no input will start an IDE session.  Or you can
+    run the container with a script as input. 
+    
