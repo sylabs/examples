@@ -28,7 +28,7 @@ ronn can convert markdown to manpages and html files
 
 ## VARIABLES:
 
-* `o=`, `out=`[<`string`>.1] :
+* `-o=`, `--out=`[<`string`>.1] :
     specify an output file
 
 ## COMMANDS
@@ -54,7 +54,7 @@ only generate a manpage and gzip file:<br>
 `$` ./ronn.sif --man --gzip manpage-test.md
 
 only generate a manpage and html file with specific output:<br>
-`$` ./ronn.sif --man --html out=your_output_file.1 manpage-test.md
+`$` ./ronn.sif --man --html --out=your_output_file.1 manpage-test.md
 
 viewing a manpage or markdown file:<br>
 `$` ./ronn.sif view manpage-test.1<br>
