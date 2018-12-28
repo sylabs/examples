@@ -9,13 +9,15 @@ file.
 All definition files provided by Sylabs are under the BSD-3 clause license,
 unless noted in the file themselves. See the LICENSE.md file for more information.
 
-
 ### Here is the example map:
 
  - [Database](https://github.com/sylabs/examples/tree/master/database)
    - [MariaDB](https://github.com/sylabs/examples/tree/master/database/mariadb)
    - [MongoDB](https://github.com/sylabs/examples/tree/master/database/mongodb)
    - [Redis](https://github.com/sylabs/examples/tree/master/database/redis)
+
+ - [File Generating](https://github.com/sylabs/examples/tree/master/file-generating)
+   - [Ronn](https://github.com/sylabs/examples/tree/master/file-generating/ronn)
 
  - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Rendering](https://github.com/sylabs/examples/tree/master/graphics/rendering)
