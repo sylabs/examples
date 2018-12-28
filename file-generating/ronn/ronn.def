@@ -53,7 +53,7 @@ fi
 IS_OUT="false"
 
 check_args() {
-    OPTION = "$1"
+    OPTION="$1"
     if [ "$OPTION" = "-m" ] || [ "$OPTION" = "--man" ]; then
         ONLY_MAN="true"
         KEEP_ALL="false"
@@ -66,12 +66,12 @@ check_args() {
         ONLY_HTML="true"
         KEEP_ALL="false"
         return
-    elif [ ! -z $(echo "$OPTION" | grep ^"o=") ]; then
-        OUT_FILE=`echo "$OPTION" | cut -c 3- `
+    elif [ ! -z $(echo "$OPTION" | grep ^"-o=") ]; then
+        OUT_FILE=`echo "$OPTION" | cut -c 4- `
         IS_OUT="true"
         return
-    elif  [ ! -z $(echo "$OPTION" | grep ^"out=") ]; then
-        OUT_FILE=`echo "$OPTION" | cut -c 5- `
+    elif  [ ! -z $(echo "$OPTION" | grep ^"--out=") ]; then
+        OUT_FILE=`echo "$OPTION" | cut -c 7- `
         IS_OUT="true"
         return
     elif [ -e "$OPTION" ]; then
@@ -87,7 +87,7 @@ check_args() {
 # process the arguments
 KEEP_ALL="true"
 for OPTION in "$@"; do
-    check_args "$OPTION"
+    check_args $OPTION
 done
 
 # check if file exists
@@ -256,7 +256,7 @@ cat << EOF_HELP > /container/runscript.help
 Ronn (v0.7.3) running in a Alpine (3.8) container
 
 USAGE:
-  ./ronn.sif [option]... [out=output_file.1] [your_markdown_or_ronn_file]
+  ./ronn.sif [option]... [--out=output_file.1] [your_markdown_or_ronn_file]
   ./ronn.sif [command]
 
 OPTIONS:
@@ -267,7 +267,7 @@ OPTIONS:
     -h, --html              : only generate html file (*.1.html)
 
 VARIABLES:
-    o=, out=[string.1]      : specify an output file
+    -o=, --out=[string.1]      : specify an output file
 
 COMMANDS:
     view, view-file [file]  : view a manpage file in the container
@@ -282,7 +282,7 @@ EXAMPLES:
     $ ./ronn.sif --man manpage-test.md
 
     generating only manpage with a output file:
-    $ ./ronn.sif --man out=output-file.1 manpage-test.md
+    $ ./ronn.sif --man --out=output-file.1 manpage-test.md
 
     generating only the manpage and gzip file:
     $ ./ronn.sif --man --gzip manpage-test.md
@@ -313,7 +313,7 @@ CONTAINER INFO
     built with              : singularity v3.0
     built date              : $(date "+%B %d, %Y")
     built on os/arch        : $(uname -o) $(uname -m)
-    definition file version : v1.2.4
+    definition file version : v1.2.5
     container location(1)   : library://westleyk/commands/ronn
     container location(2)   : library://westleyk/ronn/ronn:1.2.2
     ronn version            : v0.7.3
