@@ -29,7 +29,7 @@ example of something:<br>
 ## NOTES
 for full tutorial/info, visit: `https://...`
 
-## AUTHER
+## AUTHOR
 `YOUR_NAME` <your_email>
 
 ## COPYRIGHT
