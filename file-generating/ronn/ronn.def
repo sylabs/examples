@@ -295,7 +295,7 @@ EXAMPLES:
 
 EXIT CODE:
     0   - no error, oporation successful
-    1   - file does not exist, or already exist
+    1   - file does not exist, or already exists
     2   - file is a directory, or unknown file extention
     4   - option not found
     255 - something very bad happened
