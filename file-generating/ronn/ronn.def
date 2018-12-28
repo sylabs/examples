@@ -28,7 +28,7 @@ if [ "$1" = "view" ] || [ "$1" = "view-file" ]; then
         return 2
     fi
     if [ "${2: -3}" = ".md" ] || [ "${2: -5}" = ".ronn"]; then
-        echo "ronn.sif: INFO: makeing tmp file..."
+        echo "ronn.sif: INFO: making tmp file..."
         TMP_FILE="$2.tmp.1.ronn"
         cat "$2" > "$TMP_FILE"
         ronn -r "$TMP_FILE" >/dev/null 2>&1
@@ -53,6 +53,7 @@ fi
 IS_OUT="false"
 
 check_args() {
+    OPTION = "$1"
     if [ "$OPTION" = "-m" ] || [ "$OPTION" = "--man" ]; then
         ONLY_MAN="true"
         KEEP_ALL="false"
@@ -86,7 +87,7 @@ check_args() {
 # process the arguments
 KEEP_ALL="true"
 for OPTION in "$@"; do
-    check_args
+    check_args "$OPTION"
 done
 
 # check if file exists
@@ -312,7 +313,7 @@ CONTAINER INFO
     built with              : singularity v3.0
     built date              : $(date "+%B %d, %Y")
     built on os/arch        : $(uname -o) $(uname -m)
-    definition file version : v1.2.3
+    definition file version : v1.2.4
     container location(1)   : library://westleyk/commands/ronn
     container location(2)   : library://westleyk/ronn/ronn:1.2.2
     ronn version            : v0.7.3
