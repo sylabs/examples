@@ -35,3 +35,25 @@ Puppeteer also requires a few dependencies to be manually installed in addition 
     npm install
     chmod -R 0755 .
 ```
+And now we need to define what happens when we start an instance of the container. In this situation, we want to run the commands that starts up the url-to-pdf server:
+
+```
+%startscript
+    cd /pdf_server
+    # Use nohup and /dev/null to completely detach server process from terminal
+    nohup npm start > /dev/null 2>&1 < /dev/null &
+```
+
+Also, the url-to-pdf server requires some environment variables to be set, which we can do in the environment section:
+
+```
+%environment
+    NODE_ENV=development
+    PORT=9000
+    ALLOW_HTTP=true
+    URL=localhost
+    export NODE_ENV PORT ALLOW_HTTP URL
+```
+```
+$ sudo singularity build url-to-pdf.sif url-to-pdf.def
+```
