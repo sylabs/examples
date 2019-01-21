@@ -16,3 +16,22 @@ Bootstrap: docker
 From: node:8
 Includecmd: no
 ```
+Puppeteer also requires a few dependencies to be manually installed in addition to Node 8, so we can add those into the post section as well as the installation script for the url-to-pdf:
+
+```
+%post
+
+    apt-get update && apt-get install -yq gconf-service libasound2 \
+        libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 \
+        libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 \
+        libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 \
+        libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 \
+        libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 \
+        libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
+        fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils \
+        wget curl && rm -r /var/lib/apt/lists/*
+    git clone https://github.com/alvarcarto/url-to-pdf-api.git pdf_server
+    cd pdf_server
+    npm install
+    chmod -R 0755 .
+```
