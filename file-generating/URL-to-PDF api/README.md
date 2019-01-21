@@ -64,11 +64,9 @@ We can now start an instance and run the server:
 ```
 $ sudo singularity instance start url-to-pdf.sif pdf
 ```
-```
 #### Note
 
 If there occurs an error related to port connection being refused while starting the instance or while using it later, you can try specifying different port numbers in the definition file above.
-````
 
 We can confirm it’s working by sending the server an http request using curl:
 
