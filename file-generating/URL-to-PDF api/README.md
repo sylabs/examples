@@ -80,3 +80,22 @@ $ curl -o sylabs.pdf localhost:9000/api/render?url=http://sylabs.io/docs
 You should see a PDF file being generated like the one shown below:
 
 ![Screenshot](docpage.png)
+
+If you shell into the instance, you can see the running processes:
+
+```
+$ sudo singularity shell instance://pdf
+Singularity: Invoking an interactive shell within container...
+
+Singularity final.sif:/home/ysub> ps auxf
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root       461  0.0  0.0  18204  3188 pts/1    S    17:58   0:00 /bin/bash --norc
+root       468  0.0  0.0  36640  2880 pts/1    R+   17:59   0:00  \_ ps auxf
+root         1  0.0  0.1 565392 12144 ?        Sl   15:10   0:00 sinit
+root        16  0.0  0.4 1113904 39492 ?       Sl   15:10   0:00 npm
+root        26  0.0  0.0   4296   752 ?        S    15:10   0:00  \_ sh -c nodemon --watch ./src -e js src/index.js
+root        27  0.0  0.5 1179476 40312 ?       Sl   15:10   0:00      \_ node /pdf_server/node_modules/.bin/nodemon --watch ./src -e js src/index.js
+root        39  0.0  0.7 936444 61220 ?        Sl   15:10   0:02          \_ /usr/local/bin/node src/index.js
+
+Singularity final.sif:/home/ysub> exit
+```
