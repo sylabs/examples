@@ -59,12 +59,12 @@ $ sudo singularity build url-to-pdf.sif url-to-pdf.def
 ```
 ### Running the Service 
 
-We can now start an instance and run the server:
+We can now start an instance and run the service:
 
 ```
 $ sudo singularity instance start url-to-pdf.sif pdf
 ```
-#### Note
+**Note:**
 
 If there occurs an error related to port connection being refused while starting the instance or while using it later, you can try specifying different port numbers in the definition file above.
 
@@ -100,4 +100,61 @@ root        27  0.0  0.5 1179476 40312 ?       Sl   15:10   0:00      \_ node /p
 root        39  0.0  0.7 936444 61220 ?        Sl   15:10   0:02          \_ /usr/local/bin/node src/index.js
 
 Singularity final.sif:/home/ysub> exit
+```
+### Making it pretty
+
+Now that we have confirmation that the server is working, let’s make it a little cleaner. It’ apps, that are integrated directly into singularity. If you haven’t already, check out the Scientific Filesystem documentation to come up to speed.
+
+First off, we’re going to move the installation of the url-to-pdf into an app, so that there is a designated spot to place output files. To do that, we want to add a section to our definition file to build the server:
+```
+%appinstall pdf_server
+    git clone https://github.com/alvarcarto/url-to-pdf-api.git pdf_server
+    cd pdf_server
+    npm install
+    chmod -R 0755 .
+```
+And update our startscript to point to the app location:
+
+```
+%startscript
+    cd "${APPROOT_pdf_server}/pdf_server"
+    # Use nohup and /dev/null to completely detach server process from terminal
+    nohup npm start > /dev/null 2>&1 < /dev/null &
+```
+
+Now we want to define the pdf_client app, which we will run to send the requests to the server:
+```
+%apprun pdf_client
+    if [ -z "${1:-}" ]; then
+        echo "Usage: singularity run --app pdf <instance://name> <URL> [output file]"
+        exit 1
+
+    fi
+    curl -o "${SINGULARITY_APPDATA}/output/${2:-output.pdf}" "${URL}:${PORT}/api/render?url=${1}"
+```
+
+As you can see, the pdf_client app checks to make sure that the user provides at least one argument. Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called out for the generated PDFs to go. After building the image from the edited definition file we simply start the instance:
+```
+$ singularity instance start -B out/:/scif/data/pdf_client/output/ url-to-pdf.sif pdf
+```
+To request a pdf simply do:
+```
+$ singularity run --app pdf_client instance://pdf http://sylabs.io/docs sylabs.pdf
+```
+To confirm that it worked:
+```
+$ ls out/
+sylabs.pdf
+```
+When you are finished, use the instance stop command to close all running instances.
+
+```
+$ singularity instance stop \*
+```
+
+**Note:**
+```
+If the service you want to run in your instance requires a bind mount, then you must pass the -B option when calling instance start. For example, if you wish to capture the output of the web container instance which is placed at /output/ inside the container you could do:
+
+$ singularity instance start -B output/dir/outside/:/output/ nginx.sif  web
 ```
