@@ -116,7 +116,7 @@ First off, we’re going to move the installation of the url-to-pdf into an app,
     npm install
     chmod -R 0755 .
 ```
-And update our startscript to point to the app location:
+And update our `startscript` to point to the app location:
 
 ```
 %startscript
@@ -136,7 +136,7 @@ Now we want to define the pdf_client app, which we will run to send the requests
     curl -o "${SINGULARITY_APPDATA}/output/${2:-output.pdf}" "${URL}:${PORT}/api/render?url=${1}"
 ```
 
-As you can see, the pdf_client app checks to make sure that the user provides at least one argument. Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called out for the generated PDFs to go. After building the image from the edited definition file we simply start the instance:
+As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` for the generated PDFs to go. After building the image from the edited definition file we simply start the instance:
 ```
 $ singularity instance start -B out/:/scif/data/pdf_client/output/ url-to-pdf.sif pdf
 ```
