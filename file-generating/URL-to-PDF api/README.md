@@ -16,7 +16,7 @@ Bootstrap: docker
 From: node:8
 Includecmd: no
 ```
-Puppeteer also requires a few dependencies to be manually installed in addition to Node 8, so we can add those into the post section as well as the installation script for the url-to-pdf:
+Puppeteer also requires a few dependencies to be manually installed in addition to Node 8, so we can add those into the `post` section as well as the installation script for the `url-to-pdf`:
 
 ```
 %post
