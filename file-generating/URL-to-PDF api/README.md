@@ -44,7 +44,7 @@ And now we need to define what happens when we start an instance of the containe
     nohup npm start > /dev/null 2>&1 < /dev/null &
 ```
 
-Also, the url-to-pdf server requires some environment variables to be set, which we can do in the environment section:
+Also, the `url-to-pdf` server requires some environment variables to be set, which we can do in the environment section:
 
 ```
 %environment
