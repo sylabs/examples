@@ -3,7 +3,7 @@
 This is an example that demonstrates packaging a service into a container and running it. The service we will be packaging is an API server that converts a web page into a PDF, i.e., can convert any URL or HTML content to a PDF file or an image (PNG/JPEG) and can be found [here](https://github.com/alvarcarto/url-to-pdf-api). This service is useful when you need to automatically produce PDF files for receipts, weekly reports, invoices, or any other type of content.
 
 Follow the steps below to build the Singularity image required for running this service or you can just download the final image directly from [Container Library](https://cloud.sylabs.io/library/_container/5c3e3b66b0877b0001b0b3fc#container-5c3e3b66b0877b0001b0b3fd), simply run
-`singularity pull library://sylabs/doc-examples/url-to-pdf:latest`.
+`$ singularity pull library://sylabs/doc-examples/url-to-pdf:latest`.
 
 
 ### Building the image 
