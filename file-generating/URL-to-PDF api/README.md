@@ -157,7 +157,9 @@ $ singularity instance stop \*
 
 **Note:**
 ```
-If the service you want to run in your instance requires a bind mount, then you must pass the -B option when calling instance start. For example, if you wish to capture the output of the web container instance which is placed at /output/ inside the container you could do:
+If the service you want to run in your instance requires a bind mount, then you must pass the -B option
+when calling instance start. For example, if you wish to capture the output of the web container instance
+which is placed at /output/ inside the container you could do:
 
 $ singularity instance start -B output/dir/outside/:/output/ nginx.sif  web
 ```
