@@ -45,6 +45,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
    - [Detectron](https://github.com/sylabs/examples/tree/master/machinelearning/detectron)
    - [H2o4gpu](https://github.com/sylabs/examples/tree/master/machinelearning/h2o4gpu)
    - [Horovod](https://github.com/sylabs/examples/tree/master/machinelearning/horovod)
+   - [Intel-Tensorflow](https://github.com/sylabs/examples/tree/master/machinelearning/intel-tensorflow)
    - [Jupyter Notebook](https://github.com/sylabs/examples/tree/master/machinelearning/jupyter-notebook)
    - [Orange Data Mining](https://github.com/sylabs/examples/tree/master/machinelearning/orange)
    - [Spark](https://github.com/sylabs/examples/tree/master/machinelearning/spark)
