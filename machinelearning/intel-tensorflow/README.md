@@ -13,7 +13,7 @@ and [Dockerfile.mkl](https://github.com/tensorflow/tensorflow/blob/master/tensor
 * This is a light weight definition file targeted for data scientists, to build container you need to download whl from the following URL and save in the same directory as this file.
 https://pypi.org/project/intel-tensorflow/1.12.0/#files.
 
-* Update TF_WHL with wheel name in %post section and read comments in %files section to uncomment lines as instructed.
+* Update TF_WHL with wheel name in `%post` section and read comments in `%files` section to uncomment lines as instructed.
 
 ## Build
 * To build immutable containers (Production recommended).
@@ -43,7 +43,7 @@ Except you cannot apply `--writable` option.
 ```
 
 ## Run a instance
-* Runs singularity container in background and allows to access notebook - This will run %starscript section commands
+* Runs singularity container in background and allows to access notebook - This will run `%starscript` section commands
 ```
     sudo singularity instance start <mysingularity_name>/ demotest
 ```
@@ -76,3 +76,9 @@ This definition file includes all development tools to build Tensorflow from scr
 ```
 
 To Shell and Exec follow the same commands as above. This container does not host any notebooks. This is purely meant for development purpose.
+
+## Run
+Executes commands in `%runscript` section
+```
+sudo singularity run --contain <mysingularity_name>/
+```

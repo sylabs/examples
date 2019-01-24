@@ -23,6 +23,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     *Exec into singularity container*- To run any command from host inside container
     sudo singularity exec --contain <mysingularity_name>/ env
 
+    *Run Singularity container-  runs %runscript section
+    sudo singularity run --contain devel/
+
 %post -c /bin/bash
 
     TF_BUILD_VERSION=v1.12.0
