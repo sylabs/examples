@@ -15,4 +15,4 @@ From: alpine:3.7
         make \
         libc-dev \
         rpm
-    gem install --no-ri --no-rdoc fpm% 
+    gem install --no-ri --no-rdoc fpm 
