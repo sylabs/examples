@@ -161,5 +161,5 @@ sylabs.pdf
 When you are finished, use the instance stop command to close all running instances.
 
 ```
-$ singularity instance stop \*
+$ singularity instance stop pdf
 ```
