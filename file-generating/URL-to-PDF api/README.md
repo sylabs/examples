@@ -1,6 +1,6 @@
 # URL-to-PDF API
 
-This is an example that demonstrates packaging a service into a container and running it. The service we will be packaging is an API server that converts a web page into a PDF, i.e., can convert any URL or HTML content to a PDF file or an image (PNG/JPEG) and can be found [here](https://github.com/alvarcarto/url-to-pdf-api). This service is useful when you need to automatically produce PDF files for receipts, weekly reports, invoices, or any other type of content.
+This is an example that demonstrates packaging a service into a container and running it. The service we will be packaging is an API server that converts a web page into a PDF, i.e., it can convert any URL or HTML content to a PDF file or an image (PNG/JPEG) and can be found [here](https://github.com/alvarcarto/url-to-pdf-api). This service is useful when you need to automatically produce PDF files for receipts, weekly reports, invoices, or any other type of content.
 
 Follow the steps below to build the Singularity image required for running this service or you can just download the final image directly from [Container Library](https://cloud.sylabs.io/library/_container/5c3e3b66b0877b0001b0b3fc#container-5c3e3b66b0877b0001b0b3fd), simply run
 `$ singularity pull library://sylabs/doc-examples/url-to-pdf:latest`.
@@ -8,7 +8,7 @@ Follow the steps below to build the Singularity image required for running this 
 
 ### Building the image 
 
-This section will describe the requirements for creating the definition file ([url-to-pdf.def](https://github.com/sushma-98/examples/blob/master/file-generating/URL-to-PDF%20api/url-to-pdf.def)) that will be used to build the container image. `url-to-pdf-api` is based on a Node 8 server that uses a headless version of Chromium called [Puppeteer](https://github.com/GoogleChrome/puppeteer). Let’s first choose a base from which to build our container, in this case the docker image `node:8` which comes pre-installed with Node 8 has been used:
+This section will describe the requirements for creating the definition file ([url-to-pdf.def](https://github.com/sushma-98/examples/blob/master/file-generating/URL-to-PDF%20api/url-to-pdf.def)) that will be used to build the container image. `url-to-pdf-api` is based on a Node 8 server that uses a headless version of Chromium called [Puppeteer](https://github.com/GoogleChrome/puppeteer). Let’s first choose a base from which to build our container, in this case the Docker image `node:8` which comes pre-installed with Node 8 has been used:
 
 
 ```
@@ -16,12 +16,12 @@ Bootstrap: docker
 From: node:8
 Includecmd: no
 ```
-Puppeteer also requires a few dependencies to be manually installed in addition to Node 8, so we can add those into the `post` section as well as the installation script for the `url-to-pdf`:
+Puppeteer also requires a few dependencies to be manually installed in addition to Node 8, so we can add those into the `post` section as well as the installation script for `url-to-pdf`:
 
 ```
 %post
 
-    apt-get update && apt-get install -yq gconf-service libasound2 \
+    apt-get -y update && apt-get install -yq gconf-service libasound2 \
         libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 \
         libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 \
         libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 \
@@ -54,6 +54,7 @@ Also, the `url-to-pdf` server requires some environment variables to be set, whi
     URL=localhost
     export NODE_ENV PORT ALLOW_HTTP URL
 ```
+Now that the definition file is complete, the SIF file can be created by issuing the following `build` command:
 ```
 $ sudo singularity build url-to-pdf.sif url-to-pdf.def
 ```
@@ -65,11 +66,9 @@ We can now start an instance and run the service:
 $ sudo singularity instance start url-to-pdf.sif pdf
 ```
 **Note:**
-
-```
-If there occurs an error related to port connection being refused while starting the instance 
+If there occurs an error related to port connection being refused while starting the instance, 
 or while using it later, you can try specifying different port numbers in the definition file above.
-```
+
 
 We can confirm it’s working by sending the server an http request using curl:
 
@@ -162,5 +161,5 @@ sylabs.pdf
 When you are finished, use the instance stop command to close all running instances.
 
 ```
-$ singularity instance stop pdf
+$ singularity instance stop \*
 ```
