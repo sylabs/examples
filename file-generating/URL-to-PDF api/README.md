@@ -158,7 +158,7 @@ To confirm that it worked:
 $ ls out
 sylabs.pdf
 ```
-When you are finished, use the instance stop command to close all running instances.
+When you are finished, use the instance stop command to close the running instance.
 
 ```
 $ singularity instance stop pdf
