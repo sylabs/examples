@@ -104,9 +104,9 @@ root        39  0.0  0.7 936444 61220 ?        Sl   15:10   0:02          \_ /us
 
 Singularity final.sif:/home/ysub> exit
 ```
-### Making it pretty
+### Enhancing the Definition File
 
-Now that we have confirmation that the server is working, let’s make it a little cleaner. It’s difficult to remember the exact `curl` command and URL syntax each time you want to request a PDF, so let’s automate it. To do that, we can use Standard Container Integration Format (SCIF) apps, that are integrated directly into singularity. If you haven’t already, check out the [Scientific Filesystem documentation](https://sci-f.github.io/) to come up to speed.
+Now that we have confirmation that the server is working, let’s make it a little cleaner. It’s difficult to remember the exact `curl` command and URL syntax each time you want to request a PDF, so this section will demonstrate enhancing of definition file to automate it. To do that, we can use Standard Container Integration Format (SCIF) apps, that are integrated directly into singularity. If you haven’t already, check out the [Scientific Filesystem documentation](https://sci-f.github.io/) to come up to speed.
 
 First off, we’re going to move the installation of the url-to-pdf into an app, so that there is a designated spot to place output files. To do that, we want to add a section to our definition file to build the server:
 ```
@@ -136,7 +136,7 @@ Now we want to define the pdf_client app, which we will run to send the requests
     curl -o "${SINGULARITY_APPDATA}/output/${2:-output.pdf}" "${URL}:${PORT}/api/render?url=${1}"
 ```
 
-As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` for the generated PDFs to go. After building the image from the edited definition file we simply start the instance:
+As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file ![here](url-to-pdf.def)
 ```
 $ singularity instance start -B out/:/scif/data/pdf_client/output/ url-to-pdf.sif pdf
 ```
