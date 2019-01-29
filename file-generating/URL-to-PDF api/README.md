@@ -136,9 +136,19 @@ Now we want to define the pdf_client app, which we will run to send the requests
     curl -o "${SINGULARITY_APPDATA}/output/${2:-output.pdf}" "${URL}:${PORT}/api/render?url=${1}"
 ```
 
-As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file ![here](url-to-pdf.def)
+As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file ![here](url-to-pdf-edited.def)
+
+Create the container as before. The `--force` option will overwrite the old container:
 ```
-$ singularity instance start -B out/:/scif/data/pdf_client/output/ url-to-pdf.sif pdf
+$ sudo singularity build --force url-to-pdf.sif url-to-pdf-edited.def
+```
+Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` for the generated PDFs to go.
+```
+$ mkdir out
+```
+After building the image from the edited definition file we simply start the instance:
+```
+$ singularity instance start --bind out/:/output url-to-pdf.sif pdf
 ```
 To request a pdf simply do:
 ```
@@ -146,20 +156,11 @@ $ singularity run --app pdf_client instance://pdf http://sylabs.io/docs sylabs.p
 ```
 To confirm that it worked:
 ```
-$ ls out/
+$ ls out
 sylabs.pdf
 ```
 When you are finished, use the instance stop command to close all running instances.
 
 ```
 $ singularity instance stop \*
-```
-
-**Note:**
-```
-If the service you want to run in your instance requires a bind mount, then you must pass the -B option
-when calling instance start. For example, if you wish to capture the output of the web 
-container instance which is placed at /output/ inside the container you could do:
-
-$ singularity instance start -B output/dir/outside/:/output/ nginx.sif  web
 ```
