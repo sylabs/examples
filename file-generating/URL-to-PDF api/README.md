@@ -130,7 +130,7 @@ Now we want to define the pdf_client app, which we will run to send the requests
     curl -o "${SINGULARITY_APPDATA}/output/${2:-output.pdf}" "${URL}:${PORT}/api/render?url=${1}"
 ```
 
-As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file [here](https://github.com/sushma-98/examples/blob/master/file-generating/URL-to-PDF%20api/url-to-pdf-edited.def).
+As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file [here](https://github.com/sylabs/examples/blob/master/file-generating/URL-to-PDF%20api/url-to-pdf-edited.def).
 
 Create the container as before. The `--force` option will overwrite the old container:
 ```
