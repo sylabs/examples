@@ -8,7 +8,7 @@ Follow the steps below to build the Singularity image required for running this 
 
 ### Building the image 
 
-This section will describe the requirements for creating the definition file ([url-to-pdf.def](url-to-pdf.def)) that will be used to build the container image. `url-to-pdf-api` is based on a Node 8 server that uses a headless version of Chromium called [Puppeteer](https://github.com/GoogleChrome/puppeteer). Let’s first choose a base from which to build our container, in this case the Docker image `node:8` which comes pre-installed with Node 8 has been used:
+This section will describe the requirements for creating the definition file ([url-to-pdf.def](https://github.com/sylabs/examples/blob/master/file-generating/URL-to-PDF%20api/url-to-pdf.def)) that will be used to build the container image. `url-to-pdf-api` is based on a Node 8 server that uses a headless version of Chromium called [Puppeteer](https://github.com/GoogleChrome/puppeteer). Let’s first choose a base from which to build our container, in this case the Docker image `node:8` which comes pre-installed with Node 8 has been used:
 
 ```
 Bootstrap: docker
@@ -130,13 +130,13 @@ Now we want to define the pdf_client app, which we will run to send the requests
     curl -o "${SINGULARITY_APPDATA}/output/${2:-output.pdf}" "${URL}:${PORT}/api/render?url=${1}"
 ```
 
-As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file [here](url-to-pdf-edited.def).
+As you can see, the `pdf_client` app checks to make sure that the user provides at least one argument. Find the full def file [here](https://github.com/sylabs/examples/blob/master/file-generating/URL-to-PDF%20api/url-to-pdf.def).
 
 Create the container as before. The `--force` option will overwrite the old container:
 ```
 $ sudo singularity build --force url-to-pdf.sif url-to-pdf-edited.def
 ```
-Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` for the generated PDFs to go.
+Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` in you Home directory for the generated PDFs to go.
 ```
 $ mkdir out
 ```
