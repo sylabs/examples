@@ -5,13 +5,13 @@ that requires efficient utilization of computational resources. In order to take
 the TensorFlow framework has been optimized using the Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN).
 
 Provided here is all the setup required for Singularity, based on the following Intel Optimized Tensorflow Dockerfiles:
-[Dockerfile.devel-mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-mkl)
+[Dockerfile.mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.mkl) and [Dockerfile.devel-mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-mkl)
 
 
 # Singularity.mkl.def
 
-* This is a light-weight definition file for data scientists. To build this container, download a python whl from the following URL and save in the same directory as this README file:
-https://pypi.org/project/intel-tensorflow/1.12.0/#files.
+* This is a light-weight definition file for data scientists. To build this container, download a python whl from this [URL](https://pypi.org/project/intel-tensorflow/1.12.0/#files)
+and save in the same directory as this README file.
 
 * Update the TF_WHL variable with actual wheel name in the `%post` section, and then read comments in  the `%files` section and uncomment lines as instructed.
 
@@ -20,7 +20,8 @@ https://pypi.org/project/intel-tensorflow/1.12.0/#files.
 ```
     sudo singularity build <mysingularity_name>.sif Singularity.mkl.def
 ```
-* To build development containers in which you can install additional packages and modify the container:
+* To build development containers in which you can install additional packages and modify the container.
+Please make sure to update those changes in definition file too.
 ```
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.mkl.def
 ```
@@ -70,7 +71,8 @@ This definition file includes all development tools to build Tensorflow from scr
 ```
     sudo singularity build <mysingularity_name>.sif Singularity.devel-mkl.def
 ```
-* To build development containers in which you can install additional packages and modify the container:
+* To build development containers in which you can install additional packages and modify the container.
+Please make sure to update those changes in definition file too.
 ```
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.devel-mkl.def
 ```
