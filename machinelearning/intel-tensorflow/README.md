@@ -1,33 +1,33 @@
 # Tensorflow
 
-[TensorFlow*](https://github.com/tensorflow/tensorflow) is a predominantly-used machine learning framework in the deep learning arena,
-demanding efficient utilization of computational resources. In order to take full advantage of Intel® architecture and to extract maximum performance,
-the TensorFlow framework has been optimized using Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) primitives, a popular performance library for deep learning applications
+[TensorFlow*](https://github.com/tensorflow/tensorflow) is a highly popular machine learning framework
+that requires efficient utilization of computational resources. In order to take full advantage of Intel® Xeon® platforms,
+the TensorFlow framework has been optimized using the Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN).
 
-Here we are providing you with all pre-setup in singularity which is based of Tensorflow MKL [Dockerfile.devel-mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-mkl)
-and [Dockerfile.mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.mkl).
+Provided here is all the setup required for Singularity, based on the following Intel Optimized Tensorflow Dockerfiles:
+[Dockerfile.devel-mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-mkl)
 
 
 # Singularity.mkl.def
 
-* This is a light weight definition file targeted for data scientists, to build container you need to download whl from the following URL and save in the same directory as this file.
+* This is a light-weight definition file for data scientists. To build this container, download a python whl from the following URL and save in the same directory as this README file:
 https://pypi.org/project/intel-tensorflow/1.12.0/#files.
 
-* Update TF_WHL with wheel name in `%post` section and read comments in `%files` section to uncomment lines as instructed.
+* Update the TF_WHL variable with actual wheel name in the `%post` section, and then read comments in  the `%files` section and uncomment lines as instructed.
 
 ## Build
-* To build immutable containers (Production recommended).
+* To build immutable containers (recommended in production environments):
 ```
     sudo singularity build <mysingularity_name>.sif Singularity.mkl.def
 ```
-* To build development containers, Where you can install packages and modified container as needed.
+* To build development containers in which you can install additional packages and modify the container:
 ```
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.mkl.def
 ```
 
 ## Shell and Exec
-Here example commands are for development container, same commands applicable to immutable containers.
-Except you cannot apply `--writable` option.
+Sample commands for development containers; the same commands apply to immutable containers
+without `--writable` option.
 
 `--writable`: option must be provided to install packages.
 `--contain`: keeps container’s environment contained, meaning no sharing of host environment.
@@ -66,11 +66,11 @@ Ex: `localhost:8888`
 This definition file includes all development tools to build Tensorflow from scratch with MKL configuration.
 
 ## Build
-* To build immutable containers (Production recommended).
+* To build immutable containers (recommended in production environments):
 ```
     sudo singularity build <mysingularity_name>.sif Singularity.devel-mkl.def
 ```
-* To build development containers, Where you can install packages and modified container as needed.
+* To build development containers in which you can install additional packages and modify the container:
 ```
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.devel-mkl.def
 ```
