@@ -4,14 +4,14 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %help
     This Singularity definition contains Intel(R) Optimizations for
-    TensorFlow including development tools
+    TensorFlow and development tools.
 
     Use below commands:
 
-    *Build singularity container* - This will build immutable container (Production recommended)
+    *Build singularity container* - This will build immutable container (recommended for production environments):
     sudo singularity build <mysingularity_name>.sif Singularity.devel-mkl.def
 
-    *To build development container* - Where you can install stuff as needed while using
+    *To build development container* - Where you can install components as necessary:
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.devel-mkl.def
 
     *Shell into singularity container*
@@ -122,16 +122,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
     CI_BUILD_PYTHON=${PYTHON}
 
-    # Set bazel build parameters in .bazelrc in parameterized_docker_build.sh
-    # Use --copt=-march values to get optimized builds appropriate for the hardware
-    #   platform of your choice.
-    # For ivy-bridge or sandy-bridge
-    # --copt=-march="avx" \
-    # For haswell, broadwell, or skylake
-    # --copt=-march="avx2" \
-    cp .bazelrc /root/.mkl.bazelrc
-    echo "import /root/.mkl.bazelrc" >>/root/.bazelrc
-
     tensorflow/tools/ci_build/builds/configured CPU \
     bazel build --config=mkl -c opt \
     tensorflow/tools/pip_package:build_pip_package && \
@@ -154,7 +144,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export MKLDNN_VERBOSE KMP_AFFINITY KMP_BLOCKTIME KMP_SETTINGS
 
 %runscript
-    echo "This is a Singularity image containing Intel optimized TensorFlow"
+    echo "This is a Singularity image containing Intel(R) Optimized TensorFlow"
     echo "GCC: $(gcc --version)"
     echo "TensorFlow: $(pip show tensorflow --disable-pip-version-check |
     grep "^Version:" | awk '{print $NF}')"

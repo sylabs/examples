@@ -13,10 +13,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
     Use below commands:
 
-    *Build singularity container* - This will build immutable container (Production recommended)
+    *Build singularity container* - This will build an immutable container (recommended in production environments):
     sudo singularity build <mysingularity_name>.sif Singularity.mkl.def
 
-    *To build development container* - Where you can install stuff as needed while using
+    *To build development container* - Where you can install additional components as needed:
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.mkl.def
 
     *Shell into singularity container*
