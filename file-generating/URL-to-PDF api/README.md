@@ -58,6 +58,9 @@ $ sudo singularity build url-to-pdf.sif url-to-pdf.def
 
 We can now start an instance and run the service:
 
+**Note:**
+Incase you pulled the image from the library where image is downladed with `latest` tag, the SIF would be named `url-to-pdf_latest.sif`.   
+
 ```
 $ sudo singularity instance start url-to-pdf.sif pdf
 ```
