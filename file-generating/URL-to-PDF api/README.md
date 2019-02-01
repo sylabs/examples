@@ -136,17 +136,17 @@ Create the container as before. The `--force` option will overwrite the old cont
 ```
 $ sudo singularity build --force url-to-pdf.sif url-to-pdf-edited.def
 ```
-Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` in you Home directory for the generated PDFs to go.
+Now that we have an output directory in the container, we need to expose it to the host using a bind mount. Once we’ve rebuilt the container, make a new directory called `out` in your Home directory for the generated PDFs to go.
 ```
 $ mkdir out
 ```
 After building the image from the edited definition file we simply start the instance:
 ```
-$ singularity instance start --bind out/:/output url-to-pdf.sif pdf
+$ sudo singularity instance start --bind out/:/output url-to-pdf.sif pdf
 ```
 To request a pdf simply do:
 ```
-$ singularity run --app pdf_client instance://pdf http://sylabs.io/docs sylabs.pdf
+$ sudo singularity run --app pdf_client instance://pdf http://sylabs.io/docs sylabs.pdf
 ```
 To confirm that it worked:
 ```
@@ -156,5 +156,5 @@ sylabs.pdf
 When you are finished, use the instance stop command to close the running instance.
 
 ```
-$ singularity instance stop pdf
+$ sudo singularity instance stop pdf
 ```
