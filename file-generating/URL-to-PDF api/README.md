@@ -100,7 +100,7 @@ Singularity url-pdf.sif:~>> exit
 ```
 ### Enhancing the Definition File
 
-Now that we have confirmation that the server is working, let’s make it a little cleaner. It’s difficult to remember the exact `curl` command and URL syntax each time you want to request a PDF, so this section will demonstrate enhancing of definition file to automate it. To do that, we can use Standard Container Integration Format (SCIF) apps, that are integrated directly into singularity. If you haven’t already, check out the [Scientific Filesystem documentation](https://sci-f.github.io/) to come up to speed.
+Now that we have confirmation that the server is working, let’s make it a little cleaner. It’s difficult to remember the exact `curl` command and URL syntax each time you want to request a PDF, so this section will demonstrate enhancing of definition file to simplify it. To do that, we can use Standard Container Integration Format (SCIF) apps, that are integrated directly into singularity. If you haven’t already, check out the [Scientific Filesystem documentation](https://sci-f.github.io/) to come up to speed.
 
 First off, we’re going to move the installation of the url-to-pdf into an app, so that there is a designated spot to place output files. To do that, we want to add a section to our definition file to build the server:
 ```
