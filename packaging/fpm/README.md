@@ -13,7 +13,7 @@ To build this container, you will need the following:
 
 To build the container, use:
 
-`sudo singularity build fpm.simg fpm.def`
+`sudo singularity build fpm.sif fpm.def`
 
 ## Tests
 
@@ -21,14 +21,14 @@ To build the container, use:
 
 First check if FPM runs:
 
-`singularity exec fpm.simg fpm --version`
+`singularity exec fpm.sif fpm --version`
 
 ### RPM packaging
 
 FPM is capable of creating a RPM package from a directory
 
 ```
-singularity exec fpm.simg fpm --verbose -s dir -t rpm \
+singularity exec fpm.sif fpm --verbose -s dir -t rpm \
 -C /path/to/folder --name $RPM_NAME --version $RPM_VERSION \
 --iteration 1 --description "Test RPM"
 ```
@@ -38,7 +38,7 @@ It should output a file named `$RPM_NAME-$RPM_VERSION-1.x86_64.rpm`
 
 FPM is capable of creating a DEB package from a directory
 ```
-singularity exec fpm.simg fpm --verbose -s dir -t deb \
+singularity exec fpm.sif fpm --verbose -s dir -t deb \
 -C /path/to/folder --name $DEB_NAME --version $DEB_VERSION \
 --iteration 1 --description "Test DEB"
 ```
