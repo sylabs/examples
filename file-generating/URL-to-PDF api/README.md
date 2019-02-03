@@ -84,8 +84,7 @@ You should see a PDF file being generated like the one shown below:
 
 ![Screenshot](docpage.png)
 
-If you shell into the instance, you can see the running processes:
-
+You can also check which are the running processes by shelling into the container and listing the processes with the `ps` command:
 ```
 $ sudo singularity shell instance://pdf
 
