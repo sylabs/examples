@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: alpine:3.7
+
+%help
+
+    Singularity container with FPM
+
+%post
+
+    apk add --no-cache \
+        ruby \
+        ruby-dev \
+        gcc \
+        libffi-dev \
+        make \
+        libc-dev \
+        rpm
+    gem install --no-ri --no-rdoc fpm 

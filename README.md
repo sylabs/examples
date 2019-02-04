@@ -53,5 +53,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
  - [Message Broker](https://github.com/sylabs/examples/tree/master/message-broker)
    - [RabbitMQ](https://github.com/sylabs/examples/tree/master/message-broker/rabbitmq)
 
+ - [Packaging](https://github.com/sylabs/examples/tree/master/packaging)
+   - [FPM](https://github.com/sylabs/examples/tree/master/packaging/fpm)
 <br>
 <br>
