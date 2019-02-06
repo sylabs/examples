@@ -8,20 +8,20 @@ Provided here is all the setup required for Singularity, based on the following 
 [Dockerfile.mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.mkl) and [Dockerfile.devel-mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-mkl)
 
 
-# Pre-Requisites
+### Prerequisites
 * Singularity (>=3.0.0) - Install from [here](https://github.com/sylabs/singularity/blob/master/INSTALL.md)
 * Debootstrap module - Install from [here](https://www.sylabs.io/guides/3.0/user-guide/appendix.html?highlight=debootstrap#id14)
 
 **NOTE:** All definition files where built and tested on`Ubuntu 16.04`.
 
-# Singularity.mkl.def
+## Singularity.mkl.def
 
 * This is a light-weight definition file for data scientists. To build this container, download a `python2.7` whl named `intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl ` from this [URL](https://pypi.org/project/intel-tensorflow/1.12.0/#files)
 and save in the same directory as this README file. (Please use different whl if required, make sure to update all corresponding references)
 
 * Update the TF_WHL variable with actual wheel name in the `%post` section, and then read comments in  the `%files` section and uncomment lines as instructed.
 
-## Build
+### Build
 * To build immutable containers (recommended in production environments):
 ```
     sudo singularity build <mysingularity_name>.sif Singularity.mkl.def
@@ -32,7 +32,7 @@ Please make sure to update those changes in definition file too.
     sudo singularity build --sandbox <mysingularity_name>/ Singularity.mkl.def
 ```
 
-## Shell and Exec
+### Shell and Exec
 Sample commands for development containers; the same commands apply to immutable containers
 without `--writable` option.
 
@@ -49,7 +49,7 @@ without `--writable` option.
     sudo singularity exec --contain <mysingularity_name>/ env
 ```
 
-## Run a instance
+### Run a instance
 * Runs singularity container in background and allows to access notebook - This will run `%starscript` section commands
 ```
     sudo singularity instance start <mysingularity_name>/ demotest
@@ -69,10 +69,10 @@ Ex: `ssh -L 8888:localhost:8888 <remote_machine_name>`
 Access the given url from your browser and enter the access token
 Ex: `localhost:8888`
 
-# Singularity.devel-mkl.def
+## Singularity.devel-mkl.def
 This definition file includes all development tools to build Tensorflow from scratch with MKL configuration.
 
-## Build
+### Build
 * To build immutable containers (recommended in production environments):
 ```
     sudo singularity build <mysingularity_name>.sif Singularity.devel-mkl.def
@@ -85,7 +85,7 @@ Please make sure to update those changes in definition file too.
 
 To Shell and Exec follow the same commands as above. This container does not host any notebooks. This is purely meant for development purpose.
 
-## Run
+### Run
 Executes commands in `%runscript` section
 ```
 sudo singularity run --contain <mysingularity_name>/
