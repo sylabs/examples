@@ -8,10 +8,16 @@ Provided here is all the setup required for Singularity, based on the following 
 [Dockerfile.mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.mkl) and [Dockerfile.devel-mkl](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/Dockerfile.devel-mkl)
 
 
+# Pre-Requisites
+* Singularity (>=3.0.0) - Install from [here](https://github.com/sylabs/singularity/blob/master/INSTALL.md)
+* Debootstrap module - Install from [here](https://www.sylabs.io/guides/3.0/user-guide/appendix.html?highlight=debootstrap#id14)
+
+**NOTE:** All definition files where built and tested on`Ubuntu 16.04`.
+
 # Singularity.mkl.def
 
-* This is a light-weight definition file for data scientists. To build this container, download a python whl from this [URL](https://pypi.org/project/intel-tensorflow/1.12.0/#files)
-and save in the same directory as this README file.
+* This is a light-weight definition file for data scientists. To build this container, download a `python2.7` whl named `intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl ` from this [URL](https://pypi.org/project/intel-tensorflow/1.12.0/#files)
+and save in the same directory as this README file. (Please use different whl if required, make sure to update all corresponding references)
 
 * Update the TF_WHL variable with actual wheel name in the `%post` section, and then read comments in  the `%files` section and uncomment lines as instructed.
 
