@@ -9,7 +9,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     Download whl from the following URL and save in the same directory as this file.
     https://pypi.org/project/intel-tensorflow/1.12.0/#files
 
-    NOTE: Please update TF_WHL with wheel name, otherwise build will fail.
+    NOTE: Please update TF_WHL with wheel name(if different), otherwise build will fail.
 
     Use below commands:
 
@@ -51,8 +51,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %files
     # Download whl from the following URL and save in the same directory as this file.
     # https://pypi.org/project/intel-tensorflow/1.12.0/#files
-    # Uncomment the following line before building the container. Please use different whl file name as needed.
-    # intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl /
+    # Please update wheel name below (if different)
+    intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl /
 
     # Copy sample notebooks.
     notebooks /notebooks
@@ -64,8 +64,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %post -c /bin/bash
 
-    # Uncomment below line and update previously downloaded tensorflow wheel name(if different)
-    # TF_WHL="intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl"
+    # Update previously downloaded tensorflow wheel name(if different)
+    TF_WHL="intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl"
 
     PYTHON="python"
     PIP="pip"

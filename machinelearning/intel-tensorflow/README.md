@@ -19,7 +19,8 @@ Provided here is all the setup required for Singularity, based on the following 
 * This is a light-weight definition file for data scientists. To build this container, download a `python2.7` whl named `intel_tensorflow-1.12.0-cp27-cp27mu-manylinux1_x86_64.whl ` from this [URL](https://pypi.org/project/intel-tensorflow/1.12.0/#files)
 and save in the same directory as this README file. (Please use different whl if required, make sure to update all corresponding references)
 
-* Update the TF_WHL variable with actual wheel name in the `%post` section, and then read comments in  the `%files` section and uncomment lines as instructed.
+* Update the `TF_WHL` value in definition file with downloaded wheel name (if different) in `%post` section,
+and then read comments in  the `%files` section.
 
 ### Build
 * To build immutable containers (recommended in production environments):
