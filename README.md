@@ -18,6 +18,7 @@ unless noted in the file themselves. See the LICENSE.md file for more informatio
 
  - [File Generating](https://github.com/sylabs/examples/tree/master/file-generating)
    - [Ronn](https://github.com/sylabs/examples/tree/master/file-generating/ronn)
+   - [URL-to-PDF API](https://github.com/sylabs/examples/tree/master/file-generating/URL-to-PDF%20api)
 
  - [Graphics](https://github.com/sylabs/examples/tree/master/graphics)
    - [Rendering](https://github.com/sylabs/examples/tree/master/graphics/rendering)
