@@ -1,0 +1,64 @@
+Bootstrap: library
+From: ubuntu:16.04
+
+%environment
+
+  export LANGUAGE=en_US.UTF-8
+  export LANG=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
+  export DATABASE_URL=postgres://postgres@sammy
+
+%help
+
+  #Description of the container
+	Singularity container with Conjur over Ubuntu 16.04
+
+%post
+
+  export LANGUAGE=en_US.UTF-8
+  export LANG=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
+  export DATABASE_URL=postgres://postgres@sammy
+
+  apt-get update -y && \
+  apt-get install -y software-properties-common && \
+  apt-add-repository -y ppa:brightbox/ruby-ng
+
+  apt-get update -y && \
+  apt-get install -y build-essential \
+                       curl \
+                       git \
+                       libpq-dev \
+                       ldap-utils \
+                       postgresql \
+                       postgresql-contrib \
+                       postgresql-client \
+                       ruby2.5 ruby2.5-dev \
+                       tzdata \
+                       unattended-upgrades \
+                       update-notifier-common
+
+  gem install -N -v 1.16.1 bundler
+
+  git clone --recursive https://github.com/cyberark/conjur.git
+
+  mkdir -p /opt/conjur-server
+
+  cd ./conjur
+  cp Gemfile /opt/conjur-server
+  cp Gemfile.lock /opt/conjur-server
+  cd /opt/conjur-server
+
+  bundle --without test development
+
+  ln -sf /opt/conjur-server/bin/conjurctl /usr/local/bin
+
+%startscript
+
+  su -c "setenforce 0"
+  service postgresql start
+  psql
+  createdb sammy
+
+  cd /conjur/bin/
+  ./conjurctl server
