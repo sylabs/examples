@@ -1,0 +1,14 @@
+version: 2
+
+jobs:
+ lint_markdown:
+   docker:
+     - image: node:11-slim
+   steps:
+     - checkout
+     - run:
+         name: Install markdownlint
+         command: npm install -g markdownlint-cli
+     - run:
+         name: Check for Lint
+         command: markdownlint .
