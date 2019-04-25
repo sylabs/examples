@@ -12,6 +12,10 @@ From: debian:9
 
 	Singularity container running MongoDB v4.0.3 Community Edition for Debian 9 (Stretch)
 
+	mkdir -p mongodb/db
+	export SINGULARITY_BINDPATH="mongodb/db:/data/db"
+	singularity instance start mongodb.sif mongodb
+
 %post
 
 	#Setting up where data will reside
