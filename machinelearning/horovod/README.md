@@ -2,7 +2,7 @@
 
 Horovod is a distributed training framework for TensorFlow, Keras, and PyTorch. The goal of Horovod is to make distributed Deep Learning fast and easy to use.
 
-This is a port of the Dockerfile maintained at [https://github.com/uber/horovod](https://github.com/uber/horovod)
+This is a part of the Dockerfile maintained at [https://github.com/uber/horovod](https://github.com/uber/horovod)
 
 ## Instructions
 
