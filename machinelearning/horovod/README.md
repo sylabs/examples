@@ -9,7 +9,7 @@ This is a part of the Dockerfile maintained at [https://github.com/uber/horovod]
 A difference between the running the singularity container (vs the docker one) is that mpi runs outside of singularity thus you do not have to start the container instance on each host as detailed in the [horovod docker file](https://github.com/uber/horovod/blob/master/docs/docker.md).
 
 ### Build instructions
-Download the [horovod.def](https://github.com/sylabs/examples/blob/master/machinelearning/horovod/horovod.def) file to your local computer.
+Download the [horovod.def](https://raw.githubusercontent.com/sylabs/examples/master/machinelearning/horovod/horovod.def) file to your local computer.
 
 Build the sif file by executing the following command:
 
