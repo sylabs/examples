@@ -19,7 +19,7 @@ more description on what it does
     whatever other options you want
 
 ## COMMANDS
-* `do`, `do-somthing` :
+* `do`, `do-something` :
     what your command does
 
 ## EXAMPLES
