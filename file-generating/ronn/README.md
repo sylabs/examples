@@ -114,6 +114,12 @@ Viewing the manpage:
 $ man ./ronn.sif.1
 ```
 
+Alternately, view the manpage using the container:
+
+```
+$ ronn.sif  view ./ronn.sif.1
+```
+
 <br>
 
 ### More examples:
@@ -127,6 +133,7 @@ $ ronn.sif --gzip --html your_markdown_file.md
 Now you should have your `your_markdown_file.1.gzip`, and `your_markdown_file.1.html`.
 
 <br>
+
 
 ### Specifying the output file:
 
