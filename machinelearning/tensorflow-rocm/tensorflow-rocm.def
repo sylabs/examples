@@ -1,0 +1,39 @@
+Bootstrap: docker
+From: rocm/tensorflow:rocm2.8-tf1.14-dev
+
+%help
+    This Singularity definition contains
+        - tensorflow-rocm 1.14.2 supporting AMD ROCm GPUs
+        - tensorflow-datasets
+        - tensorflow/models examples
+
+    Run 'ipython' for an interactive python shell
+    Run 'jupyter notebook' to startup a jupyter notebook server
+    Run 'cifar10_train.sh' to start the CIFAR10 training example
+
+%files
+
+    # Copy cifar10 example script
+    cifar10_train.sh /usr/local/bin/cifar10_train.sh
+
+%post
+
+    python3 -m pip install tensorflow-datasets
+    cd /opt
+    git clone https://github.com/tensorflow/models
+    cd models
+
+%runscript
+
+    echo "tensorflow-rocm example container"
+    echo "   github.com/sylabs/examples"
+    echo
+    echo "Run 'ipython' for an interactive python shell"
+    echo "Run 'jupyter notebook' to startup a jupyter notebook server"
+    echo "Run 'cifar10_train.sh' to start the CIFAR10 training example"
+    echo
+
+    bash
+
+%labels
+    Maintainer "David Trudgian <david.trudgian@sylabs.io>"
