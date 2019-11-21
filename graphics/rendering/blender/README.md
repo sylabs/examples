@@ -1,14 +1,14 @@
 # Blender
 
-Blender is a free and open source software used for editing and rendering.
+Blender is a free and open source tool used to create and render 3D graphics and animation.
 
-In this example, we will install and run Blender in a [Ubuntu container 16.04](https://cloud.sylabs.io/library/library/default/ubuntu).
+In this example, we will install and run Blender in an [Ubuntu 18.04 container](https://cloud.sylabs.io/library/library/default/ubuntu).
 
 <br>
 
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
- - A [access token](https://cloud.sylabs.io/auth) (for remote builder).
+ - An [access token](https://cloud.sylabs.io/auth) (for remote builder).
  - A Blender scene file from the [demo files](https://www.blender.org/download/demo-files/).
 
 <br>
@@ -46,7 +46,7 @@ Data integrity checked, authentic and signed by:
 
 <br>
 
-## Running the container:
+## Rendering scenes with the container:
 
 Now, you can run the following to render `.blend` (blender scene) files.<br>
 Make sure you have your [blender file](https://www.blender.org/download/demo-files/).
@@ -89,10 +89,38 @@ $ singularity run --nv blender.sif my_scene.blend run/output 5
 
 <br>
 
-The above examples are all using the `–-nv` option, for bringing into the container the Nvidia libraries from the host.
+The above examples use the `--nv` option to bring NVIDIA library and device
+files into the container, so Blender can use your NVIDIA GPU if you have one.
 
+If you have an AMD Radeon GPU you can use the `--rocm` option and `--bind
+/etc/OpenCL`, so that blender can use the AMD libraries for OpenCL accelerated
+rendering. The `--rocm` flag binds the GPU libraries and is sufficient for ROCm
+GPU programs, but you must bind the OpenCL directory separately, or a specific
+vendor icd file within it, to enable the OpenCL profile for the GPU. e.g.:
+
+```
+$ singularity run --rocm --bind /etc/OpenCL blender.sif my_scene.blend run/output 
+```
 
 <br>
+
+## Running Blender Interactively:
+
+If the system you are using has a graphical X session (desktop) running you can
+run the blender program interactively from the container and use it as if it was
+installed directly:
+
+```
+# For CPU rendering only
+$ singularity exec blender.sif blender
+
+# If you have an NVIDIA GPU
+$ singularity exec --nv blender.sif blender
+
+# If you have an AMD Radeon GPU
+$ singularity exec --rocm --bind /etc/OpenCL blender.sif blender
+```
+
 <br>
 
 ## Building the container from a definition file:

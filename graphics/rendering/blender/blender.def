@@ -1,9 +1,19 @@
-Bootstrap: library
-From: ubuntu:16.04
+Bootstrap: docker
+From: ubuntu:18.04
 
 %post
+
+# We need gnupg to setup the PPA
 apt-get update
-apt-get -y install blender blender-data
+apt-get install -y gnupg clinfo
+
+# We will use a ppa to get the latest blender
+echo "deb http://ppa.launchpad.net/thomas-schiex/blender/ubuntu bionic main" >> /etc/apt/sources.list
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D32A3245446233723DECE00F7281E3E842A98114
+
+# Install blender
+apt-get update
+apt-get -y install blender
 
 %help
 $ singularity run blender.sif [scene file] [output directory] <frame | start frame:end frame>
