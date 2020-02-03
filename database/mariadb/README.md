@@ -6,7 +6,7 @@ In this example, we will run a simple database server.
 #### What you need:
  - Singularity, which you can download and install from [here](https://github.com/sylabs/singularity).
  - A text editor, like: `micro`, `vim` or `nano`.
- - A access token form [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
+ - An access token from [here](https://cloud.sylabs.io/auth) (for remote builder), or root access.
  - MySQL, installed by `sudo apt-get install mysql-server`.
  
 <br>
@@ -106,7 +106,7 @@ Once we are in the container, setup MariaDB:
 
 <br>
 
-### If you get a error like:
+### If you get an error like:
 
 ```
 >  mysql_install_db
@@ -158,7 +158,7 @@ During this procedure, you should:
 
 <br>
 
-If you get a error like:
+If you get an error like:
 
 ```
 > mysql_secure_installation
@@ -190,7 +190,7 @@ $ singularity shell --writable-tmpfs -B db/:/var/lib/mysql mariadb.sif
 
 ### Connect to the database:
 
-Once your are done with the Secure installation, connect as the root user to the database:
+Once you are done with the Secure installation, connect as the root user to the database:
 
 ```
 > mysql -u root -p
