@@ -197,7 +197,7 @@ Once your are done with the Secure installation, connect as the root user to the
 ```
 You will have to type the password you previously set.
 <br>
-Now your promt should look like this:
+Now your prompt should look like this:
 ```
 MariaDB [(none)]>
 ```
@@ -212,7 +212,7 @@ Just copy-paste these commands, <br>
 
 ```
 MariaDB [(none)]> use mysql;
-# your promt should change to: MariaDB [mysql]>
+# your prompt should change to: MariaDB [mysql]>
 
 MariaDB [mysql]> CREATE DATABASE workdb;
 MariaDB [mysql]> CREATE USER newuser@<YOUR_IP_ADDRESS> IDENTIFIED BY "<YOUR_PASSWORD>";
@@ -224,7 +224,7 @@ MariaDB [mysql]> exit
 ```
 If you get an `ERROR:`, then the command was not typed correctly.
 
-After you type `exit` you should still be in the container, i.e., your promt should look like this:
+After you type `exit` you should still be in the container, i.e., your prompt should look like this:
 ```
 Singularity mariadb/mariadb.sif:~> 
 ```
