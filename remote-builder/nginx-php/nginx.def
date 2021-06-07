@@ -1,0 +1,60 @@
+Bootstrap: docker
+From: nginx:alpine
+
+%setup
+
+cat > /tmp/default.conf <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+
+    root /var/www/html;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    location / {
+        try_files $uri $uri/index.php =404;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        include fastcgi.conf;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+EOF
+
+cat > /tmp/index.php <<EOF
+<?='<h1>Hello from php and nginx in a sif</h1>'; ?>
+EOF
+
+cat > /tmp/php.conf <<EOF
+[www]
+user = www
+group = www
+listen = 127.0.0.1:9000
+EOF
+
+%files
+    /tmp/default.conf /etc/nginx/conf.d/default.conf
+    /tmp/index.php /var/www/html/index.php
+    /tmp/php.conf /etc/php8/php-fpm.d/php.conf
+
+%startscript
+    php-fpm8 -D
+    nginx -g "daemon off;"
+
+%post
+    apk update
+    apk add ca-certificates wget openssl curl
+    update-ca-certificates
+    apk add php8-fpm php8-cli php8-mysqli php8-pdo php8-pdo_mysql
+    ln -s /usr/bin/php8 /usr/bin/php
+    mkdir -p /var/www/html
