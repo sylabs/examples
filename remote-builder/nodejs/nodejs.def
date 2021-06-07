@@ -1,0 +1,47 @@
+Bootstrap: docker
+From: node:16-alpine
+
+%setup
+  mkdir -p ${SINGULARITY_ROOTFS}/usr/local/share/node/app
+  mkdir -p app
+cat > app/index.js <<EOF
+const express = require("express");
+const app = express();
+const port = 4000;
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+EOF
+
+cat > app/package.json <<EOF
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
+EOF
+
+%files
+  app /usr/local/share/node
+
+%startscript
+  node /usr/local/share/node/app/index.js
+
+%post
+  mkdir -p /usr/local/share/node/app/
+  cd /usr/local/share/node/app/
+  yarn
