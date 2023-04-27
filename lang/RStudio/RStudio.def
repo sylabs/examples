@@ -1,5 +1,5 @@
 Bootstrap: library
-From: debian:9
+From: debian:10
 
 %environment
     LC_ALL="C"
@@ -7,15 +7,16 @@ From: debian:9
 
 %post
     apt-get update
-    apt-get -y install systemd systemd-sysv gdebi-core procps libssl1.1 ed wget curl libqt5webkit5 libqt5core5a
-    apt-get -y install r-base r-base-dev
+    apt -y install systemd systemd-sysv gdebi-core procps libssl1.1 libnss3 \
+           libasound2 ed wget curl libqt5webkit5 libqt5core5a r-base r-base-dev
 
-    curl https://download1.rstudio.org/rstudio-xenial-1.1.456-amd64.deb > /rstudio-1.1.456-amd64.deb
-    apt-get -y install /rstudio-1.1.456-amd64.deb
+    wget -O /rstudio-2023.03.0-386-amd64.deb \
+      https://download1.rstudio.org/electron/bionic/amd64/rstudio-2023.03.0-386-amd64.deb
+    apt -y install /rstudio-2023.03.0-386-amd64.deb
 
-    wget -O /rstudio-server-stretch-1.1.456-amd64.deb \
-      https://download2.rstudio.org/rstudio-server-stretch-1.1.456-amd64.deb
-    gdebi -n /rstudio-server-stretch-1.1.456-amd64.deb
+    wget -O /rstudio-server-2023.03.0-386-amd64.deb \
+      https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2023.03.0-386-amd64.deb 
+    gdebi -n /rstudio-server-2023.03.0-386-amd64.deb
 
     # Setup the "general" CRAN repo
     echo 'local({
@@ -34,12 +35,11 @@ From: debian:9
     systemctl enable rstudio-server
 
     # Remove unneeded source packages
-    rm -f /rstudio-1.1.456-amd64.deb
-    rm -f /rstudio-server-stretch-1.1.456-amd64.deb
+    rm -f /rstudio-2023.03.0-386-amd64.deb
+    rm -f /rstudio-server-2023.03.0-386-amd64.deb
 
 %runscript
     /usr/bin/rstudio "$@"
 
 %startscript
-    /usr/lib/rstudio-server/bin/rserver
-
+    /usr/lib/rstudio-server/bin/rserver "$@"
