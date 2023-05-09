@@ -43,8 +43,6 @@ SINGULARITYENV_DISPLAY=${DISPLAY} \
   singularity run rstudio.sif
 ```
 
-This is needed only if the `DISPLAY` environment variable does not automatically propagate from your host environment to the container.
-
 For a modification of rstudio-server, for example to run on port 9999:
 
 ```bash
